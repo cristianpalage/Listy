@@ -20,7 +20,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nJC-WF-a6I">
                                         <rect key="frame" x="0.0" y="0.0" width="186" height="30"/>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" title="back"/>
                                         <connections>
                                             <action selector="backButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cCt-FC-5fJ"/>
                                         </connections>
@@ -33,20 +33,18 @@
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C6F-lm-mIL">
                                         <rect key="frame" x="228" y="0.0" width="186" height="30"/>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" title="add"/>
                                         <connections>
                                             <action selector="addButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nSv-cu-8r0"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="S9i-yS-n2j" firstAttribute="centerX" secondItem="HP9-la-pQm" secondAttribute="centerX" id="1aE-CB-HSE"/>
-                                    <constraint firstItem="nJC-WF-a6I" firstAttribute="leading" secondItem="HP9-la-pQm" secondAttribute="leading" constant="18" id="6FO-hF-HJB"/>
-                                    <constraint firstItem="S9i-yS-n2j" firstAttribute="centerY" secondItem="HP9-la-pQm" secondAttribute="centerY" id="8xC-Qx-lDK"/>
+                                    <constraint firstItem="S9i-yS-n2j" firstAttribute="centerX" secondItem="HP9-la-pQm" secondAttribute="centerX" id="Qgc-uk-Ai2"/>
                                     <constraint firstAttribute="height" constant="30" id="Tnf-BI-I0e"/>
-                                    <constraint firstAttribute="trailing" secondItem="C6F-lm-mIL" secondAttribute="trailing" constant="18" id="hrb-pd-g1J"/>
-                                    <constraint firstItem="nJC-WF-a6I" firstAttribute="centerY" secondItem="HP9-la-pQm" secondAttribute="centerY" id="iPz-pr-uS1"/>
-                                    <constraint firstItem="C6F-lm-mIL" firstAttribute="centerY" secondItem="HP9-la-pQm" secondAttribute="centerY" id="jjZ-oJ-AoA"/>
+                                    <constraint firstAttribute="trailing" secondItem="C6F-lm-mIL" secondAttribute="trailing" constant="18" id="eFt-Yp-Gt9"/>
+                                    <constraint firstItem="nJC-WF-a6I" firstAttribute="leading" secondItem="HP9-la-pQm" secondAttribute="leading" constant="18" id="s1I-1B-izR"/>
+                                    <constraint firstItem="S9i-yS-n2j" firstAttribute="centerY" secondItem="HP9-la-pQm" secondAttribute="centerY" id="wmS-lu-Sjm"/>
                                 </constraints>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LOf-Mp-goI">
