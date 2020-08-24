@@ -14,6 +14,9 @@
 		0B48431C24F3652B00D9505E /* ListAppGit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0B48431A24F3652B00D9505E /* ListAppGit.xcdatamodeld */; };
 		0B48431E24F3652C00D9505E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B48431D24F3652C00D9505E /* Assets.xcassets */; };
 		0B48432124F3652C00D9505E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B48431F24F3652C00D9505E /* LaunchScreen.storyboard */; };
+		0B48432924F367BA00D9505E /* ListNodeClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B48432824F367BA00D9505E /* ListNodeClass.swift */; };
+		0B48432B24F367E800D9505E /* StringParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B48432A24F367E800D9505E /* StringParser.swift */; };
+		0B48435224F36E8100D9505E /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B48435124F36E8100D9505E /* Cell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		0B48431D24F3652C00D9505E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0B48432024F3652C00D9505E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0B48432224F3652C00D9505E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0B48432824F367BA00D9505E /* ListNodeClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNodeClass.swift; sourceTree = "<group>"; };
+		0B48432A24F367E800D9505E /* StringParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringParser.swift; sourceTree = "<group>"; };
+		0B48435124F36E8100D9505E /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +68,9 @@
 				0B48431324F3652B00D9505E /* SceneDelegate.swift */,
 				0B48431524F3652B00D9505E /* ViewController.swift */,
 				0B48431724F3652B00D9505E /* Main.storyboard */,
+				0B48435124F36E8100D9505E /* Cell.swift */,
+				0B48432A24F367E800D9505E /* StringParser.swift */,
+				0B48432824F367BA00D9505E /* ListNodeClass.swift */,
 				0B48431D24F3652C00D9505E /* Assets.xcassets */,
 				0B48431F24F3652C00D9505E /* LaunchScreen.storyboard */,
 				0B48432224F3652C00D9505E /* Info.plist */,
@@ -143,6 +152,9 @@
 			files = (
 				0B48431C24F3652B00D9505E /* ListAppGit.xcdatamodeld in Sources */,
 				0B48431624F3652B00D9505E /* ViewController.swift in Sources */,
+				0B48435224F36E8100D9505E /* Cell.swift in Sources */,
+				0B48432924F367BA00D9505E /* ListNodeClass.swift in Sources */,
+				0B48432B24F367E800D9505E /* StringParser.swift in Sources */,
 				0B48431224F3652B00D9505E /* AppDelegate.swift in Sources */,
 				0B48431424F3652B00D9505E /* SceneDelegate.swift in Sources */,
 			);
