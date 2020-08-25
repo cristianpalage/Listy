@@ -12,7 +12,6 @@ import CoreData
 
 class ViewController: UIViewController {
     
-    
     @IBOutlet weak var tableView: UITableView! {
         didSet { tableView.separatorStyle = .none }
     }
