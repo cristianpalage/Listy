@@ -81,6 +81,7 @@ func parseToNodes(listString: String) -> [Node] {
 
 func listsToStringRoot(list: Node) -> String {
     let childrenString = listsToStringChild(list: list.children)
+    
     return "[" + list.value + "[" + childrenString + "]]"
 }
 
