@@ -30,8 +30,8 @@ class ViewController: UIViewController {
         loadListsFromDisk()
         tableView.delegate = self
         tableView.dataSource = self
-        listName.text = currentNode.value
         setLists()
+        self.title = "Home"
         
         tableView.register(TestCell.self, forCellReuseIdentifier: "cell")
     }
@@ -104,9 +104,13 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        currentNode = currentNode.children[indexPath.row]
+        /*currentNode = currentNode.children[indexPath.row]
         listName.text = currentNode.value
-        tableView.reloadData()
+        tableView.reloadData()*/
+
+        let vm = ListTableViewModel(currentList: currentNode.children[indexPath.row], rootNode: rootNode)
+        let view = ListTableView(viewModel: vm)
+        navigationController?.pushViewController(view, animated: true)
     }
 }
 

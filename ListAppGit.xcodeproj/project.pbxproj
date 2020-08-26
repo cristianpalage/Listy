@@ -17,6 +17,7 @@
 		0B48432924F367BA00D9505E /* ListNodeClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B48432824F367BA00D9505E /* ListNodeClass.swift */; };
 		0B48432B24F367E800D9505E /* StringParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B48432A24F367E800D9505E /* StringParser.swift */; };
 		0B48435224F36E8100D9505E /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B48435124F36E8100D9505E /* Cell.swift */; };
+		0B5D694524F7135500AC3FA4 /* ListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5D694424F7135500AC3FA4 /* ListTableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		0B48432824F367BA00D9505E /* ListNodeClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNodeClass.swift; sourceTree = "<group>"; };
 		0B48432A24F367E800D9505E /* StringParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringParser.swift; sourceTree = "<group>"; };
 		0B48435124F36E8100D9505E /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
+		0B5D694424F7135500AC3FA4 /* ListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				0B48431324F3652B00D9505E /* SceneDelegate.swift */,
 				0B48431524F3652B00D9505E /* ViewController.swift */,
 				0B48431724F3652B00D9505E /* Main.storyboard */,
+				0B5D694424F7135500AC3FA4 /* ListTableView.swift */,
 				0B48435124F36E8100D9505E /* Cell.swift */,
 				0B48432A24F367E800D9505E /* StringParser.swift */,
 				0B48432824F367BA00D9505E /* ListNodeClass.swift */,
@@ -155,6 +158,7 @@
 				0B48435224F36E8100D9505E /* Cell.swift in Sources */,
 				0B48432924F367BA00D9505E /* ListNodeClass.swift in Sources */,
 				0B48432B24F367E800D9505E /* StringParser.swift in Sources */,
+				0B5D694524F7135500AC3FA4 /* ListTableView.swift in Sources */,
 				0B48431224F3652B00D9505E /* AppDelegate.swift in Sources */,
 				0B48431424F3652B00D9505E /* SceneDelegate.swift in Sources */,
 			);
