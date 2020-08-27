@@ -61,6 +61,19 @@ class ListTableView: UITableViewController {
         let view = ListTableView(viewModel: vm)
         navigationController?.pushViewController(view, animated: true)
     }
+
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: nil) { (_, _, completionHandler) in
+            self.viewModel.currentList.children[indexPath.row].delete()
+            self.saveCoreData(name: listsToStringRoot(list: self.viewModel.rootNode))
+            tableView.reloadData()
+            completionHandler(true)
+        }
+        deleteAction.image = UIImage(systemName: "trash")
+        deleteAction.backgroundColor = .clear
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+        return configuration
+    }
 }
 
 extension ListTableView {

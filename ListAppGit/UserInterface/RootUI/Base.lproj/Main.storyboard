@@ -40,7 +40,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="N9M-f4-aF1">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="EZw-Op-Lnh">
+                        <barButtonItem key="rightBarButtonItem" title="Add" id="EZw-Op-Lnh">
                             <connections>
                                 <action selector="addButton:" destination="BYZ-38-t0r" id="eO2-2K-WlN"/>
                             </connections>
