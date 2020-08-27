@@ -33,7 +33,7 @@ class ViewController: UIViewController {
         setLists()
         self.title = "Home"
         
-        tableView.register(TestCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(ListTableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
     @IBAction func backButton(_ sender: Any) {

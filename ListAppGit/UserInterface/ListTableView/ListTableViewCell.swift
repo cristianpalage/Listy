@@ -1,5 +1,5 @@
 //
-//  Cell.swift
+//  ListTableViewCell.swift
 //  listAppGit
 //
 //  Created by Cristian Palage on 2020-08-23.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class TestCell: UITableViewCell {
+class ListTableViewCell: UITableViewCell {
     
     private let label: UILabel = {
         let label = UILabel()
@@ -36,7 +36,7 @@ class TestCell: UITableViewCell {
 }
 
 
-private extension TestCell {
+private extension ListTableViewCell {
     func setup() {
         contentView.addSubview(label)
         

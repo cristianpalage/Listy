@@ -16,7 +16,7 @@
 		0B48432124F3652C00D9505E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B48431F24F3652C00D9505E /* LaunchScreen.storyboard */; };
 		0B48432924F367BA00D9505E /* ListNodeClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B48432824F367BA00D9505E /* ListNodeClass.swift */; };
 		0B48432B24F367E800D9505E /* StringParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B48432A24F367E800D9505E /* StringParser.swift */; };
-		0B48435224F36E8100D9505E /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B48435124F36E8100D9505E /* Cell.swift */; };
+		0B48435224F36E8100D9505E /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B48435124F36E8100D9505E /* ListTableViewCell.swift */; };
 		0B5D694524F7135500AC3FA4 /* ListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5D694424F7135500AC3FA4 /* ListTableView.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,7 +32,7 @@
 		0B48432224F3652C00D9505E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0B48432824F367BA00D9505E /* ListNodeClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNodeClass.swift; sourceTree = "<group>"; };
 		0B48432A24F367E800D9505E /* StringParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringParser.swift; sourceTree = "<group>"; };
-		0B48435124F36E8100D9505E /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
+		0B48435124F36E8100D9505E /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		0B5D694424F7135500AC3FA4 /* ListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -66,20 +66,68 @@
 		0B48431024F3652B00D9505E /* ListAppGit */ = {
 			isa = PBXGroup;
 			children = (
-				0B48431124F3652B00D9505E /* AppDelegate.swift */,
-				0B48431324F3652B00D9505E /* SceneDelegate.swift */,
-				0B48431524F3652B00D9505E /* ViewController.swift */,
-				0B48431724F3652B00D9505E /* Main.storyboard */,
-				0B5D694424F7135500AC3FA4 /* ListTableView.swift */,
-				0B48435124F36E8100D9505E /* Cell.swift */,
-				0B48432A24F367E800D9505E /* StringParser.swift */,
-				0B48432824F367BA00D9505E /* ListNodeClass.swift */,
+				0B5D694B24F72C5800AC3FA4 /* Delegates */,
+				0B5D694C24F72C6400AC3FA4 /* UserInterface */,
+				0B5D695024F72D5900AC3FA4 /* Services */,
+				0B5D694F24F72D4500AC3FA4 /* NodeObjects */,
 				0B48431D24F3652C00D9505E /* Assets.xcassets */,
 				0B48431F24F3652C00D9505E /* LaunchScreen.storyboard */,
 				0B48432224F3652C00D9505E /* Info.plist */,
 				0B48431A24F3652B00D9505E /* ListAppGit.xcdatamodeld */,
 			);
 			path = ListAppGit;
+			sourceTree = "<group>";
+		};
+		0B5D694B24F72C5800AC3FA4 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				0B48431124F3652B00D9505E /* AppDelegate.swift */,
+				0B48431324F3652B00D9505E /* SceneDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		0B5D694C24F72C6400AC3FA4 /* UserInterface */ = {
+			isa = PBXGroup;
+			children = (
+				0B5D694D24F72C7000AC3FA4 /* RootUI */,
+				0B5D694E24F72C7A00AC3FA4 /* ListTableView */,
+			);
+			path = UserInterface;
+			sourceTree = "<group>";
+		};
+		0B5D694D24F72C7000AC3FA4 /* RootUI */ = {
+			isa = PBXGroup;
+			children = (
+				0B48431524F3652B00D9505E /* ViewController.swift */,
+				0B48431724F3652B00D9505E /* Main.storyboard */,
+			);
+			path = RootUI;
+			sourceTree = "<group>";
+		};
+		0B5D694E24F72C7A00AC3FA4 /* ListTableView */ = {
+			isa = PBXGroup;
+			children = (
+				0B5D694424F7135500AC3FA4 /* ListTableView.swift */,
+				0B48435124F36E8100D9505E /* ListTableViewCell.swift */,
+			);
+			path = ListTableView;
+			sourceTree = "<group>";
+		};
+		0B5D694F24F72D4500AC3FA4 /* NodeObjects */ = {
+			isa = PBXGroup;
+			children = (
+				0B48432824F367BA00D9505E /* ListNodeClass.swift */,
+			);
+			path = NodeObjects;
+			sourceTree = "<group>";
+		};
+		0B5D695024F72D5900AC3FA4 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				0B48432A24F367E800D9505E /* StringParser.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,7 +203,7 @@
 			files = (
 				0B48431C24F3652B00D9505E /* ListAppGit.xcdatamodeld in Sources */,
 				0B48431624F3652B00D9505E /* ViewController.swift in Sources */,
-				0B48435224F36E8100D9505E /* Cell.swift in Sources */,
+				0B48435224F36E8100D9505E /* ListTableViewCell.swift in Sources */,
 				0B48432924F367BA00D9505E /* ListNodeClass.swift in Sources */,
 				0B48432B24F367E800D9505E /* StringParser.swift in Sources */,
 				0B5D694524F7135500AC3FA4 /* ListTableView.swift in Sources */,
