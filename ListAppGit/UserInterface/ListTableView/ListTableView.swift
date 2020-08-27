@@ -41,7 +41,7 @@ class ListTableView: UITableViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addButton))
         self.tableView.separatorStyle = .none
 
-        tableView.register(TestCell.self, forCellReuseIdentifier: "listItemCell")
+        tableView.register(ListTableViewCell.self, forCellReuseIdentifier: "listItemCell")
     }
 
     // MARK: tableView
@@ -50,7 +50,7 @@ class ListTableView: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "listItemCell", for: indexPath) as! TestCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "listItemCell", for: indexPath) as! ListTableViewCell
         cell.textLabel?.text = viewModel.currentList.children[indexPath.row].value
         return cell
     }
