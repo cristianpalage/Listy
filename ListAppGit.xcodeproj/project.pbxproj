@@ -18,6 +18,7 @@
 		0B48432B24F367E800D9505E /* StringParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B48432A24F367E800D9505E /* StringParser.swift */; };
 		0B48435224F36E8100D9505E /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B48435124F36E8100D9505E /* ListTableViewCell.swift */; };
 		0B5D694524F7135500AC3FA4 /* ListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5D694424F7135500AC3FA4 /* ListTableView.swift */; };
+		0BF8CF1B24F84299008A973E /* ListTableViewAddItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF8CF1A24F84299008A973E /* ListTableViewAddItemCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		0B48432A24F367E800D9505E /* StringParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringParser.swift; sourceTree = "<group>"; };
 		0B48435124F36E8100D9505E /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		0B5D694424F7135500AC3FA4 /* ListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableView.swift; sourceTree = "<group>"; };
+		0BF8CF1A24F84299008A973E /* ListTableViewAddItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewAddItemCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,7 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				0B5D694424F7135500AC3FA4 /* ListTableView.swift */,
-				0B48435124F36E8100D9505E /* ListTableViewCell.swift */,
+				0BF8CF1924F841EC008A973E /* Cells */,
 			);
 			path = ListTableView;
 			sourceTree = "<group>";
@@ -128,6 +130,15 @@
 				0B48432A24F367E800D9505E /* StringParser.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		0BF8CF1924F841EC008A973E /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				0B48435124F36E8100D9505E /* ListTableViewCell.swift */,
+				0BF8CF1A24F84299008A973E /* ListTableViewAddItemCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,6 +219,7 @@
 				0B48432B24F367E800D9505E /* StringParser.swift in Sources */,
 				0B5D694524F7135500AC3FA4 /* ListTableView.swift in Sources */,
 				0B48431224F3652B00D9505E /* AppDelegate.swift in Sources */,
+				0BF8CF1B24F84299008A973E /* ListTableViewAddItemCell.swift in Sources */,
 				0B48431424F3652B00D9505E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
