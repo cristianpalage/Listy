@@ -22,8 +22,24 @@ struct ListTableViewModel {
 
 class ListTableView: UITableViewController {
 
-    var viewModel: ListTableViewModel
-    var coreList: [NSManagedObject] = []
+    struct TableViewSection {
+
+        enum CellType {
+            case addNewListCell
+            case listCell
+        }
+
+        let rows: [CellType]
+
+        init(rows: [CellType]) {
+            self.rows = rows
+        }
+    }
+
+    fileprivate var sections = [TableViewSection]()
+
+    fileprivate var viewModel: ListTableViewModel
+    fileprivate var coreList: [NSManagedObject] = []
 
     init(viewModel: ListTableViewModel) {
         self.viewModel = viewModel
@@ -37,22 +53,39 @@ class ListTableView: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = viewModel.currentList.value
+        self.configureCellTypes()
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addButton))
         self.tableView.separatorStyle = .none
 
         tableView.register(ListTableViewCell.self, forCellReuseIdentifier: "listItemCell")
+        tableView.register(ListTableViewAddItemCell.self, forCellReuseIdentifier: "listItemAddCell")
     }
 
     // MARK: tableView
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return self.sections.count
+    }
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.currentList.children.count
+        let section = self.sections[section]
+        return section.rows.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "listItemCell", for: indexPath) as! ListTableViewCell
-        cell.textLabel?.text = viewModel.currentList.children[indexPath.row].value
-        return cell
+        let cellType = sections[indexPath.section].rows[indexPath.row]
+
+        switch cellType {
+        case .addNewListCell:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "listItemAddCell", for: indexPath) as! ListTableViewAddItemCell
+            cell.textField.delegate = self
+            return cell
+        case .listCell:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "listItemCell", for: indexPath) as! ListTableViewCell
+            cell.textLabel?.text = viewModel.currentList.children[indexPath.row].value
+            return cell
+        }
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -66,6 +99,7 @@ class ListTableView: UITableViewController {
         let deleteAction = UIContextualAction(style: .destructive, title: nil) { (_, _, completionHandler) in
             self.viewModel.currentList.children[indexPath.row].delete()
             self.saveCoreData(name: listsToStringRoot(list: self.viewModel.rootNode))
+            self.configureCellTypes()
             tableView.reloadData()
             completionHandler(true)
         }
@@ -87,6 +121,7 @@ extension ListTableView {
             if answer.text! == "" { return }
             let newNode = Node(value: answer.text!)
             self.viewModel.currentList.add(child: newNode)
+            self.configureCellTypes()
             self.tableView.reloadData()
             self.saveCoreData(name: listsToStringRoot(list: self.viewModel.rootNode))
         }
@@ -112,4 +147,83 @@ extension ListTableView {
             print("Could not save. \(error), \(error.userInfo)")
         }
     }
+}
+
+extension ListTableView {
+    func configureCellTypes() {
+
+        defer {
+            tableView.reloadData()
+        }
+
+        var sections = [TableViewSection]()
+
+        sections.append(.init(rows: [.addNewListCell]))
+
+        var listSection = [TableViewSection.CellType]()
+
+        for _ in viewModel.currentList.children {
+            listSection.append(.listCell)
+        }
+        sections.append(.init(rows: listSection))
+        self.sections = sections
+    }
+
+}
+
+extension ListTableView: UITextFieldDelegate {
+
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        // return NO to disallow editing.
+        print("TextField should begin editing method called")
+        return true
+    }
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        // became first responder
+        print("TextField did begin editing method called")
+    }
+
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        // return YES to allow editing to stop and to resign first responder status. NO to disallow the editing session to end
+        print("TextField should snd editing method called")
+        return true
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        // may be called if forced even if shouldEndEditing returns NO (e.g. view removed from window) or endEditing:YES called
+        print("TextField did end editing method called")
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        // if implemented, called in place of textFieldDidEndEditing:
+        print("TextField did end editing with reason method called")
+    }
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        // return NO to not change text
+        print("While entering the characters this method gets called")
+        return true
+    }
+
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        // called when clear button pressed. return NO to ignore (no notifications)
+        print("TextField should clear method called")
+        return true
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // called when 'return' key pressed. return NO to ignore.
+        print("TextField should return method called")
+        // may be useful: textField.resignFirstResponder()
+        if let newText = textField.text, newText != "" {
+            self.viewModel.currentList.add(child: Node(value: newText), front: true)
+            self.saveCoreData(name: listsToStringRoot(list: self.viewModel.rootNode))
+            self.configureCellTypes()
+            self.tableView.reloadData()
+            textField.text = ""
+        }
+        return true
+    }
+
 }

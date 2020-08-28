@@ -23,8 +23,12 @@ class Node: Equatable, Encodable {
         self.id = UUID()
     }
     
-    func add(child: Node) {
-        children.append(child)
+    func add(child: Node, front: Bool? = false) {
+        if let front = front, front {
+            children.insert(child, at: 0)
+        } else {
+            children.append(child)
+        }
         child.parent = self
     }
     
