@@ -9,7 +9,19 @@
 import Foundation
 import UIKit
 
+struct ListTableViewCellViewModel {
+    var list: Node
+
+    init(list: Node) {
+        self.list = list
+    }
+}
+
 class ListTableViewCell: UITableViewCell {
+
+    var viewModel: ListTableViewCellViewModel? {
+        didSet { setupViewModel() }
+    }
     
     private let label: UILabel = {
         let label = UILabel()
@@ -20,6 +32,7 @@ class ListTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
+        setupViewModel()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -46,5 +59,9 @@ private extension ListTableViewCell {
             label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18),
             label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
         ])
+    }
+
+    func setupViewModel() {
+        label.text = viewModel?.list.value
     }
 }

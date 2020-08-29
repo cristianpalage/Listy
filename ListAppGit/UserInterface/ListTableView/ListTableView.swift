@@ -83,7 +83,7 @@ class ListTableView: UITableViewController {
             return cell
         case .listCell:
             let cell = tableView.dequeueReusableCell(withIdentifier: "listItemCell", for: indexPath) as! ListTableViewCell
-            cell.textLabel?.text = viewModel.currentList.children[indexPath.row].value
+            cell.viewModel = ListTableViewCellViewModel(list: viewModel.currentList.children[indexPath.row])
             return cell
         }
     }
