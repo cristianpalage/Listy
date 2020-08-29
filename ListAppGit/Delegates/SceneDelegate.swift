@@ -7,17 +7,32 @@
 //
 
 import UIKit
+import CoreData
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    var coreList: [NSManagedObject] = []
+    var currentNode = Node(value: "Home")
+    var rootNode = Node(value: "root")
+    var baseListView: ListTableView?
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+
+        loadFromDisk()
+        parseLists()
+        createViewController()
+
+        guard let baseListView = baseListView else { return }
+
+        let window = UIWindow(windowScene: windowScene)
+        let navigationController = UINavigationController()
+        navigationController.viewControllers = [baseListView]
+        window.rootViewController = navigationController
+        window.makeKeyAndVisible()
+        self.window = window
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -52,5 +67,29 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
 
+}
+
+extension SceneDelegate {
+    func loadFromDisk() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "List")
+        do {
+            coreList = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+    }
+
+    func parseLists() {
+        let list = parseToRootNode(list: coreList.last?.value(forKeyPath: "listString") as? String ?? "[Home]")
+        currentNode = list
+        rootNode = list
+    }
+
+    func createViewController() {
+        let vm = ListTableViewModel(currentList: currentNode, rootNode: rootNode)
+        baseListView = ListTableView(viewModel: vm)
+    }
 }
 
