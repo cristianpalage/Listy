@@ -120,7 +120,10 @@ extension ListTableView {
     @objc func addButton() {
 
         let ac = UIAlertController(title: "Enter answer", message: nil, preferredStyle: .alert)
-        ac.addTextField()
+        ac.addTextField { textField in
+            textField.tintColor = .black
+        }
+
 
         let submitAction = UIAlertAction(title: "Submit", style: .default) { [unowned ac] _ in
             let answer = ac.textFields![0]
@@ -131,8 +134,15 @@ extension ListTableView {
             self.tableView.reloadData()
             self.saveCoreData(name: listsToStringRoot(list: self.viewModel.rootNode))
         }
+        submitAction.setValue(UIColor.black, forKey: "titleTextColor")
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { _ in
+            return
+        }
+        cancelAction.setValue(UIColor.red, forKey: "titleTextColor")
 
         ac.addAction(submitAction)
+        ac.addAction(cancelAction)
         present(ac, animated: true)
     }
 
