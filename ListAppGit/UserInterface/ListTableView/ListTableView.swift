@@ -54,10 +54,9 @@ class ListTableView: UITableViewController {
         super.viewDidLoad()
         self.title = viewModel.currentList.value
         self.configureCellTypes()
+        self.setUpNavigationControllerBarButtonItem()
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addButton))
         self.tableView.separatorStyle = .none
-
         tableView.register(ListTableViewCell.self, forCellReuseIdentifier: "listItemCell")
         tableView.register(ListTableViewAddItemCell.self, forCellReuseIdentifier: "listItemAddCell")
     }
@@ -149,6 +148,8 @@ extension ListTableView {
     }
 }
 
+// MARK: set up methods
+
 extension ListTableView {
     func configureCellTypes() {
 
@@ -167,6 +168,15 @@ extension ListTableView {
         }
         sections.append(.init(rows: listSection))
         self.sections = sections
+    }
+
+    func setUpNavigationControllerBarButtonItem() {
+        let rightBarButtonItem: UIBarButtonItem = {
+            let bbi = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addButton))
+            bbi.tintColor = .black
+            return bbi
+        }()
+        navigationItem.rightBarButtonItem = rightBarButtonItem
     }
 
 }

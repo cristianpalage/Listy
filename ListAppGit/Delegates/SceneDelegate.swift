@@ -28,8 +28,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let baseListView = baseListView else { return }
 
         let window = UIWindow(windowScene: windowScene)
-        let navigationController = UINavigationController()
-        navigationController.viewControllers = [baseListView]
+        let navigationController: UINavigationController = {
+            let navigationController = UINavigationController()
+            navigationController.viewControllers = [baseListView]
+            navigationController.navigationBar.barTintColor = .white
+            navigationController.navigationBar.setValue(true, forKey: "hidesShadow")
+            navigationController.navigationBar.tintColor = .black
+            return navigationController
+        }()
+
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
         self.window = window
