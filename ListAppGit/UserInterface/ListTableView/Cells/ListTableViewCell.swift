@@ -34,6 +34,7 @@ class ListTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
         setupViewModel()
+        self.selectionStyle = .none
     }
 
     required init?(coder aDecoder: NSCoder) {
