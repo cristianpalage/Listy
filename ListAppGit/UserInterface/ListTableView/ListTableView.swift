@@ -88,10 +88,17 @@ class ListTableView: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let nodeTapped = viewModel.currentList.children[indexPath.row]
-        let vm = ListTableViewModel(currentList: nodeTapped, rootNode: viewModel.rootNode)
-        let view = ListTableView(viewModel: vm)
-        navigationController?.pushViewController(view, animated: true)
+        let cellType = sections[indexPath.section].rows[indexPath.row]
+
+        switch cellType {
+        case .addNewListCell:
+            return
+        case .listCell:
+            let nodeTapped = viewModel.currentList.children[indexPath.row]
+            let vm = ListTableViewModel(currentList: nodeTapped, rootNode: viewModel.rootNode)
+            let view = ListTableView(viewModel: vm)
+            navigationController?.pushViewController(view, animated: true)
+        }
     }
 
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
