@@ -52,7 +52,7 @@ private extension ListTableViewAddItemCell {
             textField.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             textField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 18),
             textField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18),
-            textField.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
+            textField.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -64)
         ])
     }
 }
