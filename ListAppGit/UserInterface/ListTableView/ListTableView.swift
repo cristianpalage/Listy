@@ -55,6 +55,7 @@ class ListTableView: UITableViewController {
         self.title = viewModel.currentList.value
         self.configureCellTypes()
         self.setUpNavigationControllerBarButtonItem()
+        self.setupBackgroundTap()
 
         self.tableView.separatorStyle = .none
         tableView.register(ListTableViewCell.self, forCellReuseIdentifier: "listItemCell")
@@ -92,7 +93,8 @@ class ListTableView: UITableViewController {
 
         switch cellType {
         case .addNewListCell:
-            return
+            let cell = tableView.cellForRow(at: indexPath) as? ListTableViewAddItemCell
+            cell?.textField.becomeFirstResponder()
         case .listCell:
             let nodeTapped = viewModel.currentList.children[indexPath.row]
             let vm = ListTableViewModel(currentList: nodeTapped, rootNode: viewModel.rootNode)
@@ -168,6 +170,18 @@ extension ListTableView {
 // MARK: set up methods
 
 extension ListTableView {
+
+    func setupBackgroundTap() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tableTapped))
+        self.tableView.backgroundView = UIView()
+        self.tableView.backgroundView?.addGestureRecognizer(tap)
+    }
+
+    @objc func tableTapped() {
+        let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? ListTableViewAddItemCell
+        cell?.textField.becomeFirstResponder()
+    }
+
     func configureCellTypes() {
 
         defer {
@@ -176,14 +190,13 @@ extension ListTableView {
 
         var sections = [TableViewSection]()
 
-        sections.append(.init(rows: [.addNewListCell]))
-
         var listSection = [TableViewSection.CellType]()
 
         for _ in viewModel.currentList.children {
             listSection.append(.listCell)
         }
         sections.append(.init(rows: listSection))
+        sections.append(.init(rows: [.addNewListCell]))
         self.sections = sections
     }
 
@@ -244,7 +257,7 @@ extension ListTableView: UITextFieldDelegate {
         print("TextField should return method called")
         // may be useful: textField.resignFirstResponder()
         if let newText = textField.text, newText != "" {
-            self.viewModel.currentList.add(child: Node(value: newText), front: true)
+            self.viewModel.currentList.add(child: Node(value: newText), front: false)
             self.saveCoreData(name: listsToStringRoot(list: self.viewModel.rootNode))
             self.configureCellTypes()
             self.tableView.reloadData()
