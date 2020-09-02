@@ -320,9 +320,17 @@ extension ListTableView: UITextFieldDelegate {
 
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool { return true }
 
-    func textFieldDidEndEditing(_ textField: UITextField) { }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.inputCellAtBottom = false
+        self.configureAndSave()
+        self.tableView.isScrollEnabled = true
+    }
 
-    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) { }
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        self.inputCellAtBottom = false
+        self.configureAndSave()
+        self.tableView.isScrollEnabled = true
+    }
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool { return true }
 
