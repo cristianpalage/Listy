@@ -45,6 +45,7 @@ class ListTableView: UITableViewController {
     var addTop = false
     var baseOffset: CGFloat?
     var firstTime = true
+    var inputCellAtBottom = false
 
     init(viewModel: ListTableViewModel) {
         self.viewModel = viewModel
@@ -210,6 +211,7 @@ extension ListTableView {
 
     func setupTableView() {
         registerTableViewCells()
+        setupBackgroundTap()
         self.tableView.separatorStyle = .none
         self.tableView.refreshControl = UIRefreshControl()
         addPullToAddView()
@@ -219,6 +221,19 @@ extension ListTableView {
         tableView.register(ListTableViewCell.self, forCellReuseIdentifier: "listItemCell")
         tableView.register(ListTableViewAddItemCell.self, forCellReuseIdentifier: "listItemAddCell")
         tableView.register(PullDownToAddNewListCell.self, forCellReuseIdentifier: "PullDownToAddPrompt")
+    }
+
+    func setupBackgroundTap() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tableTapped))
+        self.tableView.backgroundView = UIView()
+        self.tableView.backgroundView?.addGestureRecognizer(tap)
+    }
+
+    @objc func tableTapped() {
+        self.inputCellAtBottom = true
+        self.configureAndSave()
+        let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? ListTableViewAddItemCell
+        cell?.textField.becomeFirstResponder()
     }
 
     func pullToAddFirstResponderChange() {
@@ -277,6 +292,10 @@ extension ListTableView {
             sections.append(.init(rows: [.pullDownPrompt]))
         }
 
+        if self.inputCellAtBottom {
+            sections.append(.init(rows: [.addNewListCell]))
+        }
+
         self.sections = sections
     }
 
@@ -312,7 +331,8 @@ extension ListTableView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         if let newText = textField.text, newText != "" {
-            addListItem(name: newText, top: true)
+            addListItem(name: newText, top: !inputCellAtBottom)
+            self.inputCellAtBottom = false
             textField.text = ""
         }
         self.configureAndSave()
