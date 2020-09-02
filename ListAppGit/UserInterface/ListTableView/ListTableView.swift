@@ -147,7 +147,7 @@ extension ListTableView {
 
         let ac = UIAlertController(title: "Enter answer", message: nil, preferredStyle: .alert)
         ac.addTextField { textField in
-            textField.tintColor = .black
+            textField.tintColor = UITraitCollection.current.userInterfaceStyle == .dark ? .white : .black
         }
 
 
@@ -156,16 +156,19 @@ extension ListTableView {
             if answer.text! == "" { return }
             self.addListItem(name: answer.text!)
         }
-        submitAction.setValue(UIColor.black, forKey: "titleTextColor")
+        submitAction.setValue(UITraitCollection.current.userInterfaceStyle == .dark ? UIColor.white : UIColor.black, forKey: "titleTextColor")
 
         let cancelAction = UIAlertAction(title: "Cancel", style: .default) { _ in
             return
         }
         cancelAction.setValue(UIColor.red, forKey: "titleTextColor")
 
-        ac.addAction(submitAction)
         ac.addAction(cancelAction)
+        ac.addAction(submitAction)
         present(ac, animated: true)
+        if let visualEffectView = ac.view.searchVisualEffectsSubview(), UITraitCollection.current.userInterfaceStyle == .dark {
+            visualEffectView.effect = UIBlurEffect(style: .dark)
+        }
     }
 
     func addListItem(name: String, top: Bool? = nil) {
@@ -248,7 +251,7 @@ extension ListTableView {
         refreshView.frame = refreshControl.frame
         refreshControl.addSubview(refreshView)
         refreshControl.backgroundColor = UIColor.clear
-        refreshControl.tintColor = .white
+        refreshControl.tintColor = .clear
 
         if #available(iOS 10.0, *) {
             self.tableView.refreshControl = refreshControl
@@ -302,7 +305,7 @@ extension ListTableView {
     func setUpNavigationControllerBarButtonItem() {
         let rightBarButtonItem: UIBarButtonItem = {
             let bbi = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addButton))
-            bbi.tintColor = .black
+            bbi.tintColor = UITraitCollection.current.userInterfaceStyle == .dark ? .white : .black
             return bbi
         }()
         navigationItem.rightBarButtonItem = rightBarButtonItem

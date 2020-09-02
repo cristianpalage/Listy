@@ -20,7 +20,7 @@ class ListTableViewAddItemCell: UITableViewCell {
         tf.keyboardType = UIKeyboardType.default
         tf.returnKeyType = UIReturnKeyType.done
         tf.clearButtonMode = UITextField.ViewMode.whileEditing
-        tf.tintColor = .black
+        tf.tintColor = UITraitCollection.current.userInterfaceStyle == .dark ? .white : .black
         tf.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         return tf
     }()
