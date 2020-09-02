@@ -1,39 +1,28 @@
 //
-//  ListTableViewCell.swift
-//  listAppGit
+//  PullDownToAddNewListCell.swift
+//  ListAppGit
 //
-//  Created by Cristian Palage on 2020-08-23.
+//  Created by Cristian Palage on 2020-09-01.
 //  Copyright © 2020 Cristian Palage. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-struct ListTableViewCellViewModel {
-    var list: Node
+class PullDownToAddNewListCell: UITableViewCell {
 
-    init(list: Node) {
-        self.list = list
-    }
-}
-
-class ListTableViewCell: UITableViewCell {
-
-    var viewModel: ListTableViewCellViewModel? {
-        didSet { setupViewModel() }
-    }
-    
     private let label: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = label.font.withSize(15)
+        label.font = label.font.withSize(14)
+        label.textColor = .lightGray
+        label.text = "Pull down to add a new list"
         return label
     }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
-        setupViewModel()
         self.selectionStyle = .none
     }
 
@@ -51,20 +40,16 @@ class ListTableViewCell: UITableViewCell {
 }
 
 
-private extension ListTableViewCell {
+private extension PullDownToAddNewListCell {
     func setup() {
         contentView.addSubview(label)
-        
+
         NSLayoutConstraint.activate([
             label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 18),
             label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18),
-            label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
-            label.heightAnchor.constraint(equalToConstant: 18)
+            label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
         ])
     }
-
-    func setupViewModel() {
-        label.text = viewModel?.list.value
-    }
 }
+
