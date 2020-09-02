@@ -153,11 +153,7 @@ extension ListTableView {
         let submitAction = UIAlertAction(title: "Submit", style: .default) { [unowned ac] _ in
             let answer = ac.textFields![0]
             if answer.text! == "" { return }
-            let newNode = Node(value: answer.text!)
-            self.viewModel.currentList.add(child: newNode)
-            self.configureCellTypes()
-            self.tableView.reloadData()
-            self.saveCoreData(name: listsToStringRoot(list: self.viewModel.rootNode))
+            self.addListItem(name: answer.text!)
         }
         submitAction.setValue(UIColor.black, forKey: "titleTextColor")
 
@@ -169,6 +165,19 @@ extension ListTableView {
         ac.addAction(submitAction)
         ac.addAction(cancelAction)
         present(ac, animated: true)
+    }
+
+    func addListItem(name: String, top: Bool? = nil) {
+        let newNode = Node(value: name)
+        if let top = top {
+            self.viewModel.currentList.add(child: newNode, front: top)
+        } else {
+            self.viewModel.currentList.add(child: newNode)
+        }
+
+        self.configureCellTypes()
+        self.tableView.reloadData()
+        self.saveCoreData(name: listsToStringRoot(list: self.viewModel.rootNode))
     }
 
     func saveCoreData(name: String) {
@@ -200,13 +209,16 @@ extension ListTableView {
 extension ListTableView {
 
     func setupTableView() {
+        registerTableViewCells()
         self.tableView.separatorStyle = .none
+        self.tableView.refreshControl = UIRefreshControl()
+        addPullToAddView()
+    }
+
+    func registerTableViewCells() {
         tableView.register(ListTableViewCell.self, forCellReuseIdentifier: "listItemCell")
         tableView.register(ListTableViewAddItemCell.self, forCellReuseIdentifier: "listItemAddCell")
         tableView.register(PullDownToAddNewListCell.self, forCellReuseIdentifier: "PullDownToAddPrompt")
-
-        self.tableView.refreshControl = UIRefreshControl()
-        addPullToAddView()
     }
 
     func pullToAddFirstResponderChange() {
@@ -300,15 +312,11 @@ extension ListTableView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         if let newText = textField.text, newText != "" {
-            self.viewModel.currentList.add(child: Node(value: newText), front: !self.addTop)
-            self.saveCoreData(name: listsToStringRoot(list: self.viewModel.rootNode))
-            self.configureAndSave()
-            self.tableView.isScrollEnabled = true
+            addListItem(name: newText, top: true)
             textField.text = ""
-        } else if let newText = textField.text, newText == "" {
-            self.configureAndSave()
-            self.tableView.isScrollEnabled = true
         }
+        self.configureAndSave()
+        self.tableView.isScrollEnabled = true
         return true
     }
 
