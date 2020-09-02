@@ -14,7 +14,7 @@ class ListTableViewAddItemCell: UITableViewCell {
     let textField: UITextField = {
         let tf = UITextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
-        tf.placeholder = "Tap to create a new list"
+        tf.placeholder = "Enter list name"
         tf.font = UIFont.systemFont(ofSize: 15)
         tf.autocorrectionType = UITextAutocorrectionType.no
         tf.keyboardType = UIKeyboardType.default
@@ -52,7 +52,8 @@ private extension ListTableViewAddItemCell {
             textField.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             textField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 18),
             textField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18),
-            textField.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -64)
+            textField.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+            textField.heightAnchor.constraint(equalToConstant: 18)
         ])
     }
 }

@@ -27,6 +27,7 @@ class ListTableView: UITableViewController {
         enum CellType {
             case addNewListCell
             case listCell
+            case pullDownPrompt
         }
 
         let rows: [CellType]
@@ -40,6 +41,10 @@ class ListTableView: UITableViewController {
 
     fileprivate var viewModel: ListTableViewModel
     fileprivate var coreList: [NSManagedObject] = []
+
+    var addTop = false
+    var baseOffset: CGFloat?
+    var firstTime = true
 
     init(viewModel: ListTableViewModel) {
         self.viewModel = viewModel
@@ -55,11 +60,7 @@ class ListTableView: UITableViewController {
         self.title = viewModel.currentList.value
         self.configureCellTypes()
         self.setUpNavigationControllerBarButtonItem()
-        self.setupBackgroundTap()
-
-        self.tableView.separatorStyle = .none
-        tableView.register(ListTableViewCell.self, forCellReuseIdentifier: "listItemCell")
-        tableView.register(ListTableViewAddItemCell.self, forCellReuseIdentifier: "listItemAddCell")
+        self.setupTableView()
     }
 
     // MARK: tableView
@@ -85,6 +86,9 @@ class ListTableView: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "listItemCell", for: indexPath) as! ListTableViewCell
             cell.viewModel = ListTableViewCellViewModel(list: viewModel.currentList.children[indexPath.row])
             return cell
+        case .pullDownPrompt:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PullDownToAddPrompt", for: indexPath) as! PullDownToAddNewListCell
+            return cell
         }
     }
 
@@ -100,6 +104,8 @@ class ListTableView: UITableViewController {
             let vm = ListTableViewModel(currentList: nodeTapped, rootNode: viewModel.rootNode)
             let view = ListTableView(viewModel: vm)
             navigationController?.pushViewController(view, animated: true)
+        case .pullDownPrompt:
+            return
         }
     }
 
@@ -115,6 +121,23 @@ class ListTableView: UITableViewController {
         deleteAction.backgroundColor = .clear
         let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
         return configuration
+    }
+
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if firstTime {
+            firstTime = false
+            baseOffset = scrollView.contentOffset.y
+        }
+
+        guard let refreshControl = refreshControl, let baseOffset = baseOffset else { return }
+
+        if scrollView.contentOffset.y <= baseOffset - 34 {
+            self.tableView.isScrollEnabled = false
+            if !refreshControl.isRefreshing {
+                refreshControl.beginRefreshing()
+                self.AddNewListFromPullDown()
+            }
+        }
     }
 }
 
@@ -165,30 +188,71 @@ extension ListTableView {
             print("Could not save. \(error), \(error.userInfo)")
         }
     }
+
+    func configureAndSave() {
+        self.configureCellTypes()
+        self.tableView.reloadData()
+    }
 }
 
 // MARK: set up methods
 
 extension ListTableView {
 
-    func setupBackgroundTap() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(tableTapped))
-        self.tableView.backgroundView = UIView()
-        self.tableView.backgroundView?.addGestureRecognizer(tap)
+    func setupTableView() {
+        self.tableView.separatorStyle = .none
+        tableView.register(ListTableViewCell.self, forCellReuseIdentifier: "listItemCell")
+        tableView.register(ListTableViewAddItemCell.self, forCellReuseIdentifier: "listItemAddCell")
+        tableView.register(PullDownToAddNewListCell.self, forCellReuseIdentifier: "PullDownToAddPrompt")
+
+        self.tableView.refreshControl = UIRefreshControl()
+        addPullToAddView()
     }
 
-    @objc func tableTapped() {
-        let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? ListTableViewAddItemCell
+    func pullToAddFirstResponderChange() {
+        let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ListTableViewAddItemCell
         cell?.textField.becomeFirstResponder()
+    }
+
+    func addPullToAddView() {
+        let refreshView = PullToAddView()
+
+        guard let refreshControl  = self.tableView.refreshControl else { return }
+        refreshView.frame = refreshControl.frame
+        refreshControl.addSubview(refreshView)
+        refreshControl.backgroundColor = UIColor.clear
+        refreshControl.tintColor = .white
+
+        if #available(iOS 10.0, *) {
+            self.tableView.refreshControl = refreshControl
+        } else {
+            self.tableView.addSubview(refreshControl)
+        }
+
+        NSLayoutConstraint.activate([
+            refreshView.textField.bottomAnchor.constraint(equalTo: self.tableView.topAnchor, constant: -8),
+        ])
+    }
+
+
+    func AddNewListFromPullDown() {
+        self.refreshControl?.endRefreshing()
+        self.addTop = true
+        self.configureAndSave()
+        self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableView.ScrollPosition.top, animated: false)
+        self.pullToAddFirstResponderChange()
+        self.addTop = false
     }
 
     func configureCellTypes() {
 
-        defer {
-            tableView.reloadData()
-        }
+        defer { tableView.reloadData() }
 
         var sections = [TableViewSection]()
+
+        if self.addTop {
+            sections.append(.init(rows: [.addNewListCell]))
+        }
 
         var listSection = [TableViewSection.CellType]()
 
@@ -196,7 +260,11 @@ extension ListTableView {
             listSection.append(.listCell)
         }
         sections.append(.init(rows: listSection))
-        sections.append(.init(rows: [.addNewListCell]))
+
+        if viewModel.currentList.children.count < 3, !self.addTop {
+            sections.append(.init(rows: [.pullDownPrompt]))
+        }
+
         self.sections = sections
     }
 
@@ -211,57 +279,35 @@ extension ListTableView {
 
 }
 
+// MARK: Text Field Delegate Methods
+
 extension ListTableView: UITextFieldDelegate {
 
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        // return NO to disallow editing.
-        print("TextField should begin editing method called")
-        return true
-    }
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool { return true }
 
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        // became first responder
-        print("TextField did begin editing method called")
-    }
+    func textFieldDidBeginEditing(_ textField: UITextField) { }
 
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        // return YES to allow editing to stop and to resign first responder status. NO to disallow the editing session to end
-        print("TextField should snd editing method called")
-        return true
-    }
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool { return true }
 
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        // may be called if forced even if shouldEndEditing returns NO (e.g. view removed from window) or endEditing:YES called
-        print("TextField did end editing method called")
-    }
+    func textFieldDidEndEditing(_ textField: UITextField) { }
 
-    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
-        // if implemented, called in place of textFieldDidEndEditing:
-        print("TextField did end editing with reason method called")
-    }
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) { }
 
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        // return NO to not change text
-        print("While entering the characters this method gets called")
-        return true
-    }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool { return true }
 
-    func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        // called when clear button pressed. return NO to ignore (no notifications)
-        print("TextField should clear method called")
-        return true
-    }
+    func textFieldShouldClear(_ textField: UITextField) -> Bool { return true }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        // called when 'return' key pressed. return NO to ignore.
-        print("TextField should return method called")
-        // may be useful: textField.resignFirstResponder()
+        textField.resignFirstResponder()
         if let newText = textField.text, newText != "" {
-            self.viewModel.currentList.add(child: Node(value: newText), front: false)
+            self.viewModel.currentList.add(child: Node(value: newText), front: !self.addTop)
             self.saveCoreData(name: listsToStringRoot(list: self.viewModel.rootNode))
-            self.configureCellTypes()
-            self.tableView.reloadData()
+            self.configureAndSave()
+            self.tableView.isScrollEnabled = true
             textField.text = ""
+        } else if let newText = textField.text, newText == "" {
+            self.configureAndSave()
+            self.tableView.isScrollEnabled = true
         }
         return true
     }
