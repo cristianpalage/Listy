@@ -346,7 +346,6 @@ extension ListTableView: UITextFieldDelegate {
     }
 
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
-        self.inputCellAtBottom = false
         self.configureAndSave()
         self.tableView.isScrollEnabled = true
     }
