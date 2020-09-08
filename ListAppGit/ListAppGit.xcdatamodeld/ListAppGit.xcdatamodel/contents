@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19D76" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="18G6020" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="List" representedClassName="List" syncable="YES" codeGenerationType="class">
         <attribute name="listString" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="ListNode" representedClassName="ListNode" syncable="YES" codeGenerationType="class">
+        <attribute name="childrenOrder" optional="YES" attributeType="String" customClassName="[UUID]"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="value" attributeType="String" defaultValueString="Empty"/>
+        <relationship name="children" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ListNode" inverseName="parent" inverseEntity="ListNode"/>
+        <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ListNode" inverseName="children" inverseEntity="ListNode"/>
+        <relationship name="rootNode" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Root" inverseName="rootNode" inverseEntity="Root"/>
+    </entity>
+    <entity name="Root" representedClassName="Root" syncable="YES" codeGenerationType="class">
+        <relationship name="rootNode" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ListNode" inverseName="rootNode" inverseEntity="ListNode"/>
+    </entity>
     <elements>
-        <element name="List" positionX="-63" positionY="-18" width="128" height="58"/>
+        <element name="List" positionX="-230.56640625" positionY="-178.76953125" width="128" height="58"/>
+        <element name="ListNode" positionX="-63" positionY="-9" width="128" height="133"/>
+        <element name="Root" positionX="-253.04296875" positionY="132.52734375" width="128" height="58"/>
     </elements>
 </model>

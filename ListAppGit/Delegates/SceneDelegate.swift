@@ -13,6 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     var coreList: [NSManagedObject] = []
+    var rootNodeNSobject: [NSObject] = []
     var currentNode = Node(value: "Home")
     var rootNode = Node(value: "root")
     var baseListView: ListTableView?
@@ -78,18 +79,35 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 extension SceneDelegate {
     func loadFromDisk() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        /*guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "List")
         do {
             coreList = try managedContext.fetch(fetchRequest)
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
+        }*/
+
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Root")
+        do {
+            rootNodeNSobject = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
         }
     }
 
     func parseLists() {
-        let list = parseToRootNode(list: coreList.last?.value(forKeyPath: "listString") as? String ?? "[Home]")
+        //let list = parseToRootNode(list: coreList.last?.value(forKeyPath: "listString") as? String ?? "[Home]")
+        var list: Node
+        if rootNodeNSobject.isEmpty {
+            list = Node(value: "Home")
+        } else {
+            let root = rootNodeNSobject.last
+            list = NSobjectNodeToNode(NSObjectNode: root?.value(forKeyPath: "rootNode") as? NSObject)
+        }
+
         currentNode = list
         rootNode = list
     }
