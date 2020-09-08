@@ -16,7 +16,6 @@
 		0B48431E24F3652C00D9505E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B48431D24F3652C00D9505E /* Assets.xcassets */; };
 		0B48432124F3652C00D9505E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B48431F24F3652C00D9505E /* LaunchScreen.storyboard */; };
 		0B48432924F367BA00D9505E /* ListNodeClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B48432824F367BA00D9505E /* ListNodeClass.swift */; };
-		0B48432B24F367E800D9505E /* StringParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B48432A24F367E800D9505E /* StringParser.swift */; };
 		0B48435224F36E8100D9505E /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B48435124F36E8100D9505E /* ListTableViewCell.swift */; };
 		0B5D694524F7135500AC3FA4 /* ListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5D694424F7135500AC3FA4 /* ListTableView.swift */; };
 		0BBB0DA624FC6CB500A4D9FA /* PullToAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBB0DA524FC6CB500A4D9FA /* PullToAddView.swift */; };
@@ -35,7 +34,6 @@
 		0B48432024F3652C00D9505E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0B48432224F3652C00D9505E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0B48432824F367BA00D9505E /* ListNodeClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNodeClass.swift; sourceTree = "<group>"; };
-		0B48432A24F367E800D9505E /* StringParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringParser.swift; sourceTree = "<group>"; };
 		0B48435124F36E8100D9505E /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		0B5D694424F7135500AC3FA4 /* ListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableView.swift; sourceTree = "<group>"; };
 		0BBB0DA524FC6CB500A4D9FA /* PullToAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToAddView.swift; sourceTree = "<group>"; };
@@ -146,7 +144,6 @@
 		0B5D695024F72D5900AC3FA4 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				0B48432A24F367E800D9505E /* StringParser.swift */,
 				0B178139250047C300B41D18 /* ListService.swift */,
 			);
 			path = Services;
@@ -238,7 +235,6 @@
 				0B48431C24F3652B00D9505E /* ListAppGit.xcdatamodeld in Sources */,
 				0B48435224F36E8100D9505E /* ListTableViewCell.swift in Sources */,
 				0B48432924F367BA00D9505E /* ListNodeClass.swift in Sources */,
-				0B48432B24F367E800D9505E /* StringParser.swift in Sources */,
 				0B5D694524F7135500AC3FA4 /* ListTableView.swift in Sources */,
 				0B17813825003CC400B41D18 /* UIView Extensions.swift in Sources */,
 				0B20D59B24FF1E2F008F3BC6 /* PullDownToAddNewListCell.swift in Sources */,

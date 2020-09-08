@@ -114,7 +114,7 @@ class ListTableView: UITableViewController {
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: nil) { (_, _, completionHandler) in
             self.viewModel.currentList.children[indexPath.row].delete()
-            self.saveCoreData(with: self.viewModel.rootNode/*listsToStringRoot(list: self.viewModel.rootNode)*/)
+            self.saveCoreData(with: self.viewModel.rootNode)
             self.configureCellTypes()
             tableView.reloadData()
             completionHandler(true)

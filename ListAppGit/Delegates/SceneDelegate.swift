@@ -79,15 +79,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 extension SceneDelegate {
     func loadFromDisk() {
-        /*guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "List")
-        do {
-            coreList = try managedContext.fetch(fetchRequest)
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-        }*/
-
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Root")
@@ -99,7 +90,6 @@ extension SceneDelegate {
     }
 
     func parseLists() {
-        //let list = parseToRootNode(list: coreList.last?.value(forKeyPath: "listString") as? String ?? "[Home]")
         var list: Node
         if rootNodeNSobject.isEmpty {
             list = Node(value: "Home")
