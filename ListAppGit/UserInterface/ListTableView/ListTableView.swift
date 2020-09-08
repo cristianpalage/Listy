@@ -306,9 +306,10 @@ extension ListTableView {
         }
         sections.append(.init(rows: listSection))
 
-        if viewModel.currentList.children.count < 3, !self.addTop {
+        // Don't wan't this rn, reconsider
+        /*if viewModel.currentList.children.count < 3, !self.addTop {
             sections.append(.init(rows: [.pullDownPrompt]))
-        }
+        }*/
 
         if self.inputCellAtBottom {
             sections.append(.init(rows: [.addNewListCell]))
