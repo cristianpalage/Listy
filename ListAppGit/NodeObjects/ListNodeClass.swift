@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import CoreData
+import UIKit
 
 class Node: Equatable, Encodable {
     static func == (lhs: Node, rhs: Node) -> Bool {
@@ -17,6 +19,7 @@ class Node: Equatable, Encodable {
     var id: UUID
     var children: [Node] = []
     var parent: Node?
+    var childrenOrder: String?
     
     init(value: String) {
         self.value = value
@@ -29,10 +32,38 @@ class Node: Equatable, Encodable {
         } else {
             children.append(child)
         }
+        orderString()
         child.parent = self
     }
     
     func delete() {
         self.parent?.children.removeAll(where: ({ $0 == self }))
+    }
+
+    func orderString() {
+        guard !children.isEmpty else { return }
+        var returnString = ""
+        for child in children {
+            returnString = returnString + child.id.uuidString + ","
+        }
+        returnString.removeLast()
+        childrenOrder = returnString
+    }
+}
+
+extension Node {
+
+    func toNSObject(context: NSManagedObjectContext) -> NSManagedObject {
+        let entity = NSEntityDescription.entity(forEntityName: "ListNode", in: context)!
+        let listNode = NSManagedObject(entity: entity, insertInto: context)
+        listNode.setValue(value, forKeyPath: "value")
+        listNode.setValue(id, forKeyPath: "id")
+        listNode.setValue(childrenOrder, forKey: "childrenOrder")
+
+        for child in children {
+            let children = listNode.mutableSetValue(forKey: "children")
+            children.add(child.toNSObject(context: context))
+        }
+        return listNode
     }
 }

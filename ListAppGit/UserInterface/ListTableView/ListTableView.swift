@@ -41,6 +41,7 @@ class ListTableView: UITableViewController {
 
     fileprivate var viewModel: ListTableViewModel
     fileprivate var coreList: [NSManagedObject] = []
+    fileprivate var rootNodeNSObject: [NSObject] = []
 
     var addTop = false
     var baseOffset: CGFloat?
@@ -113,7 +114,7 @@ class ListTableView: UITableViewController {
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: nil) { (_, _, completionHandler) in
             self.viewModel.currentList.children[indexPath.row].delete()
-            self.saveCoreData(name: listsToStringRoot(list: self.viewModel.rootNode))
+            self.saveCoreData(with: self.viewModel.rootNode/*listsToStringRoot(list: self.viewModel.rootNode)*/)
             self.configureCellTypes()
             tableView.reloadData()
             completionHandler(true)
@@ -181,14 +182,12 @@ extension ListTableView {
 
         self.configureCellTypes()
         self.tableView.reloadData()
-        self.saveCoreData(name: listsToStringRoot(list: self.viewModel.rootNode))
+        self.saveCoreData(with: self.viewModel.rootNode/*listsToStringRoot(list: self.viewModel.rootNode)*/)
     }
 
-    func saveCoreData(name: String) {
-        guard let appDelegate =
-            UIApplication.shared.delegate as? AppDelegate else {
-                return
-        }
+    func saveCoreData(with name: String) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
         let managedContext = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "List", in: managedContext)!
         let List = NSManagedObject(entity: entity, insertInto: managedContext)
@@ -197,6 +196,22 @@ extension ListTableView {
         do {
             try managedContext.save()
             coreList.append(List)
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
+
+    func saveCoreData(with rootNode: Node) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Root", in: managedContext)!
+        let listNode = NSManagedObject(entity: entity, insertInto: managedContext)
+        listNode.setValue(rootNode.toNSObject(context: managedContext), forKey: "rootNode")
+
+        do {
+            try managedContext.save()
+            rootNodeNSObject.append(listNode)
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
