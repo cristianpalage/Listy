@@ -121,8 +121,29 @@ class ListTableView: UITableViewController {
         }
         deleteAction.image = UIImage(systemName: "trash")
         deleteAction.backgroundColor = .clear
-        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+
+        let listDetailsAction = UIContextualAction(style: .normal, title: "settings") { (_, _, completionHandler) in
+            let vc = ListDetailsTableView(viewModel: ListDetailsTableViewModel(currentList: self.viewModel.currentList.children[indexPath.row], rootNode: self.viewModel.rootNode))
+            let navController = UINavigationController(rootViewController: vc)
+            self.navigationController?.title = self.viewModel.currentList.children[indexPath.row].value
+            vc.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.dismissDetailsVC))
+            self.navigationController!.present(navController, animated: true, completion: nil)
+            completionHandler(true)
+        }
+        listDetailsAction.image = UIImage(systemName: "square.and.pencil")
+        listDetailsAction.backgroundColor = .blue
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAction, listDetailsAction])
         return configuration
+    }
+
+    @objc func dismissDetailsVC() {
+        self.dismiss(animated: true)
+        self.saveAndReload()
+    }
+
+    func saveAndReload() {
+        self.tableView.reloadData()
+        self.saveCoreData(with: self.viewModel.rootNode)
     }
 
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -182,7 +203,7 @@ extension ListTableView {
 
         self.configureCellTypes()
         self.tableView.reloadData()
-        self.saveCoreData(with: self.viewModel.rootNode/*listsToStringRoot(list: self.viewModel.rootNode)*/)
+        self.saveCoreData(with: self.viewModel.rootNode)
     }
 
     func saveCoreData(with name: String) {
