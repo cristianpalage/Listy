@@ -19,7 +19,9 @@
 		0B48435224F36E8100D9505E /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B48435124F36E8100D9505E /* ListTableViewCell.swift */; };
 		0B5D694524F7135500AC3FA4 /* ListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5D694424F7135500AC3FA4 /* ListTableView.swift */; };
 		0BBB0DA624FC6CB500A4D9FA /* PullToAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBB0DA524FC6CB500A4D9FA /* PullToAddView.swift */; };
+		0BE79C23250C71F600A28403 /* ListDetailsEditNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE79C22250C71F600A28403 /* ListDetailsEditNameTableViewCell.swift */; };
 		0BF8CF1B24F84299008A973E /* ListTableViewAddItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF8CF1A24F84299008A973E /* ListTableViewAddItemCell.swift */; };
+		0BFF5719250B1F1D000518EE /* ListDetailsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFF5718250B1F1D000518EE /* ListDetailsTableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +39,9 @@
 		0B48435124F36E8100D9505E /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		0B5D694424F7135500AC3FA4 /* ListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableView.swift; sourceTree = "<group>"; };
 		0BBB0DA524FC6CB500A4D9FA /* PullToAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToAddView.swift; sourceTree = "<group>"; };
+		0BE79C22250C71F600A28403 /* ListDetailsEditNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailsEditNameTableViewCell.swift; sourceTree = "<group>"; };
 		0BF8CF1A24F84299008A973E /* ListTableViewAddItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewAddItemCell.swift; sourceTree = "<group>"; };
+		0BFF5718250B1F1D000518EE /* ListDetailsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailsTableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				0B5D694E24F72C7A00AC3FA4 /* ListTableView */,
+				0BE79C21250C713B00A28403 /* ListDetailsTableView */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -147,6 +152,23 @@
 				0B178139250047C300B41D18 /* ListService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		0BE79C20250C711A00A28403 /* ListDetailsViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				0BE79C22250C71F600A28403 /* ListDetailsEditNameTableViewCell.swift */,
+			);
+			path = ListDetailsViewCells;
+			sourceTree = "<group>";
+		};
+		0BE79C21250C713B00A28403 /* ListDetailsTableView */ = {
+			isa = PBXGroup;
+			children = (
+				0BFF5718250B1F1D000518EE /* ListDetailsTableView.swift */,
+				0BE79C20250C711A00A28403 /* ListDetailsViewCells */,
+			);
+			path = ListDetailsTableView;
 			sourceTree = "<group>";
 		};
 		0BF8CF1924F841EC008A973E /* Cells */ = {
@@ -230,8 +252,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BE79C23250C71F600A28403 /* ListDetailsEditNameTableViewCell.swift in Sources */,
 				0BBB0DA624FC6CB500A4D9FA /* PullToAddView.swift in Sources */,
 				0B17813A250047C300B41D18 /* ListService.swift in Sources */,
+				0BFF5719250B1F1D000518EE /* ListDetailsTableView.swift in Sources */,
 				0B48431C24F3652B00D9505E /* ListAppGit.xcdatamodeld in Sources */,
 				0B48435224F36E8100D9505E /* ListTableViewCell.swift in Sources */,
 				0B48432924F367BA00D9505E /* ListNodeClass.swift in Sources */,
