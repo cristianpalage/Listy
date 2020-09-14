@@ -24,6 +24,8 @@ class ListDetailsTableView: UITableViewController {
 
         enum CellType {
             case editNameCell
+            case listDepth
+            case deadline
         }
 
         let rows: [CellType]
@@ -76,6 +78,14 @@ class ListDetailsTableView: UITableViewController {
             cell.textField.delegate = self
             cell.viewModel = ListDetailsEditNameTableViewCellViewModel(list: viewModel.currentList)
             return cell
+        case .listDepth:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ListDetailsListDepthTableViewCell", for: indexPath) as! ListDetailsListDepthTableViewCell
+            cell.viewModel = ListDetailsListDepthTableViewCellViewModel(list: viewModel.currentList)
+            return cell
+        case .deadline:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ListDetailsDeadlineTableViewCell", for: indexPath) as! ListDetailsDeadlineTableViewCell
+            cell.viewModel = ListDetailsDeadlineTableViewCellViewModel(list: viewModel.currentList)
+            return cell
         }
     }
 }
@@ -116,6 +126,8 @@ extension ListDetailsTableView {
 
     func registerTableViewCells() {
         tableView.register(ListDetailsEditNameTableViewCell.self, forCellReuseIdentifier: "ListDetailsEditNameTableViewCell")
+        tableView.register(ListDetailsListDepthTableViewCell.self, forCellReuseIdentifier: "ListDetailsListDepthTableViewCell")
+        tableView.register(ListDetailsDeadlineTableViewCell.self, forCellReuseIdentifier: "ListDetailsDeadlineTableViewCell")
     }
 
     func configureCellTypes() {
@@ -124,6 +136,8 @@ extension ListDetailsTableView {
 
         var sections = [TableViewSection]()
         sections.append(.init(rows: [.editNameCell]))
+        sections.append(.init(rows: [.listDepth]))
+        sections.append(.init(rows: [.deadline]))
 
         self.sections = sections
     }

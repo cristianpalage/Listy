@@ -14,6 +14,7 @@ func NSobjectNodeToNode(NSObjectNode: NSObject? = nil) -> Node {
 
     node.id = NSObjectNode?.value(forKeyPath: "id") as? UUID ?? UUID()
     node.value = NSObjectNode?.value(forKeyPath: "value") as? String ?? ""
+    node.deadline = NSObjectNode?.value(forKeyPath: "deadline") as? String ?? nil
 
     // need to do this way as childrenOrder is changed again when children are added
     let order = NSObjectNode?.value(forKeyPath: "childrenOrder") as? String ?? ""
