@@ -25,7 +25,10 @@ class ListDetailsEditNameTableViewCell: UITableViewCell {
 
     let header: UILabel = {
         let label = UILabel()
-        label.text = "Title"
+        label.text = "Tap to edit the list name"
+        label.font = label.font.withSize(12)
+        label.textColor = .gray
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -64,13 +67,21 @@ class ListDetailsEditNameTableViewCell: UITableViewCell {
 private extension ListDetailsEditNameTableViewCell {
     func setup() {
         contentView.addSubview(textField)
+        contentView.addSubview(header)
         
         NSLayoutConstraint.activate([
             textField.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             textField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 18),
             textField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18),
-            textField.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
             textField.heightAnchor.constraint(equalToConstant: 18)
+        ])
+
+        NSLayoutConstraint.activate([
+            header.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 6),
+            header.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 18),
+            header.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18),
+            header.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+            header.heightAnchor.constraint(equalToConstant: 18)
         ])
     }
     

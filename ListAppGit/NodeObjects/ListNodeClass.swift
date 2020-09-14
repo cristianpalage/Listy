@@ -17,6 +17,8 @@ class Node: Equatable, Encodable {
     
     var value: String
     var id: UUID
+    var deadline: String?
+
     var children: [Node] = []
     var parent: Node?
     var childrenOrder: String?
@@ -52,18 +54,23 @@ class Node: Equatable, Encodable {
 }
 
 extension Node {
-
     func toNSObject(context: NSManagedObjectContext) -> NSManagedObject {
         let entity = NSEntityDescription.entity(forEntityName: "ListNode", in: context)!
         let listNode = NSManagedObject(entity: entity, insertInto: context)
         listNode.setValue(value, forKeyPath: "value")
         listNode.setValue(id, forKeyPath: "id")
         listNode.setValue(childrenOrder, forKey: "childrenOrder")
+        listNode.setValue(deadline, forKey: "deadline")
 
         for child in children {
             let children = listNode.mutableSetValue(forKey: "children")
             children.add(child.toNSObject(context: context))
         }
         return listNode
+    }
+
+    func depth() -> Int {
+        if self.children.isEmpty { return 0 }
+        return self.children.map({ $0.depth() }).reduce(self.children.count, +)
     }
 }

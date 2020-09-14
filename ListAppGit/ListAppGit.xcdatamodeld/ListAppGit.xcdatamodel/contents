@@ -5,6 +5,7 @@
     </entity>
     <entity name="ListNode" representedClassName="ListNode" syncable="YES" codeGenerationType="class">
         <attribute name="childrenOrder" optional="YES" attributeType="String" customClassName="[UUID]"/>
+        <attribute name="deadline" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="value" attributeType="String" defaultValueString="Empty"/>
         <relationship name="children" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ListNode" inverseName="parent" inverseEntity="ListNode"/>
@@ -16,7 +17,7 @@
     </entity>
     <elements>
         <element name="List" positionX="-230.56640625" positionY="-178.76953125" width="128" height="58"/>
-        <element name="ListNode" positionX="-63" positionY="-9" width="128" height="133"/>
+        <element name="ListNode" positionX="-63" positionY="-9" width="128" height="148"/>
         <element name="Root" positionX="-253.04296875" positionY="132.52734375" width="128" height="58"/>
     </elements>
 </model>

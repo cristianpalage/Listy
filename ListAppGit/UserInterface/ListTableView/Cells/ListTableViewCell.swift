@@ -30,6 +30,14 @@ class ListTableViewCell: UITableViewCell {
         return label
     }()
 
+    private let deadlineLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = label.font.withSize(10)
+        label.textColor = .red
+        return label
+    }()
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
@@ -54,17 +62,25 @@ class ListTableViewCell: UITableViewCell {
 private extension ListTableViewCell {
     func setup() {
         contentView.addSubview(label)
+        contentView.addSubview(deadlineLabel)
         
         NSLayoutConstraint.activate([
             label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 18),
             label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18),
-            label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
             label.heightAnchor.constraint(equalToConstant: 18)
+        ])
+
+        NSLayoutConstraint.activate([
+            deadlineLabel.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 4),
+            deadlineLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 18),
+            deadlineLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18),
+            deadlineLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -6),
         ])
     }
 
     func setupViewModel() {
         label.text = viewModel?.list.value
+        deadlineLabel.text = viewModel?.list.deadline
     }
 }
