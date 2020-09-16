@@ -52,6 +52,7 @@ class ListDetailsListDepthTableViewCell: UITableViewCell {
 private extension ListDetailsListDepthTableViewCell {
     func setup() {
         contentView.addSubview(header)
+        contentView.backgroundColor = UITraitCollection.current.userInterfaceStyle == .dark ? .black : .white
 
         NSLayoutConstraint.activate([
             header.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),

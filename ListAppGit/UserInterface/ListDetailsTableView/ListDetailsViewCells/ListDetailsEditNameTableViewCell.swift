@@ -68,6 +68,7 @@ private extension ListDetailsEditNameTableViewCell {
     func setup() {
         contentView.addSubview(textField)
         contentView.addSubview(header)
+        contentView.backgroundColor = UITraitCollection.current.userInterfaceStyle == .dark ? .black : .white
         
         NSLayoutConstraint.activate([
             textField.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),

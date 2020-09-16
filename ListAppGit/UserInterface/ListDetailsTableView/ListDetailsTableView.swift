@@ -122,6 +122,7 @@ extension ListDetailsTableView {
     func setupTableView() {
         registerTableViewCells()
         self.tableView.separatorStyle = .none
+        self.tableView.backgroundColor = UITraitCollection.current.userInterfaceStyle == .dark ? .black : .white
     }
 
     func registerTableViewCells() {
