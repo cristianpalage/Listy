@@ -5,7 +5,7 @@
     </entity>
     <entity name="ListNode" representedClassName="ListNode" syncable="YES" codeGenerationType="class">
         <attribute name="childrenOrder" optional="YES" attributeType="String" customClassName="[UUID]"/>
-        <attribute name="deadline" optional="YES" attributeType="String"/>
+        <attribute name="deadline" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="value" attributeType="String" defaultValueString="Empty"/>
         <relationship name="children" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ListNode" inverseName="parent" inverseEntity="ListNode"/>
