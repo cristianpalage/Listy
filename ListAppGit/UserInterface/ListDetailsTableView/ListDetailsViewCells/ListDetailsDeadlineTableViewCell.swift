@@ -75,8 +75,8 @@ private extension ListDetailsDeadlineTableViewCell {
     }
 
     func setupViewModel() {
-        if let deadline = viewModel?.list.deadline, deadline != "" {
-            textField.text = deadline
+        if let deadline = viewModel?.list.deadline {
+            textField.text = deadline.description
         } else {
             textField.text = "No deadline set"
         }
@@ -113,12 +113,12 @@ private extension ListDetailsDeadlineTableViewCell {
 
     }
 
-    @objc func doneDatePicker(){
+    @objc func doneDatePicker() {
 
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy HH:mm"
         textField.text = formatter.string(from: datePicker.date)
-        self.viewModel?.list.deadline = formatter.string(from: datePicker.date)
+        self.viewModel?.list.deadline = datePicker.date
         self.datePicker.endEditing(true)
     }
 

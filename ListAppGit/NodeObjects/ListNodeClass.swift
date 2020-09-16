@@ -17,7 +17,7 @@ class Node: Equatable, Encodable {
     
     var value: String
     var id: UUID
-    var deadline: String?
+    var deadline: Date?
 
     var children: [Node] = []
     var parent: Node?

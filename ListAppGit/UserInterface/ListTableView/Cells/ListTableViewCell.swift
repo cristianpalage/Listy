@@ -81,6 +81,6 @@ private extension ListTableViewCell {
 
     func setupViewModel() {
         label.text = viewModel?.list.value
-        deadlineLabel.text = viewModel?.list.deadline
+        deadlineLabel.text = viewModel?.list.deadline?.description
     }
 }
