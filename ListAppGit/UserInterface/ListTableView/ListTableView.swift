@@ -119,19 +119,23 @@ class ListTableView: UITableViewController {
             tableView.reloadData()
             completionHandler(true)
         }
-        deleteAction.image = UIImage(systemName: "trash")
-        deleteAction.backgroundColor = .clear
+        deleteAction.image = UIImage(systemName: "trash")?.withTintColor(UITraitCollection.current.userInterfaceStyle == .dark ? .white : .black, renderingMode: .alwaysOriginal)
+        deleteAction.backgroundColor = UITraitCollection.current.userInterfaceStyle == .dark ? .black : .white
 
         let listDetailsAction = UIContextualAction(style: .normal, title: "settings") { (_, _, completionHandler) in
             let vc = ListDetailsTableView(viewModel: ListDetailsTableViewModel(currentList: self.viewModel.currentList.children[indexPath.row], rootNode: self.viewModel.rootNode))
             let navController = UINavigationController(rootViewController: vc)
+            navController.navigationBar.barTintColor = UITraitCollection.current.userInterfaceStyle == .dark ? .black : .white
+            navController.navigationBar.setValue(true, forKey: "hidesShadow")
+            navController.navigationBar.tintColor = UITraitCollection.current.userInterfaceStyle == .dark ? .white : .black
             self.navigationController?.title = self.viewModel.currentList.children[indexPath.row].value
             vc.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.dismissDetailsVC))
             self.navigationController!.present(navController, animated: true, completion: nil)
             completionHandler(true)
         }
-        listDetailsAction.image = UIImage(systemName: "square.and.pencil")
-        listDetailsAction.backgroundColor = .blue
+        listDetailsAction.image = UIImage(systemName: "square.and.pencil")?.withTintColor(UITraitCollection.current.userInterfaceStyle == .dark ? .white : .black, renderingMode: .alwaysOriginal)
+        listDetailsAction.backgroundColor = UITraitCollection.current.userInterfaceStyle == .dark ? .black : .white
+        
         let configuration = UISwipeActionsConfiguration(actions: [deleteAction, listDetailsAction])
         return configuration
     }

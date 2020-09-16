@@ -63,7 +63,7 @@ private extension ListDetailsDeadlineTableViewCell {
         showDatePicker()
 
         contentView.addSubview(textField)
-        //contentView.addSubview(datePicker)
+        contentView.backgroundColor = UITraitCollection.current.userInterfaceStyle == .dark ? .black : .white
 
         NSLayoutConstraint.activate([
             textField.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
