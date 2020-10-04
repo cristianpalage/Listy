@@ -19,7 +19,10 @@ struct ListDetailsDeadlineTableViewCellViewModel {
 
 class ListDetailsDeadlineTableViewCell: UITableViewCell {
 
-    let datePicker = UIDatePicker()
+    //let datePicker = UIDatePicker()
+    var toolBar = UIToolbar()
+
+    var datePicker = UIDatePicker()
 
     var viewModel: ListDetailsDeadlineTableViewCellViewModel? {
         didSet { setupViewModel() }
@@ -76,7 +79,7 @@ private extension ListDetailsDeadlineTableViewCell {
 
     func setupViewModel() {
         if let deadline = viewModel?.list.deadline {
-            textField.text = deadline.description
+            textField.text = dateFormatter(date: deadline)
         } else {
             textField.text = "No deadline set"
         }
@@ -97,33 +100,39 @@ private extension ListDetailsDeadlineTableViewCell {
     }
 
     func showDatePicker() {
-        datePicker.datePickerMode = .dateAndTime
 
-        //ToolBar
-        let toolbar = UIToolbar()
-        toolbar.sizeToFit()
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneDatePicker));
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelDatePicker));
+        // Creates the toolbar
+        let toolBar = UIToolbar()
+        toolBar.barStyle = .default
+        toolBar.isTranslucent = true
+        toolBar.tintColor = UIColor(red: 92/255, green: 216/255, blue: 255/255, alpha: 1)
+        toolBar.sizeToFit()
 
-        toolbar.setItems([doneButton,spaceButton,cancelButton], animated: false)
+        // Adds the buttons
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: Selector(("doneClick")))
+        doneButton.tintColor = UITraitCollection.current.userInterfaceStyle == .dark ? .white : .black
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: Selector(("cancelClick")))
+        cancelButton.tintColor = UITraitCollection.current.userInterfaceStyle == .dark ? .white : .black
+        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
 
-        textField.inputAccessoryView = toolbar
-        textField.inputView = datePicker
+        // Adds the toolbar to the view
+        self.datePicker.date = .init(timeIntervalSinceNow: 0)
+        self.textField.inputView = datePicker
+        self.textField.inputAccessoryView = toolBar
 
     }
 
-    @objc func doneDatePicker() {
-
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.yyyy HH:mm"
-        textField.text = formatter.string(from: datePicker.date)
+    @objc func doneClick() {
+        textField.text = dateFormatter(date: datePicker.date)
         self.viewModel?.list.deadline = datePicker.date
-        self.datePicker.endEditing(true)
+        textField.resignFirstResponder()
     }
 
-    @objc func cancelDatePicker(){
-        self.datePicker.endEditing(true)
+    @objc func cancelClick() {
+        textField.resignFirstResponder()
+        self.datePicker.date = .init(timeIntervalSinceNow: 0)
     }
 }
 
