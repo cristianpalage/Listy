@@ -19,6 +19,7 @@
 		0B48435224F36E8100D9505E /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B48435124F36E8100D9505E /* ListTableViewCell.swift */; };
 		0B4AA4E6252A50CD005102F8 /* DateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4AA4E5252A50CD005102F8 /* DateService.swift */; };
 		0B5D694524F7135500AC3FA4 /* ListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5D694424F7135500AC3FA4 /* ListTableView.swift */; };
+		0B86E90E253388AB00949F06 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B86E90D253388AB00949F06 /* NotificationService.swift */; };
 		0BBB0DA624FC6CB500A4D9FA /* PullToAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBB0DA524FC6CB500A4D9FA /* PullToAddView.swift */; };
 		0BE79C23250C71F600A28403 /* ListDetailsEditNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE79C22250C71F600A28403 /* ListDetailsEditNameTableViewCell.swift */; };
 		0BE79C27250E80E600A28403 /* ListDetailsListDepthTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE79C26250E80E600A28403 /* ListDetailsListDepthTableViewCell.swift */; };
@@ -42,6 +43,7 @@
 		0B48435124F36E8100D9505E /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		0B4AA4E5252A50CD005102F8 /* DateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateService.swift; sourceTree = "<group>"; };
 		0B5D694424F7135500AC3FA4 /* ListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableView.swift; sourceTree = "<group>"; };
+		0B86E90D253388AB00949F06 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		0BBB0DA524FC6CB500A4D9FA /* PullToAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToAddView.swift; sourceTree = "<group>"; };
 		0BE79C22250C71F600A28403 /* ListDetailsEditNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailsEditNameTableViewCell.swift; sourceTree = "<group>"; };
 		0BE79C26250E80E600A28403 /* ListDetailsListDepthTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailsListDepthTableViewCell.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 			children = (
 				0B178139250047C300B41D18 /* ListService.swift */,
 				0B4AA4E5252A50CD005102F8 /* DateService.swift */,
+				0B86E90D253388AB00949F06 /* NotificationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				0BE79C27250E80E600A28403 /* ListDetailsListDepthTableViewCell.swift in Sources */,
 				0B48432924F367BA00D9505E /* ListNodeClass.swift in Sources */,
 				0B5D694524F7135500AC3FA4 /* ListTableView.swift in Sources */,
+				0B86E90E253388AB00949F06 /* NotificationService.swift in Sources */,
 				0B17813825003CC400B41D18 /* UIView Extensions.swift in Sources */,
 				0BE79C29250E86BF00A28403 /* ListDetailsDeadlineTableViewCell.swift in Sources */,
 				0B4AA4E6252A50CD005102F8 /* DateService.swift in Sources */,

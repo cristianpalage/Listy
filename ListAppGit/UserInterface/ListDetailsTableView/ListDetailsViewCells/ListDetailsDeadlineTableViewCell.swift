@@ -19,28 +19,37 @@ struct ListDetailsDeadlineTableViewCellViewModel {
 
 class ListDetailsDeadlineTableViewCell: UITableViewCell {
 
-    //let datePicker = UIDatePicker()
-    var toolBar = UIToolbar()
-
-    var datePicker = UIDatePicker()
+    var hasDeadline: Bool = false
 
     var viewModel: ListDetailsDeadlineTableViewCellViewModel? {
         didSet { setupViewModel() }
     }
 
-    let textField: UITextField = {
-        let tf = UITextField()
-        tf.clearButtonMode = UITextField.ViewMode.whileEditing
-        tf.translatesAutoresizingMaskIntoConstraints = false
-        return tf
+    let datePicker: UIDatePicker = {
+        let datePicker = UIDatePicker()
+        datePicker.translatesAutoresizingMaskIntoConstraints = false
+        datePicker.tintColor = UITraitCollection.current.userInterfaceStyle == .dark ? .white : .black
+        if #available(iOS 14, *) {
+            datePicker.preferredDatePickerStyle = .compact
+        }
+        datePicker.datePickerMode = .dateAndTime
+        return datePicker
     }()
 
-    let header: UILabel = {
+    let deadlinePromptLabel: UILabel = {
         let label = UILabel()
         label.font = label.font.withSize(15)
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Add a deadline"
         return label
     }()
+
+    let deadlineToggle: UISwitch = {
+        let toggle = UISwitch()
+        toggle.translatesAutoresizingMaskIntoConstraints = false
+        return toggle
+    }()
+
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -63,76 +72,62 @@ class ListDetailsDeadlineTableViewCell: UITableViewCell {
 
 private extension ListDetailsDeadlineTableViewCell {
     func setup() {
-        showDatePicker()
+        setupDatePicker()
 
-        contentView.addSubview(textField)
+        contentView.addSubview(deadlinePromptLabel)
+        contentView.addSubview(datePicker)
+        contentView.addSubview(deadlineToggle)
         contentView.backgroundColor = UITraitCollection.current.userInterfaceStyle == .dark ? .black : .white
 
         NSLayoutConstraint.activate([
-            textField.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            textField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 18),
-            textField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18),
-            textField.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
-            textField.heightAnchor.constraint(equalToConstant: 18)
+            deadlinePromptLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            deadlinePromptLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 18),
+            deadlinePromptLabel.bottomAnchor.constraint(equalTo: datePicker.topAnchor, constant: -8),
+        ])
+
+        NSLayoutConstraint.activate([
+            deadlineToggle.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            deadlineToggle.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18),
+            deadlineToggle.bottomAnchor.constraint(equalTo: datePicker.topAnchor, constant: -8),
+        ])
+
+        NSLayoutConstraint.activate([
+            datePicker.topAnchor.constraint(equalTo: deadlinePromptLabel.bottomAnchor, constant: 8),
+            datePicker.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 18),
+            datePicker.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18),
+            datePicker.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
         ])
     }
 
     func setupViewModel() {
         if let deadline = viewModel?.list.deadline {
-            textField.text = dateFormatter(date: deadline)
+            datePicker.date = deadline
+            deadlineToggle.isOn = true
+            datePicker.isHidden = false
+            self.hasDeadline = true
         } else {
-            textField.text = "No deadline set"
+            datePicker.isHidden = true
+            self.hasDeadline = false
         }
     }
 
-    @objc func datePickerValueChanged(_ sender: UIDatePicker){
-
-        // Create date formatter
-        let dateFormatter: DateFormatter = DateFormatter()
-
-        // Set date format
-        dateFormatter.dateFormat = "MM/dd/yyyy hh:mm a"
-
-        // Apply date format
-        let selectedDate: String = dateFormatter.string(from: sender.date)
-
-        print("Selected value \(selectedDate)")
+    @objc func dateChanged(_ sender: UIDatePicker) {
+        self.viewModel?.list.deadline = sender.date
+        scheduleNotification()
     }
 
-    func showDatePicker() {
+    @objc func toggleChanged(_ sender: UISwitch) {
+        datePicker.isHidden = !sender.isOn
 
-        // Creates the toolbar
-        let toolBar = UIToolbar()
-        toolBar.barStyle = .default
-        toolBar.isTranslucent = true
-        toolBar.tintColor = UIColor(red: 92/255, green: 216/255, blue: 255/255, alpha: 1)
-        toolBar.sizeToFit()
-
-        // Adds the buttons
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.doneClick))
-        doneButton.tintColor = UITraitCollection.current.userInterfaceStyle == .dark ? .white : .black
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.cancelClick))
-        cancelButton.tintColor = UITraitCollection.current.userInterfaceStyle == .dark ? .white : .black
-        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
-        toolBar.isUserInteractionEnabled = true
-
-        // Adds the toolbar to the view
-        self.datePicker.date = .init(timeIntervalSinceNow: 0)
-        self.textField.inputView = datePicker
-        self.textField.inputAccessoryView = toolBar
-
+        if !sender.isOn {
+            self.viewModel?.list.deadline = nil
+        }
     }
 
-    @objc func doneClick() {
-        textField.text = dateFormatter(date: datePicker.date)
-        self.viewModel?.list.deadline = datePicker.date
-        textField.resignFirstResponder()
-    }
-
-    @objc func cancelClick() {
-        textField.resignFirstResponder()
-        self.datePicker.date = .init(timeIntervalSinceNow: 0)
+    func setupDatePicker() {
+        datePicker.isHidden = !self.hasDeadline
+        datePicker.addTarget(self, action: #selector(dateChanged), for: .editingDidEnd)
+        deadlineToggle.addTarget(self, action: #selector(toggleChanged), for: .valueChanged)
     }
 }
 

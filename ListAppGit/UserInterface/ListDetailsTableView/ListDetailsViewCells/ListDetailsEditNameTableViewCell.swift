@@ -35,7 +35,7 @@ class ListDetailsEditNameTableViewCell: UITableViewCell {
     let textField: UITextField = {
         let tf = UITextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
-        tf.font = UIFont.systemFont(ofSize: 15)
+        tf.font = UIFont.boldSystemFont(ofSize: 28)
         tf.autocorrectionType = UITextAutocorrectionType.no
         tf.keyboardType = UIKeyboardType.default
         tf.returnKeyType = UIReturnKeyType.done
@@ -69,12 +69,11 @@ private extension ListDetailsEditNameTableViewCell {
         contentView.addSubview(textField)
         contentView.addSubview(header)
         contentView.backgroundColor = UITraitCollection.current.userInterfaceStyle == .dark ? .black : .white
-        
+
         NSLayoutConstraint.activate([
             textField.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             textField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 18),
             textField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18),
-            textField.heightAnchor.constraint(equalToConstant: 18)
         ])
 
         NSLayoutConstraint.activate([

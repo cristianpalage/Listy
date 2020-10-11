@@ -53,7 +53,7 @@ class ListDetailsTableView: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = viewModel.currentList.value
+        self.title = "Details" // viewModel.currentList.value
         self.configureCellTypes()
         self.setupTableView()
     }
@@ -62,6 +62,14 @@ class ListDetailsTableView: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return self.sections.count
+    }
+
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+            return 10
+    }
+
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 40
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -167,6 +175,7 @@ extension ListDetailsTableView: UITextFieldDelegate {
         guard let newVal = textField.text else { return true }
         viewModel.currentList.value = newVal
         self.title = newVal
+        textField.endEditing(true)
         return true
     }
 
