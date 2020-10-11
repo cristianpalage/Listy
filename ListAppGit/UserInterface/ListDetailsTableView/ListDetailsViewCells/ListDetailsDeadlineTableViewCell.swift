@@ -109,10 +109,10 @@ private extension ListDetailsDeadlineTableViewCell {
         toolBar.sizeToFit()
 
         // Adds the buttons
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: Selector(("doneClick")))
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.doneClick))
         doneButton.tintColor = UITraitCollection.current.userInterfaceStyle == .dark ? .white : .black
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: Selector(("cancelClick")))
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.cancelClick))
         cancelButton.tintColor = UITraitCollection.current.userInterfaceStyle == .dark ? .white : .black
         toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         toolBar.isUserInteractionEnabled = true
