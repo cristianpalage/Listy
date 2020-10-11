@@ -25,6 +25,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         loadFromDisk()
         parseLists()
         createViewController()
+        requestNotificationAccess()
+
 
         guard let baseListView = baseListView else { return }
 
@@ -105,6 +107,12 @@ extension SceneDelegate {
     func createViewController() {
         let vm = ListTableViewModel(currentList: currentNode, rootNode: rootNode)
         baseListView = ListTableView(viewModel: vm)
+    }
+
+    func requestNotificationAccess() {
+        let center = UNUserNotificationCenter.current()
+
+        center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in }
     }
 }
 
