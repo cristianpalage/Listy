@@ -9,21 +9,27 @@
 import Foundation
 import UserNotifications
 
-func scheduleNotification() {
+func scheduleNotification(list: Node?) {
+    guard let list = list else { return }
     let center = UNUserNotificationCenter.current()
 
     let content = UNMutableNotificationContent()
-    content.title = "Late wake up call"
-    content.body = "The early bird catches the worm, but the second mouse gets the cheese."
-    content.categoryIdentifier = "alarm"
+    content.title = list.value
+    content.categoryIdentifier = "reminder"
     content.userInfo = ["customData": "fizzbuzz"]
     content.sound = UNNotificationSound.default
 
     var dateComponents = DateComponents()
     dateComponents.hour = 10
     dateComponents.minute = 30
-    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
+    if let timeUntilNotification = list.deadline?.timeIntervalSinceNow, timeUntilNotification > 0 {
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeUntilNotification, repeats: false)
+        let request = UNNotificationRequest(identifier: list.id.uuidString, content: content, trigger: trigger)
+        center.add(request)
+    }
+}
 
-    let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-    center.add(request)
+func clearNotificationForList(list: Node?) {
+    guard let list = list else { return }
+    UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [list.id.uuidString])
 }

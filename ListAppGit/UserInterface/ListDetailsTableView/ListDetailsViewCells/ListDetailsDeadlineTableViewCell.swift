@@ -73,11 +73,12 @@ class ListDetailsDeadlineTableViewCell: UITableViewCell {
 private extension ListDetailsDeadlineTableViewCell {
     func setup() {
         setupDatePicker()
+        setupBackground()
 
         contentView.addSubview(deadlinePromptLabel)
         contentView.addSubview(datePicker)
         contentView.addSubview(deadlineToggle)
-        contentView.backgroundColor = UITraitCollection.current.userInterfaceStyle == .dark ? .black : .white
+
 
         NSLayoutConstraint.activate([
             deadlinePromptLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
@@ -99,6 +100,10 @@ private extension ListDetailsDeadlineTableViewCell {
         ])
     }
 
+    func setupBackground() {
+        contentView.backgroundColor = UITraitCollection.current.userInterfaceStyle == .dark ? .black : .white
+    }
+
     func setupViewModel() {
         if let deadline = viewModel?.list.deadline {
             datePicker.date = deadline
@@ -113,7 +118,8 @@ private extension ListDetailsDeadlineTableViewCell {
 
     @objc func dateChanged(_ sender: UIDatePicker) {
         self.viewModel?.list.deadline = sender.date
-        scheduleNotification()
+        clearNotificationForList(list: self.viewModel?.list)
+        scheduleNotification(list: self.viewModel?.list)
     }
 
     @objc func toggleChanged(_ sender: UISwitch) {
