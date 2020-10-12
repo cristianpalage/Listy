@@ -29,7 +29,13 @@ func scheduleNotification(list: Node?) {
     }
 }
 
-func clearNotificationForList(list: Node?) {
+func clearNotificationForList(list: Node?, recursive: Bool = false) {
     guard let list = list else { return }
+
+    if recursive {
+        for child in list.children {
+            clearNotificationForList(list: child)
+        }
+    }
     UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [list.id.uuidString])
 }
