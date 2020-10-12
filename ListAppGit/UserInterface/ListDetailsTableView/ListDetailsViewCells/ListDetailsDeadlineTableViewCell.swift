@@ -46,6 +46,7 @@ class ListDetailsDeadlineTableViewCell: UITableViewCell {
 
     let deadlineToggle: UISwitch = {
         let toggle = UISwitch()
+        toggle.onTintColor = .orange
         toggle.translatesAutoresizingMaskIntoConstraints = false
         return toggle
     }()
@@ -127,6 +128,7 @@ private extension ListDetailsDeadlineTableViewCell {
 
         if !sender.isOn {
             self.viewModel?.list.deadline = nil
+            clearNotificationForList(list: self.viewModel?.list)
         }
     }
 

@@ -40,6 +40,7 @@ class Node: Equatable, Encodable {
     
     func delete() {
         self.parent?.children.removeAll(where: ({ $0 == self }))
+        clearNotificationForList(list: self, recursive: true)
     }
 
     func orderString() {

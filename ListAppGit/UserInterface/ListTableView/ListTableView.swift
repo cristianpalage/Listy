@@ -171,7 +171,7 @@ class ListTableView: UITableViewController {
 extension ListTableView {
     @objc func addButton() {
 
-        let ac = UIAlertController(title: "Enter answer", message: nil, preferredStyle: .alert)
+        let ac = UIAlertController(title: "Enter the List name", message: nil, preferredStyle: .alert)
         ac.addTextField { textField in
             textField.tintColor = UITraitCollection.current.userInterfaceStyle == .dark ? .white : .black
         }
