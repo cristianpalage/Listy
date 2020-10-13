@@ -15,7 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        let navBarAttributes = [NSAttributedString.Key.font: UIFont(name: "NewYork-Regular", size: 18)!]
+        let barButtonItemAttributes = [NSAttributedString.Key.font: UIFont(name: "NewYork-Regular", size: 15)!]
+
+        UINavigationBar.appearance().titleTextAttributes = navBarAttributes
+        UIBarButtonItem.appearance().setTitleTextAttributes(barButtonItemAttributes, for: .normal)
+
         return true
     }
 

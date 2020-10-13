@@ -23,15 +23,15 @@ class ListTableViewCell: UITableViewCell {
         didSet { setupViewModel() }
     }
     
-    private let label: UILabel = {
-        let label = UILabel()
+    private let label: ListyLabel = {
+        let label = ListyLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = label.font.withSize(15)
         return label
     }()
 
-    private let deadlineLabel: UILabel = {
-        let label = UILabel()
+    private let deadlineLabel: ListyLabel = {
+        let label = ListyLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = label.font.withSize(10)
         label.textColor = .red
@@ -67,8 +67,7 @@ private extension ListTableViewCell {
         NSLayoutConstraint.activate([
             label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 18),
-            label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18),
-            label.heightAnchor.constraint(equalToConstant: 18)
+            label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18)
         ])
 
         NSLayoutConstraint.activate([
