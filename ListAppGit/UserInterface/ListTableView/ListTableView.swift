@@ -349,7 +349,21 @@ extension ListTableView {
             bbi.tintColor = UITraitCollection.current.userInterfaceStyle == .dark ? .white : .black
             return bbi
         }()
+
+        if self.viewModel.currentList.parent == nil {
+            let leftBarButtonItem: UIBarButtonItem = {
+                let bbi = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(openSettings))
+                bbi.tintColor = UITraitCollection.current.userInterfaceStyle == .dark ? .white : .black
+                return bbi
+            }()
+            navigationItem.leftBarButtonItem = leftBarButtonItem
+        }
         navigationItem.rightBarButtonItem = rightBarButtonItem
+    }
+
+    @objc func openSettings() {
+        let view = SettingsTableView()
+        navigationController?.pushViewController(view, animated: true)
     }
 
 }

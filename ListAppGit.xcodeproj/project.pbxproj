@@ -24,6 +24,7 @@
 		0BA4C2A22535299100A906BB /* ListyUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA4C2A12535299100A906BB /* ListyUILabel.swift */; };
 		0BA4C2A625352C3000A906BB /* UILabel Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA4C2A525352C3000A906BB /* UILabel Extensions.swift */; };
 		0BA4C2AB253537DC00A906BB /* ListyUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA4C2AA253537DC00A906BB /* ListyUITextField.swift */; };
+		0BA4C2B42535466F00A906BB /* SettingsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA4C2B32535466F00A906BB /* SettingsTableView.swift */; };
 		0BBB0DA624FC6CB500A4D9FA /* PullToAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBB0DA524FC6CB500A4D9FA /* PullToAddView.swift */; };
 		0BE79C23250C71F600A28403 /* ListDetailsEditNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE79C22250C71F600A28403 /* ListDetailsEditNameTableViewCell.swift */; };
 		0BE79C27250E80E600A28403 /* ListDetailsListDepthTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE79C26250E80E600A28403 /* ListDetailsListDepthTableViewCell.swift */; };
@@ -52,6 +53,7 @@
 		0BA4C2A12535299100A906BB /* ListyUILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListyUILabel.swift; sourceTree = "<group>"; };
 		0BA4C2A525352C3000A906BB /* UILabel Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel Extensions.swift"; sourceTree = "<group>"; };
 		0BA4C2AA253537DC00A906BB /* ListyUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListyUITextField.swift; sourceTree = "<group>"; };
+		0BA4C2B32535466F00A906BB /* SettingsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableView.swift; sourceTree = "<group>"; };
 		0BBB0DA524FC6CB500A4D9FA /* PullToAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToAddView.swift; sourceTree = "<group>"; };
 		0BE79C22250C71F600A28403 /* ListDetailsEditNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailsEditNameTableViewCell.swift; sourceTree = "<group>"; };
 		0BE79C26250E80E600A28403 /* ListDetailsListDepthTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailsListDepthTableViewCell.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 		0B5D694C24F72C6400AC3FA4 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
+				0BA4C2B22535465D00A906BB /* Settings */,
 				0B5D694E24F72C7A00AC3FA4 /* ListTableView */,
 				0BE79C21250C713B00A28403 /* ListDetailsTableView */,
 			);
@@ -190,6 +193,22 @@
 				0BA4C2AA253537DC00A906BB /* ListyUITextField.swift */,
 			);
 			path = UITextField;
+			sourceTree = "<group>";
+		};
+		0BA4C2B22535465D00A906BB /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				0BA4C2B32535466F00A906BB /* SettingsTableView.swift */,
+				0BA4C2B6253546FA00A906BB /* Cells */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		0BA4C2B6253546FA00A906BB /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		0BE79C20250C711A00A28403 /* ListDetailsViewCells */ = {
@@ -300,6 +319,7 @@
 				0B48431C24F3652B00D9505E /* ListAppGit.xcdatamodeld in Sources */,
 				0B48435224F36E8100D9505E /* ListTableViewCell.swift in Sources */,
 				0BE79C27250E80E600A28403 /* ListDetailsListDepthTableViewCell.swift in Sources */,
+				0BA4C2B42535466F00A906BB /* SettingsTableView.swift in Sources */,
 				0B48432924F367BA00D9505E /* ListNodeClass.swift in Sources */,
 				0B5D694524F7135500AC3FA4 /* ListTableView.swift in Sources */,
 				0BA4C2AB253537DC00A906BB /* ListyUITextField.swift in Sources */,
