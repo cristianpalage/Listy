@@ -273,7 +273,11 @@ extension ListTableView {
     }
 
     @objc func tableTapped() {
-        self.inputCellAtBottom = true
+        if let _ = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ListTableViewAddItemCell {
+            self.inputCellAtBottom = false
+        } else {
+            self.inputCellAtBottom = true
+        }
         self.configureAndSave()
         let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? ListTableViewAddItemCell
         cell?.textField.becomeFirstResponder()
