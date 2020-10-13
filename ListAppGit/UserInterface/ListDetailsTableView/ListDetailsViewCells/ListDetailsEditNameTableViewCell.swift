@@ -23,8 +23,8 @@ class ListDetailsEditNameTableViewCell: UITableViewCell {
         didSet { setupViewModel() }
     }
 
-    let header: UILabel = {
-        let label = UILabel()
+    let header: ListyLabel = {
+        let label = ListyLabel()
         label.text = "Tap to edit the list name"
         label.font = label.font.withSize(12)
         label.textColor = .gray
@@ -32,10 +32,10 @@ class ListDetailsEditNameTableViewCell: UITableViewCell {
         return label
     }()
 
-    let textField: UITextField = {
-        let tf = UITextField()
+    let textField: ListyTextField = {
+        let tf = ListyTextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
-        tf.font = UIFont.boldSystemFont(ofSize: 28)
+        tf.font = tf.font?.withSize(28)
         tf.autocorrectionType = UITextAutocorrectionType.no
         tf.keyboardType = UIKeyboardType.default
         tf.returnKeyType = UIReturnKeyType.done

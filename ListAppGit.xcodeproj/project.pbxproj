@@ -20,6 +20,10 @@
 		0B4AA4E6252A50CD005102F8 /* DateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4AA4E5252A50CD005102F8 /* DateService.swift */; };
 		0B5D694524F7135500AC3FA4 /* ListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5D694424F7135500AC3FA4 /* ListTableView.swift */; };
 		0B86E90E253388AB00949F06 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B86E90D253388AB00949F06 /* NotificationService.swift */; };
+		0BA4C29E2535280B00A906BB /* NewYork.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BA4C29D2535280B00A906BB /* NewYork.ttf */; };
+		0BA4C2A22535299100A906BB /* ListyUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA4C2A12535299100A906BB /* ListyUILabel.swift */; };
+		0BA4C2A625352C3000A906BB /* UILabel Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA4C2A525352C3000A906BB /* UILabel Extensions.swift */; };
+		0BA4C2AB253537DC00A906BB /* ListyUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA4C2AA253537DC00A906BB /* ListyUITextField.swift */; };
 		0BBB0DA624FC6CB500A4D9FA /* PullToAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBB0DA524FC6CB500A4D9FA /* PullToAddView.swift */; };
 		0BE79C23250C71F600A28403 /* ListDetailsEditNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE79C22250C71F600A28403 /* ListDetailsEditNameTableViewCell.swift */; };
 		0BE79C27250E80E600A28403 /* ListDetailsListDepthTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE79C26250E80E600A28403 /* ListDetailsListDepthTableViewCell.swift */; };
@@ -44,6 +48,10 @@
 		0B4AA4E5252A50CD005102F8 /* DateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateService.swift; sourceTree = "<group>"; };
 		0B5D694424F7135500AC3FA4 /* ListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableView.swift; sourceTree = "<group>"; };
 		0B86E90D253388AB00949F06 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		0BA4C29D2535280B00A906BB /* NewYork.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NewYork.ttf; sourceTree = "<group>"; };
+		0BA4C2A12535299100A906BB /* ListyUILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListyUILabel.swift; sourceTree = "<group>"; };
+		0BA4C2A525352C3000A906BB /* UILabel Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel Extensions.swift"; sourceTree = "<group>"; };
+		0BA4C2AA253537DC00A906BB /* ListyUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListyUITextField.swift; sourceTree = "<group>"; };
 		0BBB0DA524FC6CB500A4D9FA /* PullToAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToAddView.swift; sourceTree = "<group>"; };
 		0BE79C22250C71F600A28403 /* ListDetailsEditNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailsEditNameTableViewCell.swift; sourceTree = "<group>"; };
 		0BE79C26250E80E600A28403 /* ListDetailsListDepthTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailsListDepthTableViewCell.swift; sourceTree = "<group>"; };
@@ -74,6 +82,8 @@
 		0B17813525003C8F00B41D18 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				0BA4C2A9253537C000A906BB /* UITextField */,
+				0BA4C2A02535295200A906BB /* UILabel */,
 				0B17813625003C9600B41D18 /* UIView */,
 			);
 			path = Extensions;
@@ -112,6 +122,7 @@
 				0B5D694F24F72D4500AC3FA4 /* NodeObjects */,
 				0B17813425003C5400B41D18 /* UI Objects */,
 				0B48431D24F3652C00D9505E /* Assets.xcassets */,
+				0BA4C29D2535280B00A906BB /* NewYork.ttf */,
 				0B48431F24F3652C00D9505E /* LaunchScreen.storyboard */,
 				0B48432224F3652C00D9505E /* Info.plist */,
 				0B48431A24F3652B00D9505E /* ListAppGit.xcdatamodeld */,
@@ -162,6 +173,23 @@
 				0B86E90D253388AB00949F06 /* NotificationService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		0BA4C2A02535295200A906BB /* UILabel */ = {
+			isa = PBXGroup;
+			children = (
+				0BA4C2A12535299100A906BB /* ListyUILabel.swift */,
+				0BA4C2A525352C3000A906BB /* UILabel Extensions.swift */,
+			);
+			path = UILabel;
+			sourceTree = "<group>";
+		};
+		0BA4C2A9253537C000A906BB /* UITextField */ = {
+			isa = PBXGroup;
+			children = (
+				0BA4C2AA253537DC00A906BB /* ListyUITextField.swift */,
+			);
+			path = UITextField;
 			sourceTree = "<group>";
 		};
 		0BE79C20250C711A00A28403 /* ListDetailsViewCells */ = {
@@ -252,6 +280,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BA4C29E2535280B00A906BB /* NewYork.ttf in Resources */,
 				0B48432124F3652C00D9505E /* LaunchScreen.storyboard in Resources */,
 				0B48431E24F3652C00D9505E /* Assets.xcassets in Resources */,
 			);
@@ -273,13 +302,16 @@
 				0BE79C27250E80E600A28403 /* ListDetailsListDepthTableViewCell.swift in Sources */,
 				0B48432924F367BA00D9505E /* ListNodeClass.swift in Sources */,
 				0B5D694524F7135500AC3FA4 /* ListTableView.swift in Sources */,
+				0BA4C2AB253537DC00A906BB /* ListyUITextField.swift in Sources */,
 				0B86E90E253388AB00949F06 /* NotificationService.swift in Sources */,
 				0B17813825003CC400B41D18 /* UIView Extensions.swift in Sources */,
 				0BE79C29250E86BF00A28403 /* ListDetailsDeadlineTableViewCell.swift in Sources */,
 				0B4AA4E6252A50CD005102F8 /* DateService.swift in Sources */,
+				0BA4C2A625352C3000A906BB /* UILabel Extensions.swift in Sources */,
 				0B20D59B24FF1E2F008F3BC6 /* PullDownToAddNewListCell.swift in Sources */,
 				0B48431224F3652B00D9505E /* AppDelegate.swift in Sources */,
 				0BF8CF1B24F84299008A973E /* ListTableViewAddItemCell.swift in Sources */,
+				0BA4C2A22535299100A906BB /* ListyUILabel.swift in Sources */,
 				0B48431424F3652B00D9505E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

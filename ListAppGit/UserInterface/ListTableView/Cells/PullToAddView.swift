@@ -10,11 +10,11 @@ import Foundation
 import UIKit
 
 class PullToAddView: UIView {
-    let textField: UITextField = {
-        let tf = UITextField()
+    let textField: ListyTextField = {
+        let tf = ListyTextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.placeholder = "Enter list name"
-        tf.font = UIFont.systemFont(ofSize: 15)
+        tf.font = tf.font?.withSize(15)
         tf.autocorrectionType = UITextAutocorrectionType.no
         tf.keyboardType = UIKeyboardType.default
         tf.returnKeyType = UIReturnKeyType.done

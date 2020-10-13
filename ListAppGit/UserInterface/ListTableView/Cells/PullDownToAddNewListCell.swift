@@ -11,8 +11,8 @@ import UIKit
 
 class PullDownToAddNewListCell: UITableViewCell {
 
-    private let label: UILabel = {
-        let label = UILabel()
+    private let label: ListyLabel = {
+        let label = ListyLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = label.font.withSize(14)
         label.textColor = .lightGray
