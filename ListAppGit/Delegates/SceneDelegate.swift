@@ -17,12 +17,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var currentNode = Node(value: "Home")
     var rootNode = Node(value: "root")
     var baseListView: ListTableView?
+    var appFontDescription = "SFPro-Regular"
+    var appFontName = "System"
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
         loadFromDisk()
+        loadSettings()
         parseLists()
         createViewController()
         requestNotificationAccess()
@@ -106,13 +109,27 @@ extension SceneDelegate {
 
     func createViewController() {
         let vm = ListTableViewModel(currentList: currentNode, rootNode: rootNode)
-        baseListView = ListTableView(viewModel: vm)
+        baseListView = ListTableView(viewModel: vm,
+                                     settingsViewModel: SettingsTableViewViewModel(currentFontName: self.appFontName, currentFontDescription: self.appFontDescription))
     }
 
     func requestNotificationAccess() {
         let center = UNUserNotificationCenter.current()
 
         center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in }
+    }
+
+    func loadSettings() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "CurrentFont")
+        do {
+            let fontData = try managedContext.fetch(fetchRequest).last
+            self.appFontName = fontData?.value(forKeyPath: "fontName") as? String ?? self.appFontName
+            self.appFontDescription = fontData?.value(forKey: "fontDescription") as? String ?? self.appFontDescription
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
     }
 }
 

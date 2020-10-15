@@ -40,6 +40,7 @@ class ListTableView: UITableViewController {
     fileprivate var sections = [TableViewSection]()
 
     fileprivate var viewModel: ListTableViewModel
+    fileprivate var settingsViewModel: SettingsTableViewViewModel
     fileprivate var coreList: [NSManagedObject] = []
     fileprivate var rootNodeNSObject: [NSObject] = []
 
@@ -48,8 +49,9 @@ class ListTableView: UITableViewController {
     var firstTime = true
     var inputCellAtBottom = false
 
-    init(viewModel: ListTableViewModel) {
+    init(viewModel: ListTableViewModel, settingsViewModel: SettingsTableViewViewModel) {
         self.viewModel = viewModel
+        self.settingsViewModel = settingsViewModel
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -104,7 +106,7 @@ class ListTableView: UITableViewController {
         case .listCell:
             let nodeTapped = viewModel.currentList.children[indexPath.row]
             let vm = ListTableViewModel(currentList: nodeTapped, rootNode: viewModel.rootNode)
-            let view = ListTableView(viewModel: vm)
+            let view = ListTableView(viewModel: vm, settingsViewModel: self.settingsViewModel)
             navigationController?.pushViewController(view, animated: true)
         case .pullDownPrompt:
             return
@@ -366,7 +368,7 @@ extension ListTableView {
     }
 
     @objc func openSettings() {
-        let view = SettingsTableView()
+        let view = SettingsTableView(viewModel: self.settingsViewModel)
         navigationController?.pushViewController(view, animated: true)
     }
 

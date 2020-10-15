@@ -54,6 +54,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>NewYork.ttf</string>
+		<string>SF-Pro.ttf</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>

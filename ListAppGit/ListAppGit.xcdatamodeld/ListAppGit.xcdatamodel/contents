@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="18G6020" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="CurrentFont" representedClassName="CurrentFont" syncable="YES" codeGenerationType="class">
+        <attribute name="fontDescription" optional="YES" attributeType="String" defaultValueString="SFProText-Regular"/>
+        <attribute name="fontName" optional="YES" attributeType="String" defaultValueString="System"/>
+    </entity>
     <entity name="List" representedClassName="List" syncable="YES" codeGenerationType="class">
         <attribute name="listString" optional="YES" attributeType="String"/>
     </entity>
@@ -19,5 +23,6 @@
         <element name="List" positionX="-230.56640625" positionY="-178.76953125" width="128" height="58"/>
         <element name="ListNode" positionX="-63" positionY="-9" width="128" height="148"/>
         <element name="Root" positionX="-253.04296875" positionY="132.52734375" width="128" height="58"/>
+        <element name="CurrentFont" positionX="-126" positionY="-9" width="128" height="73"/>
     </elements>
 </model>
