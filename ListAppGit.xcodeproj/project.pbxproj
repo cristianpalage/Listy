@@ -25,6 +25,11 @@
 		0BA4C2A625352C3000A906BB /* UILabel Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA4C2A525352C3000A906BB /* UILabel Extensions.swift */; };
 		0BA4C2AB253537DC00A906BB /* ListyUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA4C2AA253537DC00A906BB /* ListyUITextField.swift */; };
 		0BA4C2B42535466F00A906BB /* SettingsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA4C2B32535466F00A906BB /* SettingsTableView.swift */; };
+		0BA4C2C52537914C00A906BB /* TableViewButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA4C2C42537914C00A906BB /* TableViewButtonCell.swift */; };
+		0BA4C2C925379B2500A906BB /* FontSelectionTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA4C2C825379B2500A906BB /* FontSelectionTableView.swift */; };
+		0BA4C2CE25379D4A00A906BB /* FontSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA4C2CD25379D4A00A906BB /* FontSelectionTableViewCell.swift */; };
+		0BA4C2D82537B42600A906BB /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BA4C2D72537B42600A906BB /* SF-Pro.ttf */; };
+		0BA4C2DE2537D55600A906BB /* SettingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA4C2DD2537D55600A906BB /* SettingService.swift */; };
 		0BBB0DA624FC6CB500A4D9FA /* PullToAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBB0DA524FC6CB500A4D9FA /* PullToAddView.swift */; };
 		0BE79C23250C71F600A28403 /* ListDetailsEditNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE79C22250C71F600A28403 /* ListDetailsEditNameTableViewCell.swift */; };
 		0BE79C27250E80E600A28403 /* ListDetailsListDepthTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE79C26250E80E600A28403 /* ListDetailsListDepthTableViewCell.swift */; };
@@ -54,6 +59,11 @@
 		0BA4C2A525352C3000A906BB /* UILabel Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel Extensions.swift"; sourceTree = "<group>"; };
 		0BA4C2AA253537DC00A906BB /* ListyUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListyUITextField.swift; sourceTree = "<group>"; };
 		0BA4C2B32535466F00A906BB /* SettingsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableView.swift; sourceTree = "<group>"; };
+		0BA4C2C42537914C00A906BB /* TableViewButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewButtonCell.swift; sourceTree = "<group>"; };
+		0BA4C2C825379B2500A906BB /* FontSelectionTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSelectionTableView.swift; sourceTree = "<group>"; };
+		0BA4C2CD25379D4A00A906BB /* FontSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSelectionTableViewCell.swift; sourceTree = "<group>"; };
+		0BA4C2D72537B42600A906BB /* SF-Pro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro.ttf"; sourceTree = "<group>"; };
+		0BA4C2DD2537D55600A906BB /* SettingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingService.swift; sourceTree = "<group>"; };
 		0BBB0DA524FC6CB500A4D9FA /* PullToAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToAddView.swift; sourceTree = "<group>"; };
 		0BE79C22250C71F600A28403 /* ListDetailsEditNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailsEditNameTableViewCell.swift; sourceTree = "<group>"; };
 		0BE79C26250E80E600A28403 /* ListDetailsListDepthTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailsListDepthTableViewCell.swift; sourceTree = "<group>"; };
@@ -125,6 +135,7 @@
 				0B17813425003C5400B41D18 /* UI Objects */,
 				0B48431D24F3652C00D9505E /* Assets.xcassets */,
 				0BA4C29D2535280B00A906BB /* NewYork.ttf */,
+				0BA4C2D72537B42600A906BB /* SF-Pro.ttf */,
 				0B48431F24F3652C00D9505E /* LaunchScreen.storyboard */,
 				0B48432224F3652C00D9505E /* Info.plist */,
 				0B48431A24F3652B00D9505E /* ListAppGit.xcdatamodeld */,
@@ -144,9 +155,10 @@
 		0B5D694C24F72C6400AC3FA4 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
-				0BA4C2B22535465D00A906BB /* Settings */,
 				0B5D694E24F72C7A00AC3FA4 /* ListTableView */,
 				0BE79C21250C713B00A28403 /* ListDetailsTableView */,
+				0BA4C2B22535465D00A906BB /* Settings */,
+				0BA4C2C325378F3B00A906BB /* Common */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -174,6 +186,7 @@
 				0B178139250047C300B41D18 /* ListService.swift */,
 				0B4AA4E5252A50CD005102F8 /* DateService.swift */,
 				0B86E90D253388AB00949F06 /* NotificationService.swift */,
+				0BA4C2DD2537D55600A906BB /* SettingService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -199,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				0BA4C2B32535466F00A906BB /* SettingsTableView.swift */,
+				0BA4C2C725379B0200A906BB /* Fonts */,
 				0BA4C2B6253546FA00A906BB /* Cells */,
 			);
 			path = Settings;
@@ -207,6 +221,31 @@
 		0BA4C2B6253546FA00A906BB /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		0BA4C2C325378F3B00A906BB /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				0BA4C2C42537914C00A906BB /* TableViewButtonCell.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		0BA4C2C725379B0200A906BB /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				0BA4C2C825379B2500A906BB /* FontSelectionTableView.swift */,
+				0BA4C2CC25379D3900A906BB /* Cells */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		0BA4C2CC25379D3900A906BB /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				0BA4C2CD25379D4A00A906BB /* FontSelectionTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -300,6 +339,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BA4C29E2535280B00A906BB /* NewYork.ttf in Resources */,
+				0BA4C2D82537B42600A906BB /* SF-Pro.ttf in Resources */,
 				0B48432124F3652C00D9505E /* LaunchScreen.storyboard in Resources */,
 				0B48431E24F3652C00D9505E /* Assets.xcassets in Resources */,
 			);
@@ -313,10 +353,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BE79C23250C71F600A28403 /* ListDetailsEditNameTableViewCell.swift in Sources */,
+				0BA4C2C52537914C00A906BB /* TableViewButtonCell.swift in Sources */,
 				0BBB0DA624FC6CB500A4D9FA /* PullToAddView.swift in Sources */,
 				0B17813A250047C300B41D18 /* ListService.swift in Sources */,
 				0BFF5719250B1F1D000518EE /* ListDetailsTableView.swift in Sources */,
 				0B48431C24F3652B00D9505E /* ListAppGit.xcdatamodeld in Sources */,
+				0BA4C2CE25379D4A00A906BB /* FontSelectionTableViewCell.swift in Sources */,
+				0BA4C2C925379B2500A906BB /* FontSelectionTableView.swift in Sources */,
+				0BA4C2DE2537D55600A906BB /* SettingService.swift in Sources */,
 				0B48435224F36E8100D9505E /* ListTableViewCell.swift in Sources */,
 				0BE79C27250E80E600A28403 /* ListDetailsListDepthTableViewCell.swift in Sources */,
 				0BA4C2B42535466F00A906BB /* SettingsTableView.swift in Sources */,

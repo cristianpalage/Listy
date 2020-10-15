@@ -10,11 +10,24 @@ import Foundation
 import UIKit
 import CoreData
 
+struct SettingsTableViewViewModel: Codable {
+    let currentFontName: String
+    let currentFontDescription: String
+
+    init(currentFontName: String, currentFontDescription: String) {
+        self.currentFontName = currentFontName
+        self.currentFontDescription = currentFontDescription
+    }
+}
+
 class SettingsTableView: UITableViewController {
+
+    var viewModel: SettingsTableViewViewModel
 
     struct TableViewSection {
 
         enum CellType {
+            case font
         }
 
         let rows: [CellType]
@@ -26,7 +39,8 @@ class SettingsTableView: UITableViewController {
 
     fileprivate var sections = [TableViewSection]()
 
-    init() {
+    init(viewModel: SettingsTableViewViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -49,7 +63,11 @@ class SettingsTableView: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 10
+        return 20
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+       return "_"
     }
 
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -65,6 +83,21 @@ class SettingsTableView: UITableViewController {
         let cellType = sections[indexPath.section].rows[indexPath.row]
 
         switch cellType {
+        case .font:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewButtonCell", for: indexPath) as! TableViewButtonCell
+            cell.viewModel = TableViewButtonCellViewModel(title: "Fonts")
+            return cell
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cellType = sections[indexPath.section].rows[indexPath.row]
+
+        switch cellType {
+        case .font:
+            let view = FontSelectionTableView()
+            view.viewModel = FontSelectionTableViewViewModel(currentFontName: self.viewModel.currentFontName, currentFontDescription: self.viewModel.currentFontDescription)
+            navigationController?.pushViewController(view, animated: true)
         }
     }
 }
@@ -84,10 +117,11 @@ extension SettingsTableView {
     func setupTableView() {
         registerTableViewCells()
         self.tableView.separatorStyle = .none
-        self.tableView.backgroundColor = UITraitCollection.current.userInterfaceStyle == .dark ? .black : .white
+        self.tableView.backgroundColor = UITraitCollection.current.userInterfaceStyle == .dark ? .systemGray6 : .white
     }
 
     func registerTableViewCells() {
+        tableView.register(TableViewButtonCell.self, forCellReuseIdentifier: "TableViewButtonCell")
     }
 
     func configureCellTypes() {
@@ -95,9 +129,9 @@ extension SettingsTableView {
         defer { tableView.reloadData() }
 
         var sections = [TableViewSection]()
+        sections.append(.init(rows: [.font]))
 
         self.sections = sections
     }
-
 }
 

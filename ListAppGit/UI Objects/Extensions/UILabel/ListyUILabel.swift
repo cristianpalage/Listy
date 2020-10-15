@@ -32,7 +32,7 @@ open class ListyLabel: UILabel {
     }
 
     open func commonInit() {
-        self.font = UIFont(name: "NewYork-Regular", size: self.font.pointSize)
+        self.font = UIFont(name: "SFPro-Regular", size: self.font.pointSize)
         checkAutoHide()
     }
 

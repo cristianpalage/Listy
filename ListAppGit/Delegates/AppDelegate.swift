@@ -12,11 +12,17 @@ import CoreData
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var appFontDescription = "SFPro-Regular"
+    var appFontName = "System"
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let navBarAttributes = [NSAttributedString.Key.font: UIFont(name: "NewYork-Regular", size: 18)!]
-        let barButtonItemAttributes = [NSAttributedString.Key.font: UIFont(name: "NewYork-Regular", size: 15)!]
+
+        loadSettings()
+
+        let mediumFont = appFontDescription.replacingOccurrences(of: "Regular", with: "Medium")
+        let navBarAttributes = [NSAttributedString.Key.font: UIFont(name: mediumFont, size: 18)!]
+        let barButtonItemAttributes = [NSAttributedString.Key.font: UIFont(name: appFontDescription, size: 15)!]
 
         UINavigationBar.appearance().titleTextAttributes = navBarAttributes
         UIBarButtonItem.appearance().setTitleTextAttributes(barButtonItemAttributes, for: .normal)
@@ -46,13 +52,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          creates and returns a container, having loaded the store for the
          application to it. This property is optional since there are legitimate
          error conditions that could cause the creation of the store to fail.
-        */
+         */
         let container = NSPersistentCloudKitContainer(name: "ListAppGit")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                 
+
                 /*
                  Typical reasons for an error here include:
                  * The parent directory does not exist, cannot be created, or disallows writing.
@@ -83,5 +89,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+    func loadSettings() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "CurrentFont")
+        do {
+            let fontData = try managedContext.fetch(fetchRequest).last
+            self.appFontName = fontData?.value(forKeyPath: "fontName") as? String ?? self.appFontName
+            self.appFontDescription = fontData?.value(forKey: "fontDescription") as? String ?? self.appFontDescription
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+    }
+
 }
+
 
