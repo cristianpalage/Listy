@@ -51,5 +51,6 @@ private extension PullToAddView {
 extension PullToAddView: Themed {
     func applyTheme(_ theme: AppTheme) {
         textField.tintColor = theme.tintColor
+        //textField.attributedPlaceholder = NSAttributedString(string:"Enter List Name", attributes: [NSAttributedString.Key.foregroundColor: themeProvider.currentTheme.secondaryTextColor])
     }
 }

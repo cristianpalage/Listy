@@ -15,6 +15,7 @@ struct AppTheme: Equatable {
     var backgroundColor: UIColor
     var secondaryBackgroundColor: UIColor
     var textColor: UIColor
+    var secondaryTextColor: UIColor
     var tintColor: UIColor
 
     
@@ -28,6 +29,7 @@ extension AppTheme {
         backgroundColor: .white,
         secondaryBackgroundColor: .systemGray6,
         textColor: .black,
+        secondaryTextColor: .gray,
         tintColor: .black
     )
 
@@ -38,6 +40,7 @@ extension AppTheme {
         backgroundColor: .black,
         secondaryBackgroundColor: UIColor(displayP3Red: 15/255, green: 15/255, blue: 15/255, alpha: 1),
         textColor: .white,
+        secondaryTextColor: .gray,
         tintColor: .white
     )
 }

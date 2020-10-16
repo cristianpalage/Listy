@@ -125,7 +125,8 @@ extension ThemeSelectionTableView {
 
     func setupTableView() {
         registerTableViewCells()
-        self.tableView.backgroundColor = themeProvider.currentTheme.backgroundColor
+        tableView.tableFooterView = UIView(frame: .zero)
+        self.tableView.backgroundColor = themeProvider.currentTheme.secondaryBackgroundColor
     }
 
     func registerTableViewCells() {
@@ -139,15 +140,14 @@ extension ThemeSelectionTableView {
 
         var sections = [TableViewSection]()
         sections.append(.init(rows: [.dark, .light]))
-        sections.append(.init(rows: [.systemFont, .newYorkFont]))
-
+    
         self.sections = sections
     }
 }
 
 extension ThemeSelectionTableView: Themed {
     func applyTheme(_ theme: AppTheme) {
-        self.tableView.backgroundColor = theme.backgroundColor
+        self.tableView.backgroundColor = theme.secondaryBackgroundColor
         self.navigationController?.navigationBar.barTintColor = theme.backgroundColor
         self.navigationController?.navigationBar.tintColor = theme.tintColor
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: theme.textColor]

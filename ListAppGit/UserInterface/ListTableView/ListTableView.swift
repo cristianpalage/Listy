@@ -40,7 +40,6 @@ class ListTableView: UITableViewController {
     fileprivate var sections = [TableViewSection]()
 
     fileprivate var viewModel: ListTableViewModel
-    fileprivate var settingsViewModel: SettingsTableViewViewModel
     fileprivate var coreList: [NSManagedObject] = []
     fileprivate var rootNodeNSObject: [NSObject] = []
 
@@ -49,9 +48,8 @@ class ListTableView: UITableViewController {
     var firstTime = true
     var inputCellAtBottom = false
 
-    init(viewModel: ListTableViewModel, settingsViewModel: SettingsTableViewViewModel) {
+    init(viewModel: ListTableViewModel) {
         self.viewModel = viewModel
-        self.settingsViewModel = settingsViewModel
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -107,7 +105,7 @@ class ListTableView: UITableViewController {
         case .listCell:
             let nodeTapped = viewModel.currentList.children[indexPath.row]
             let vm = ListTableViewModel(currentList: nodeTapped, rootNode: viewModel.rootNode)
-            let view = ListTableView(viewModel: vm, settingsViewModel: self.settingsViewModel)
+            let view = ListTableView(viewModel: vm)
             navigationController?.pushViewController(view, animated: true)
         case .pullDownPrompt:
             return
@@ -127,7 +125,7 @@ class ListTableView: UITableViewController {
 
         let listDetailsAction = UIContextualAction(style: .normal, title: "settings") { (_, _, completionHandler) in
             let vc = ListDetailsTableView(viewModel: ListDetailsTableViewModel(currentList: self.viewModel.currentList.children[indexPath.row], rootNode: self.viewModel.rootNode))
-            let navController = UINavigationController(rootViewController: vc)
+            let navController = ListyNavigationController(rootViewController: vc)
             navController.navigationBar.barTintColor = self.themeProvider.currentTheme.backgroundColor
             navController.navigationBar.setValue(true, forKey: "hidesShadow")
             navController.navigationBar.tintColor = self.themeProvider.currentTheme.tintColor
@@ -338,8 +336,8 @@ extension ListTableView {
     }
 
     @objc func openSettings() {
-        let view = SettingsTableView(viewModel: self.settingsViewModel)
-        let navController = UINavigationController(rootViewController: view)
+        let view = SettingsTableView()
+        let navController = ListyNavigationController(rootViewController: view)
         navController.navigationBar.barTintColor = self.themeProvider.currentTheme.backgroundColor
         navController.navigationBar.setValue(true, forKey: "hidesShadow")
         navController.navigationBar.tintColor = self.themeProvider.currentTheme.tintColor
