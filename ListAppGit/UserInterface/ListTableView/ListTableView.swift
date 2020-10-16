@@ -128,9 +128,10 @@ class ListTableView: UITableViewController {
         let listDetailsAction = UIContextualAction(style: .normal, title: "settings") { (_, _, completionHandler) in
             let vc = ListDetailsTableView(viewModel: ListDetailsTableViewModel(currentList: self.viewModel.currentList.children[indexPath.row], rootNode: self.viewModel.rootNode))
             let navController = UINavigationController(rootViewController: vc)
-            navController.navigationBar.barTintColor = UITraitCollection.current.userInterfaceStyle == .dark ? .black : .white
+            navController.navigationBar.barTintColor = self.themeProvider.currentTheme.backgroundColor
             navController.navigationBar.setValue(true, forKey: "hidesShadow")
-            navController.navigationBar.tintColor = UITraitCollection.current.userInterfaceStyle == .dark ? .white : .black
+            navController.navigationBar.tintColor = self.themeProvider.currentTheme.tintColor
+            navController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: self.themeProvider.currentTheme.textColor]
             self.navigationController?.title = self.viewModel.currentList.children[indexPath.row].value
             vc.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.dismissDetailsVC))
             self.navigationController!.present(navController, animated: true, completion: nil)
@@ -251,7 +252,10 @@ extension ListTableView {
     @objc func tableTapped() {
         if let _ = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ListTableViewAddItemCell {
             self.inputCellAtBottom = false
-        } else {
+        } else if let _ = self.tableView.cellForRow(at: IndexPath(row: 0, section: sections.count - 1)) as? ListTableViewAddItemCell {
+            self.inputCellAtBottom = false
+        }
+        else {
             self.inputCellAtBottom = true
         }
         self.configureAndSave()
@@ -327,7 +331,7 @@ extension ListTableView {
 
         let rightBarButtonItem: UIBarButtonItem = {
             let bbi = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(openSettings))
-            bbi.tintColor = UITraitCollection.current.userInterfaceStyle == .dark ? .white : .black
+            bbi.tintColor = self.themeProvider.currentTheme.tintColor
             return bbi
         }()
         navigationItem.rightBarButtonItem = rightBarButtonItem
@@ -336,6 +340,10 @@ extension ListTableView {
     @objc func openSettings() {
         let view = SettingsTableView(viewModel: self.settingsViewModel)
         let navController = UINavigationController(rootViewController: view)
+        navController.navigationBar.barTintColor = self.themeProvider.currentTheme.backgroundColor
+        navController.navigationBar.setValue(true, forKey: "hidesShadow")
+        navController.navigationBar.tintColor = self.themeProvider.currentTheme.tintColor
+        navController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: self.themeProvider.currentTheme.textColor]
         self.navigationController?.title = "Settings"
         view.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.dismissDetailsVC))
         self.navigationController!.present(navController, animated: true, completion: nil)

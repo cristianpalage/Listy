@@ -148,6 +148,9 @@ extension ThemeSelectionTableView {
 extension ThemeSelectionTableView: Themed {
     func applyTheme(_ theme: AppTheme) {
         self.tableView.backgroundColor = theme.backgroundColor
+        self.navigationController?.navigationBar.barTintColor = theme.backgroundColor
+        self.navigationController?.navigationBar.tintColor = theme.tintColor
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: theme.textColor]
     }
 
 }

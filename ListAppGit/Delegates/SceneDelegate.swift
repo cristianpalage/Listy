@@ -29,6 +29,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         parseLists()
         createViewController()
         requestNotificationAccess()
+        setUpTheming()
 
 
         guard let baseListView = baseListView else { return }
@@ -37,9 +38,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navigationController: ListyNavigationController = {
             let navigationController = ListyNavigationController()
             navigationController.viewControllers = [baseListView]
-            navigationController.navigationBar.barTintColor = UITraitCollection.current.userInterfaceStyle == .dark ? .black : .white
+            navigationController.navigationBar.barTintColor = themeProvider.currentTheme.tintColor
             navigationController.navigationBar.setValue(true, forKey: "hidesShadow")
-            navigationController.navigationBar.tintColor = UITraitCollection.current.userInterfaceStyle == .dark ? .white : .black
+            navigationController.navigationBar.tintColor = themeProvider.currentTheme.tintColor
             return navigationController
         }()
 
@@ -131,5 +132,9 @@ extension SceneDelegate {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
     }
+}
+
+extension SceneDelegate: Themed {
+    func applyTheme(_ theme: AppTheme) { return }
 }
 

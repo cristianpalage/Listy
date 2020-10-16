@@ -19,7 +19,6 @@ class PullToAddView: UIView {
         tf.keyboardType = UIKeyboardType.default
         tf.returnKeyType = UIReturnKeyType.done
         tf.clearButtonMode = UITextField.ViewMode.whileEditing
-        tf.tintColor = .black
         tf.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         return tf
     }()
@@ -37,6 +36,7 @@ class PullToAddView: UIView {
 
 private extension PullToAddView {
     func setup() {
+        setUpTheming()
         addSubview(textField)
         self.translatesAutoresizingMaskIntoConstraints = false
 
@@ -45,5 +45,11 @@ private extension PullToAddView {
             textField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -18),
             textField.heightAnchor.constraint(equalToConstant: 18)
         ])
+    }
+}
+
+extension PullToAddView: Themed {
+    func applyTheme(_ theme: AppTheme) {
+        textField.tintColor = theme.tintColor
     }
 }
