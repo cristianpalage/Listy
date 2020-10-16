@@ -73,8 +73,8 @@ class ListDetailsDeadlineTableViewCell: UITableViewCell {
 
 private extension ListDetailsDeadlineTableViewCell {
     func setup() {
+        setUpTheming()
         setupDatePicker()
-        setupBackground()
 
         contentView.addSubview(deadlinePromptLabel)
         contentView.addSubview(datePicker)
@@ -99,10 +99,6 @@ private extension ListDetailsDeadlineTableViewCell {
             datePicker.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18),
             datePicker.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
         ])
-    }
-
-    func setupBackground() {
-        contentView.backgroundColor = UITraitCollection.current.userInterfaceStyle == .dark ? .black : .white
     }
 
     func setupViewModel() {
@@ -136,6 +132,13 @@ private extension ListDetailsDeadlineTableViewCell {
         datePicker.isHidden = !self.hasDeadline
         datePicker.addTarget(self, action: #selector(dateChanged), for: .editingDidEnd)
         deadlineToggle.addTarget(self, action: #selector(toggleChanged), for: .valueChanged)
+    }
+}
+
+extension ListDetailsDeadlineTableViewCell: Themed {
+    func applyTheme(_ theme: AppTheme) {
+        contentView.backgroundColor = theme.backgroundColor
+        deadlinePromptLabel.textColor = theme.textColor
     }
 }
 

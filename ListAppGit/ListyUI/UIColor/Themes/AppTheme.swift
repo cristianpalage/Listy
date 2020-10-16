@@ -22,7 +22,7 @@ struct AppTheme: Equatable {
 
 extension AppTheme {
     static let light = AppTheme(
-        statusBarStyle: .`default`,
+        statusBarStyle: .darkContent,
         barBackgroundColor: .white,
         barForegroundColor: .black,
         backgroundColor: .white,

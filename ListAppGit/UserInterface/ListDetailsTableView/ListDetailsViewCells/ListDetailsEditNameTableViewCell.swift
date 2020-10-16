@@ -40,7 +40,6 @@ class ListDetailsEditNameTableViewCell: UITableViewCell {
         tf.keyboardType = UIKeyboardType.default
         tf.returnKeyType = UIReturnKeyType.done
         tf.clearButtonMode = UITextField.ViewMode.whileEditing
-        tf.tintColor = UITraitCollection.current.userInterfaceStyle == .dark ? .white : .black
         tf.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         return tf
     }()
@@ -66,9 +65,9 @@ class ListDetailsEditNameTableViewCell: UITableViewCell {
 
 private extension ListDetailsEditNameTableViewCell {
     func setup() {
+        setUpTheming()
         contentView.addSubview(textField)
         contentView.addSubview(header)
-        contentView.backgroundColor = UITraitCollection.current.userInterfaceStyle == .dark ? .black : .white
 
         NSLayoutConstraint.activate([
             textField.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
@@ -87,5 +86,12 @@ private extension ListDetailsEditNameTableViewCell {
     
     func setupViewModel() {
         textField.text = viewModel?.list.value
+    }
+}
+
+extension ListDetailsEditNameTableViewCell: Themed {
+    func applyTheme(_ theme: AppTheme) {
+        contentView.backgroundColor = theme.backgroundColor
+        textField.textColor = theme.textColor
     }
 }

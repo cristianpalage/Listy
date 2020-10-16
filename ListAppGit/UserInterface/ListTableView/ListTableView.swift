@@ -122,8 +122,8 @@ class ListTableView: UITableViewController {
             tableView.reloadData()
             completionHandler(true)
         }
-        deleteAction.image = UIImage(systemName: "trash")?.withTintColor(UITraitCollection.current.userInterfaceStyle == .dark ? .white : .black, renderingMode: .alwaysOriginal)
-        deleteAction.backgroundColor = UITraitCollection.current.userInterfaceStyle == .dark ? .black : .white
+        deleteAction.image = UIImage(systemName: "trash")?.withTintColor(themeProvider.currentTheme.tintColor, renderingMode: .alwaysOriginal)
+        deleteAction.backgroundColor = themeProvider.currentTheme.backgroundColor
 
         let listDetailsAction = UIContextualAction(style: .normal, title: "settings") { (_, _, completionHandler) in
             let vc = ListDetailsTableView(viewModel: ListDetailsTableViewModel(currentList: self.viewModel.currentList.children[indexPath.row], rootNode: self.viewModel.rootNode))
@@ -136,8 +136,8 @@ class ListTableView: UITableViewController {
             self.navigationController!.present(navController, animated: true, completion: nil)
             completionHandler(true)
         }
-        listDetailsAction.image = UIImage(systemName: "square.and.pencil")?.withTintColor(UITraitCollection.current.userInterfaceStyle == .dark ? .white : .black, renderingMode: .alwaysOriginal)
-        listDetailsAction.backgroundColor = UITraitCollection.current.userInterfaceStyle == .dark ? .black : .white
+        listDetailsAction.image = UIImage(systemName: "square.and.pencil")?.withTintColor(themeProvider.currentTheme.tintColor, renderingMode: .alwaysOriginal)
+        listDetailsAction.backgroundColor = themeProvider.currentTheme.backgroundColor
         
         let configuration = UISwipeActionsConfiguration(actions: [deleteAction, listDetailsAction])
         return configuration

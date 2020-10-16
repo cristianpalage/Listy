@@ -52,8 +52,9 @@ class ListDetailsTableView: UITableViewController {
     }
 
     override func viewDidLoad() {
+        setUpTheming()
         super.viewDidLoad()
-        self.title = "Details" // viewModel.currentList.value
+        self.title = "List Details"
         self.configureCellTypes()
         self.setupTableView()
     }
@@ -130,7 +131,7 @@ extension ListDetailsTableView {
     func setupTableView() {
         registerTableViewCells()
         self.tableView.separatorStyle = .none
-        self.tableView.backgroundColor = UITraitCollection.current.userInterfaceStyle == .dark ? .black : .white
+        self.tableView.backgroundColor = themeProvider.currentTheme.backgroundColor
     }
 
     func registerTableViewCells() {
@@ -151,6 +152,12 @@ extension ListDetailsTableView {
         self.sections = sections
     }
 
+}
+
+extension ListDetailsTableView: Themed {
+    func applyTheme(_ theme: AppTheme) {
+        tableView.backgroundColor = theme.backgroundColor
+    }
 }
 
 // MARK: Text Field Delegate Methods

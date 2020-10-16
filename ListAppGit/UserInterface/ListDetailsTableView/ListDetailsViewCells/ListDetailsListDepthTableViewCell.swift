@@ -51,8 +51,8 @@ class ListDetailsListDepthTableViewCell: UITableViewCell {
 
 private extension ListDetailsListDepthTableViewCell {
     func setup() {
+        setUpTheming()
         contentView.addSubview(header)
-        contentView.backgroundColor = UITraitCollection.current.userInterfaceStyle == .dark ? .black : .white
 
         NSLayoutConstraint.activate([
             header.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
@@ -67,5 +67,12 @@ private extension ListDetailsListDepthTableViewCell {
         if let depth = viewModel?.list.depth() {
             header.text = "List depth: \(depth)"
         }
+    }
+}
+
+extension ListDetailsListDepthTableViewCell: Themed {
+    func applyTheme(_ theme: AppTheme) {
+        contentView.backgroundColor = theme.backgroundColor
+        header.textColor = theme.textColor
     }
 }
