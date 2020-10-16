@@ -257,7 +257,7 @@ extension ListTableView {
             self.inputCellAtBottom = true
         }
         self.configureAndSave()
-        let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? ListTableViewAddItemCell
+        let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: sections.count - 1)) as? ListTableViewAddItemCell
         cell?.textField.becomeFirstResponder()
     }
 
