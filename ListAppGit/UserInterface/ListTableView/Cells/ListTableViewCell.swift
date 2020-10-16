@@ -61,6 +61,7 @@ class ListTableViewCell: UITableViewCell {
 
 private extension ListTableViewCell {
     func setup() {
+        setUpTheming()
         contentView.addSubview(label)
         contentView.addSubview(deadlineLabel)
         
@@ -82,4 +83,13 @@ private extension ListTableViewCell {
         label.text = viewModel?.list.value
         deadlineLabel.text = dateFormatter(date: viewModel?.list.deadline)
     }
+}
+
+extension ListTableViewCell: Themed {
+    func applyTheme(_ theme: AppTheme) {
+        contentView.backgroundColor = theme.backgroundColor
+        label.textColor = theme.textColor
+    }
+
+
 }

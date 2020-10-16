@@ -1,29 +1,27 @@
 //
-//  FontSelectionTableViewCell.swift
+//  ThemeSelectionTableViewCell.swift
 //  ListAppGit
 //
-//  Created by Cristian Palage on 2020-10-14.
+//  Created by Cristian Palage on 2020-10-15.
 //  Copyright © 2020 Cristian Palage. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-struct FontSelectionTableViewCellViewModel {
-    var fontName: String
-    var fontDescription: String
+struct ThemeSelectionTableViewCellViewModel {
+    var themeName: String
     var isSelected: Bool
 
-    init(title: String, fontDescription: String, isSelected: Bool) {
-        self.fontName = title
-        self.fontDescription = fontDescription
+    init(theme: String, isSelected: Bool) {
+        self.themeName = theme
         self.isSelected = isSelected
     }
 }
 
-class FontSelectionTableViewCell: UITableViewCell {
+class ThemeSelectionTableViewCell: UITableViewCell {
 
-    var viewModel: FontSelectionTableViewCellViewModel? {
+    var viewModel: ThemeSelectionTableViewCellViewModel? {
         didSet { setupViewModel() }
     }
 
@@ -64,8 +62,10 @@ class FontSelectionTableViewCell: UITableViewCell {
 }
 
 
-private extension FontSelectionTableViewCell {
+private extension ThemeSelectionTableViewCell {
     func setup() {
+        setUpTheming()
+
         contentView.addSubview(label)
         contentView.addSubview(checkMarkIcon)
 
@@ -84,8 +84,7 @@ private extension FontSelectionTableViewCell {
     }
 
     func setupViewModel() {
-        label.text = viewModel?.fontName
-        label.font = UIFont(name: viewModel?.fontDescription ?? "SFPro-Regular", size: 15)
+        label.text = viewModel?.themeName
 
         guard let isSelected = viewModel?.isSelected else { return }
 
@@ -93,3 +92,9 @@ private extension FontSelectionTableViewCell {
     }
 }
 
+extension ThemeSelectionTableViewCell: Themed {
+    func applyTheme(_ theme: AppTheme) {
+        contentView.backgroundColor = theme.backgroundColor
+        label.textColor = theme.textColor
+    }
+}

@@ -23,9 +23,7 @@ open class ListyTextField: UITextField {
         commonInit()
     }
 
-    open func commonInit() {
-        self.font = UIFont(name: "NewYork-Regular", size: self.font?.pointSize ?? 0)
-    }
+    open func commonInit() { }
 
     open override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()

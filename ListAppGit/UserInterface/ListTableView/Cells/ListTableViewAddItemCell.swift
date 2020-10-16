@@ -20,7 +20,6 @@ class ListTableViewAddItemCell: UITableViewCell {
         tf.keyboardType = UIKeyboardType.default
         tf.returnKeyType = UIReturnKeyType.done
         tf.clearButtonMode = UITextField.ViewMode.whileEditing
-        tf.tintColor = UITraitCollection.current.userInterfaceStyle == .dark ? .white : .black
         tf.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         return tf
     }()
@@ -46,6 +45,7 @@ class ListTableViewAddItemCell: UITableViewCell {
 
 private extension ListTableViewAddItemCell {
     func setup() {
+        setUpTheming()
         contentView.addSubview(textField)
 
         NSLayoutConstraint.activate([
@@ -55,5 +55,13 @@ private extension ListTableViewAddItemCell {
             textField.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
             textField.heightAnchor.constraint(equalToConstant: 18)
         ])
+    }
+}
+
+extension ListTableViewAddItemCell: Themed {
+    func applyTheme(_ theme: AppTheme) {
+        contentView.backgroundColor = theme.backgroundColor
+        textField.textColor = theme.textColor
+        textField.tintColor = theme.textColor
     }
 }

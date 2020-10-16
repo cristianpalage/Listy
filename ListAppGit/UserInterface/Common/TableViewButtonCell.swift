@@ -62,6 +62,8 @@ class TableViewButtonCell: UITableViewCell {
 
 private extension TableViewButtonCell {
     func setup() {
+        setUpTheming()
+
         contentView.addSubview(label)
         contentView.addSubview(arrowIcon)
 
@@ -80,6 +82,14 @@ private extension TableViewButtonCell {
 
     func setupViewModel() {
         label.text = viewModel?.title
+    }
+}
+
+extension TableViewButtonCell: Themed {
+    func applyTheme(_ theme: AppTheme) {
+        contentView.backgroundColor = theme.backgroundColor
+        label.textColor = theme.textColor
+        arrowIcon.tintColor = theme.tintColor
     }
 }
 
