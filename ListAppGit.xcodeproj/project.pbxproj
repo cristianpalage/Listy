@@ -145,8 +145,6 @@
 				0B5D694F24F72D4500AC3FA4 /* NodeObjects */,
 				0B8A1F312538F449007C3A9E /* ListyUI */,
 				0B48431D24F3652C00D9505E /* Assets.xcassets */,
-				0BA4C29D2535280B00A906BB /* NewYork.ttf */,
-				0BA4C2D72537B42600A906BB /* SF-Pro.ttf */,
 				0B48431F24F3652C00D9505E /* LaunchScreen.storyboard */,
 				0B48432224F3652C00D9505E /* Info.plist */,
 				0B48431A24F3652B00D9505E /* ListAppGit.xcdatamodeld */,
@@ -205,8 +203,9 @@
 		0B8A1F312538F449007C3A9E /* ListyUI */ = {
 			isa = PBXGroup;
 			children = (
-				0B8A1F332538F4E8007C3A9E /* UIColor */,
 				0B17813425003C5400B41D18 /* UI Objects */,
+				0B8A1F332538F4E8007C3A9E /* UIColor */,
+				0B8A1F5725395F60007C3A9E /* Fonts */,
 			);
 			path = ListyUI;
 			sourceTree = "<group>";
@@ -244,6 +243,15 @@
 				0B8A1F372538F774007C3A9E /* ThemeProtocols.swift */,
 			);
 			path = Themes;
+			sourceTree = "<group>";
+		};
+		0B8A1F5725395F60007C3A9E /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				0BA4C29D2535280B00A906BB /* NewYork.ttf */,
+				0BA4C2D72537B42600A906BB /* SF-Pro.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		0BA4C2A02535295200A906BB /* UILabel */ = {
