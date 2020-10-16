@@ -172,33 +172,6 @@ class ListTableView: UITableViewController {
 }
 
 extension ListTableView {
-    @objc func addButton() {
-
-        let ac = UIAlertController(title: "Enter the List name", message: nil, preferredStyle: .alert)
-        ac.addTextField { textField in
-            textField.tintColor = UITraitCollection.current.userInterfaceStyle == .dark ? .white : .black
-        }
-
-
-        let submitAction = UIAlertAction(title: "Submit", style: .default) { [unowned ac] _ in
-            let answer = ac.textFields![0]
-            if answer.text! == "" { return }
-            self.addListItem(name: answer.text!)
-        }
-        submitAction.setValue(UITraitCollection.current.userInterfaceStyle == .dark ? UIColor.white : UIColor.black, forKey: "titleTextColor")
-
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { _ in
-            return
-        }
-        cancelAction.setValue(UIColor.red, forKey: "titleTextColor")
-
-        ac.addAction(cancelAction)
-        ac.addAction(submitAction)
-        present(ac, animated: true)
-        if let visualEffectView = ac.view.searchVisualEffectsSubview(), UITraitCollection.current.userInterfaceStyle == .dark {
-            visualEffectView.effect = UIBlurEffect(style: .dark)
-        }
-    }
 
     func addListItem(name: String, top: Bool? = nil) {
         let newNode = Node(value: name)
@@ -351,26 +324,21 @@ extension ListTableView {
     }
 
     func setUpNavigationControllerBarButtonItem() {
+
         let rightBarButtonItem: UIBarButtonItem = {
-            let bbi = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addButton))
+            let bbi = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(openSettings))
             bbi.tintColor = UITraitCollection.current.userInterfaceStyle == .dark ? .white : .black
             return bbi
         }()
-
-        if self.viewModel.currentList.parent == nil {
-            let leftBarButtonItem: UIBarButtonItem = {
-                let bbi = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(openSettings))
-                bbi.tintColor = UITraitCollection.current.userInterfaceStyle == .dark ? .white : .black
-                return bbi
-            }()
-            navigationItem.leftBarButtonItem = leftBarButtonItem
-        }
         navigationItem.rightBarButtonItem = rightBarButtonItem
     }
 
     @objc func openSettings() {
         let view = SettingsTableView(viewModel: self.settingsViewModel)
-        navigationController?.pushViewController(view, animated: true)
+        let navController = UINavigationController(rootViewController: view)
+        self.navigationController?.title = "Settings"
+        view.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.dismissDetailsVC))
+        self.navigationController!.present(navController, animated: true, completion: nil)
     }
 
 }
