@@ -28,7 +28,16 @@ final class AppThemeProvider: ThemeProvider {
     }
 
     private func setNewTheme(_ newTheme: AppTheme) {
-        self.theme.value = newTheme
+        let window = UIApplication.shared.windows.filter{( $0.isKeyWindow )}.first!
+        UIView.transition(
+            with: window,
+            duration: 0.3,
+            options: [.transitionCrossDissolve],
+            animations: {
+                self.theme.value = newTheme
+            },
+            completion: nil
+        )
     }
 
     func subscribeToChanges(_ object: AnyObject, handler: @escaping (AppTheme) -> Void) {

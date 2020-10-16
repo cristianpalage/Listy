@@ -63,5 +63,6 @@ extension ListTableViewAddItemCell: Themed {
         contentView.backgroundColor = theme.backgroundColor
         textField.textColor = theme.textColor
         textField.tintColor = theme.textColor
+        //textField.attributedPlaceholder = NSAttributedString(string:"Enter List Name", attributes: [NSAttributedString.Key.foregroundColor: themeProvider.currentTheme.secondaryTextColor])
     }
 }

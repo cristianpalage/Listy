@@ -10,19 +10,7 @@ import Foundation
 import UIKit
 import CoreData
 
-struct SettingsTableViewViewModel: Codable {
-    let currentFontName: String
-    let currentFontDescription: String
-
-    init(currentFontName: String, currentFontDescription: String) {
-        self.currentFontName = currentFontName
-        self.currentFontDescription = currentFontDescription
-    }
-}
-
 class SettingsTableView: UITableViewController {
-
-    var viewModel: SettingsTableViewViewModel
 
     struct TableViewSection {
 
@@ -39,8 +27,7 @@ class SettingsTableView: UITableViewController {
 
     fileprivate var sections = [TableViewSection]()
 
-    init(viewModel: SettingsTableViewViewModel) {
-        self.viewModel = viewModel
+    init() {
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -61,6 +48,16 @@ class SettingsTableView: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return self.sections.count
+    }
+
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+       let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "TableViewHeaderView") as! TableViewHeaderView
+       view.viewModel = TableViewHeaderViewViewModel(title: "Appearance")
+       return view
+    }
+
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 60
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -109,11 +106,13 @@ extension SettingsTableView {
     func setupTableView() {
         registerTableViewCells()
         self.tableView.separatorStyle = .none
-        self.tableView.backgroundColor = themeProvider.currentTheme.backgroundColor
+        tableView.tableHeaderView = UIView(frame: .zero)
+        self.tableView.backgroundColor = themeProvider.currentTheme.secondaryBackgroundColor
     }
 
     func registerTableViewCells() {
         tableView.register(TableViewButtonCell.self, forCellReuseIdentifier: "TableViewButtonCell")
+        tableView.register(TableViewHeaderView.self, forHeaderFooterViewReuseIdentifier: "TableViewHeaderView")
     }
 
     func configureCellTypes() {
@@ -129,7 +128,7 @@ extension SettingsTableView {
 
 extension SettingsTableView: Themed {
     func applyTheme(_ theme: AppTheme) {
-        self.tableView.backgroundColor = theme.backgroundColor
+        self.tableView.backgroundColor = theme.secondaryBackgroundColor
     }
 }
 

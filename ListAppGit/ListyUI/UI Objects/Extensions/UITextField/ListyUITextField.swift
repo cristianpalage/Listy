@@ -23,10 +23,18 @@ open class ListyTextField: UITextField {
         commonInit()
     }
 
-    open func commonInit() { }
+    open func commonInit() {
+        setUpTheming()
+    }
 
     open override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
         commonInit()
+    }
+}
+
+extension ListyTextField: Themed {
+    func applyTheme(_ theme: AppTheme) {
+        self.attributedPlaceholder = NSAttributedString(string:"Enter List Name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
     }
 }

@@ -12,21 +12,8 @@ import CoreData
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var appFontDescription = "SFPro-Regular"
-    var appFontName = "System"
-
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
-        loadSettings()
-
-        let mediumFont = appFontDescription.replacingOccurrences(of: "Regular", with: "Medium")
-        let navBarAttributes = [NSAttributedString.Key.font: UIFont(name: mediumFont, size: 18)!]
-        let barButtonItemAttributes = [NSAttributedString.Key.font: UIFont(name: appFontDescription, size: 15)!]
-
-        UINavigationBar.appearance().titleTextAttributes = navBarAttributes
-        UIBarButtonItem.appearance().setTitleTextAttributes(barButtonItemAttributes, for: .normal)
-
         return true
     }
 
@@ -88,20 +75,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
-    func loadSettings() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "CurrentFont")
-        do {
-            let fontData = try managedContext.fetch(fetchRequest).last
-            self.appFontName = fontData?.value(forKeyPath: "fontName") as? String ?? self.appFontName
-            self.appFontDescription = fontData?.value(forKey: "fontDescription") as? String ?? self.appFontDescription
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-        }
-    }
-
 }
 
 
