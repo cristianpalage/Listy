@@ -36,7 +36,7 @@ extension AppTheme {
         barBackgroundColor: UIColor(white: 0, alpha: 1),
         barForegroundColor: .white,
         backgroundColor: .black,
-        secondaryBackgroundColor: .systemGray2,
+        secondaryBackgroundColor: UIColor(displayP3Red: 15/255, green: 15/255, blue: 15/255, alpha: 1),
         textColor: .white,
         tintColor: .white
     )

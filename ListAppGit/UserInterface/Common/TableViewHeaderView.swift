@@ -52,12 +52,13 @@ extension TableViewHeaderView {
     }
 
     func setupViewModel() {
-        self.header.text = viewModel?.title.uppercased()
+        self.header.text = viewModel?.title
     }
 }
 
 extension TableViewHeaderView: Themed {
     func applyTheme(_ theme: AppTheme) {
         contentView.backgroundColor = theme.secondaryBackgroundColor
+        header.textColor = theme.textColor
     }
 }

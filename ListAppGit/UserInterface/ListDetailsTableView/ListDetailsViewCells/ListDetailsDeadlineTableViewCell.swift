@@ -28,7 +28,6 @@ class ListDetailsDeadlineTableViewCell: UITableViewCell {
     let datePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.translatesAutoresizingMaskIntoConstraints = false
-        datePicker.tintColor = UITraitCollection.current.userInterfaceStyle == .dark ? .white : .black
         if #available(iOS 14, *) {
             datePicker.preferredDatePickerStyle = .compact
         }
@@ -139,6 +138,7 @@ extension ListDetailsDeadlineTableViewCell: Themed {
     func applyTheme(_ theme: AppTheme) {
         contentView.backgroundColor = theme.backgroundColor
         deadlinePromptLabel.textColor = theme.textColor
+        datePicker.tintColor = theme.tintColor
     }
 }
 
