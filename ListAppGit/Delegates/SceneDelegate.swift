@@ -34,8 +34,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let baseListView = baseListView else { return }
 
         let window = UIWindow(windowScene: windowScene)
-        let navigationController: UINavigationController = {
-            let navigationController = UINavigationController()
+        let navigationController: ListyNavigationController = {
+            let navigationController = ListyNavigationController()
             navigationController.viewControllers = [baseListView]
             navigationController.navigationBar.barTintColor = UITraitCollection.current.userInterfaceStyle == .dark ? .black : .white
             navigationController.navigationBar.setValue(true, forKey: "hidesShadow")

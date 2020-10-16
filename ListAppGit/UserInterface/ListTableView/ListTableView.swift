@@ -65,6 +65,7 @@ class ListTableView: UITableViewController {
         self.configureCellTypes()
         self.setUpNavigationControllerBarButtonItem()
         self.setupTableView()
+        setUpTheming()
     }
 
     // MARK: tableView
@@ -410,5 +411,12 @@ extension ListTableView: UITextFieldDelegate {
         self.tableView.isScrollEnabled = true
         return true
     }
+}
 
+extension ListTableView: Themed {
+    func applyTheme(_ theme: AppTheme) {
+        self.tableView.backgroundView?.backgroundColor = theme.backgroundColor
+        self.navigationItem.leftBarButtonItem?.tintColor = theme.tintColor
+        self.navigationItem.rightBarButtonItem?.tintColor = theme.tintColor
+    }
 }

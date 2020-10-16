@@ -20,14 +20,19 @@
 		0B4AA4E6252A50CD005102F8 /* DateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4AA4E5252A50CD005102F8 /* DateService.swift */; };
 		0B5D694524F7135500AC3FA4 /* ListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5D694424F7135500AC3FA4 /* ListTableView.swift */; };
 		0B86E90E253388AB00949F06 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B86E90D253388AB00949F06 /* NotificationService.swift */; };
+		0B8A1F382538F774007C3A9E /* ThemeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8A1F372538F774007C3A9E /* ThemeProtocols.swift */; };
+		0B8A1F3D253900F8007C3A9E /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8A1F3C253900F8007C3A9E /* AppTheme.swift */; };
+		0B8A1F4025390112007C3A9E /* AppThemeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8A1F3F25390112007C3A9E /* AppThemeProvider.swift */; };
+		0B8A1F4425390473007C3A9E /* ThemeSelectionTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8A1F4325390473007C3A9E /* ThemeSelectionTableView.swift */; };
+		0B8A1F4925390505007C3A9E /* ThemeSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8A1F4825390505007C3A9E /* ThemeSelectionTableViewCell.swift */; };
+		0B8A1F4C253907C0007C3A9E /* ListyNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8A1F4B253907C0007C3A9E /* ListyNavigationController.swift */; };
+		0B8A1F4F25393808007C3A9E /* TableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8A1F4E25393808007C3A9E /* TableViewHeaderView.swift */; };
 		0BA4C29E2535280B00A906BB /* NewYork.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BA4C29D2535280B00A906BB /* NewYork.ttf */; };
 		0BA4C2A22535299100A906BB /* ListyUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA4C2A12535299100A906BB /* ListyUILabel.swift */; };
 		0BA4C2A625352C3000A906BB /* UILabel Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA4C2A525352C3000A906BB /* UILabel Extensions.swift */; };
 		0BA4C2AB253537DC00A906BB /* ListyUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA4C2AA253537DC00A906BB /* ListyUITextField.swift */; };
 		0BA4C2B42535466F00A906BB /* SettingsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA4C2B32535466F00A906BB /* SettingsTableView.swift */; };
 		0BA4C2C52537914C00A906BB /* TableViewButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA4C2C42537914C00A906BB /* TableViewButtonCell.swift */; };
-		0BA4C2C925379B2500A906BB /* FontSelectionTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA4C2C825379B2500A906BB /* FontSelectionTableView.swift */; };
-		0BA4C2CE25379D4A00A906BB /* FontSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA4C2CD25379D4A00A906BB /* FontSelectionTableViewCell.swift */; };
 		0BA4C2D82537B42600A906BB /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BA4C2D72537B42600A906BB /* SF-Pro.ttf */; };
 		0BA4C2DE2537D55600A906BB /* SettingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA4C2DD2537D55600A906BB /* SettingService.swift */; };
 		0BBB0DA624FC6CB500A4D9FA /* PullToAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBB0DA524FC6CB500A4D9FA /* PullToAddView.swift */; };
@@ -54,14 +59,19 @@
 		0B4AA4E5252A50CD005102F8 /* DateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateService.swift; sourceTree = "<group>"; };
 		0B5D694424F7135500AC3FA4 /* ListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableView.swift; sourceTree = "<group>"; };
 		0B86E90D253388AB00949F06 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		0B8A1F372538F774007C3A9E /* ThemeProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeProtocols.swift; sourceTree = "<group>"; };
+		0B8A1F3C253900F8007C3A9E /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
+		0B8A1F3F25390112007C3A9E /* AppThemeProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppThemeProvider.swift; sourceTree = "<group>"; };
+		0B8A1F4325390473007C3A9E /* ThemeSelectionTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeSelectionTableView.swift; sourceTree = "<group>"; };
+		0B8A1F4825390505007C3A9E /* ThemeSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeSelectionTableViewCell.swift; sourceTree = "<group>"; };
+		0B8A1F4B253907C0007C3A9E /* ListyNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListyNavigationController.swift; sourceTree = "<group>"; };
+		0B8A1F4E25393808007C3A9E /* TableViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHeaderView.swift; sourceTree = "<group>"; };
 		0BA4C29D2535280B00A906BB /* NewYork.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NewYork.ttf; sourceTree = "<group>"; };
 		0BA4C2A12535299100A906BB /* ListyUILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListyUILabel.swift; sourceTree = "<group>"; };
 		0BA4C2A525352C3000A906BB /* UILabel Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel Extensions.swift"; sourceTree = "<group>"; };
 		0BA4C2AA253537DC00A906BB /* ListyUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListyUITextField.swift; sourceTree = "<group>"; };
 		0BA4C2B32535466F00A906BB /* SettingsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableView.swift; sourceTree = "<group>"; };
 		0BA4C2C42537914C00A906BB /* TableViewButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewButtonCell.swift; sourceTree = "<group>"; };
-		0BA4C2C825379B2500A906BB /* FontSelectionTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSelectionTableView.swift; sourceTree = "<group>"; };
-		0BA4C2CD25379D4A00A906BB /* FontSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		0BA4C2D72537B42600A906BB /* SF-Pro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro.ttf"; sourceTree = "<group>"; };
 		0BA4C2DD2537D55600A906BB /* SettingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingService.swift; sourceTree = "<group>"; };
 		0BBB0DA524FC6CB500A4D9FA /* PullToAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToAddView.swift; sourceTree = "<group>"; };
@@ -87,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				0B17813525003C8F00B41D18 /* Extensions */,
+				0B8A1F4B253907C0007C3A9E /* ListyNavigationController.swift */,
 			);
 			path = "UI Objects";
 			sourceTree = "<group>";
@@ -132,7 +143,7 @@
 				0B5D694C24F72C6400AC3FA4 /* UserInterface */,
 				0B5D695024F72D5900AC3FA4 /* Services */,
 				0B5D694F24F72D4500AC3FA4 /* NodeObjects */,
-				0B17813425003C5400B41D18 /* UI Objects */,
+				0B8A1F312538F449007C3A9E /* ListyUI */,
 				0B48431D24F3652C00D9505E /* Assets.xcassets */,
 				0BA4C29D2535280B00A906BB /* NewYork.ttf */,
 				0BA4C2D72537B42600A906BB /* SF-Pro.ttf */,
@@ -191,6 +202,50 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		0B8A1F312538F449007C3A9E /* ListyUI */ = {
+			isa = PBXGroup;
+			children = (
+				0B8A1F332538F4E8007C3A9E /* UIColor */,
+				0B17813425003C5400B41D18 /* UI Objects */,
+			);
+			path = ListyUI;
+			sourceTree = "<group>";
+		};
+		0B8A1F332538F4E8007C3A9E /* UIColor */ = {
+			isa = PBXGroup;
+			children = (
+				0B8A1F5325393EC6007C3A9E /* Themes */,
+			);
+			path = UIColor;
+			sourceTree = "<group>";
+		};
+		0B8A1F4225390454007C3A9E /* Themes */ = {
+			isa = PBXGroup;
+			children = (
+				0B8A1F4325390473007C3A9E /* ThemeSelectionTableView.swift */,
+				0B8A1F47253904DC007C3A9E /* Cells */,
+			);
+			path = Themes;
+			sourceTree = "<group>";
+		};
+		0B8A1F47253904DC007C3A9E /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				0B8A1F4825390505007C3A9E /* ThemeSelectionTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		0B8A1F5325393EC6007C3A9E /* Themes */ = {
+			isa = PBXGroup;
+			children = (
+				0B8A1F3F25390112007C3A9E /* AppThemeProvider.swift */,
+				0B8A1F3C253900F8007C3A9E /* AppTheme.swift */,
+				0B8A1F372538F774007C3A9E /* ThemeProtocols.swift */,
+			);
+			path = Themes;
+			sourceTree = "<group>";
+		};
 		0BA4C2A02535295200A906BB /* UILabel */ = {
 			isa = PBXGroup;
 			children = (
@@ -212,7 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				0BA4C2B32535466F00A906BB /* SettingsTableView.swift */,
-				0BA4C2C725379B0200A906BB /* Fonts */,
+				0B8A1F4225390454007C3A9E /* Themes */,
 				0BA4C2B6253546FA00A906BB /* Cells */,
 			);
 			path = Settings;
@@ -229,25 +284,9 @@
 			isa = PBXGroup;
 			children = (
 				0BA4C2C42537914C00A906BB /* TableViewButtonCell.swift */,
+				0B8A1F4E25393808007C3A9E /* TableViewHeaderView.swift */,
 			);
 			path = Common;
-			sourceTree = "<group>";
-		};
-		0BA4C2C725379B0200A906BB /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				0BA4C2C825379B2500A906BB /* FontSelectionTableView.swift */,
-				0BA4C2CC25379D3900A906BB /* Cells */,
-			);
-			path = Fonts;
-			sourceTree = "<group>";
-		};
-		0BA4C2CC25379D3900A906BB /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				0BA4C2CD25379D4A00A906BB /* FontSelectionTableViewCell.swift */,
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 		0BE79C20250C711A00A28403 /* ListDetailsViewCells */ = {
@@ -355,13 +394,16 @@
 				0BE79C23250C71F600A28403 /* ListDetailsEditNameTableViewCell.swift in Sources */,
 				0BA4C2C52537914C00A906BB /* TableViewButtonCell.swift in Sources */,
 				0BBB0DA624FC6CB500A4D9FA /* PullToAddView.swift in Sources */,
+				0B8A1F4C253907C0007C3A9E /* ListyNavigationController.swift in Sources */,
 				0B17813A250047C300B41D18 /* ListService.swift in Sources */,
 				0BFF5719250B1F1D000518EE /* ListDetailsTableView.swift in Sources */,
 				0B48431C24F3652B00D9505E /* ListAppGit.xcdatamodeld in Sources */,
-				0BA4C2CE25379D4A00A906BB /* FontSelectionTableViewCell.swift in Sources */,
-				0BA4C2C925379B2500A906BB /* FontSelectionTableView.swift in Sources */,
+				0B8A1F4925390505007C3A9E /* ThemeSelectionTableViewCell.swift in Sources */,
+				0B8A1F4025390112007C3A9E /* AppThemeProvider.swift in Sources */,
 				0BA4C2DE2537D55600A906BB /* SettingService.swift in Sources */,
+				0B8A1F4F25393808007C3A9E /* TableViewHeaderView.swift in Sources */,
 				0B48435224F36E8100D9505E /* ListTableViewCell.swift in Sources */,
+				0B8A1F4425390473007C3A9E /* ThemeSelectionTableView.swift in Sources */,
 				0BE79C27250E80E600A28403 /* ListDetailsListDepthTableViewCell.swift in Sources */,
 				0BA4C2B42535466F00A906BB /* SettingsTableView.swift in Sources */,
 				0B48432924F367BA00D9505E /* ListNodeClass.swift in Sources */,
@@ -372,7 +414,9 @@
 				0BE79C29250E86BF00A28403 /* ListDetailsDeadlineTableViewCell.swift in Sources */,
 				0B4AA4E6252A50CD005102F8 /* DateService.swift in Sources */,
 				0BA4C2A625352C3000A906BB /* UILabel Extensions.swift in Sources */,
+				0B8A1F3D253900F8007C3A9E /* AppTheme.swift in Sources */,
 				0B20D59B24FF1E2F008F3BC6 /* PullDownToAddNewListCell.swift in Sources */,
+				0B8A1F382538F774007C3A9E /* ThemeProtocols.swift in Sources */,
 				0B48431224F3652B00D9505E /* AppDelegate.swift in Sources */,
 				0BF8CF1B24F84299008A973E /* ListTableViewAddItemCell.swift in Sources */,
 				0BA4C2A22535299100A906BB /* ListyUILabel.swift in Sources */,

@@ -27,7 +27,7 @@ class SettingsTableView: UITableViewController {
     struct TableViewSection {
 
         enum CellType {
-            case font
+            case theme
         }
 
         let rows: [CellType]
@@ -49,6 +49,7 @@ class SettingsTableView: UITableViewController {
     }
 
     override func viewDidLoad() {
+        setUpTheming()
         super.viewDidLoad()
         self.setupTableView()
         self.configureCellTypes()
@@ -62,30 +63,22 @@ class SettingsTableView: UITableViewController {
         return self.sections.count
     }
 
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 20
-    }
-
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-       return "_"
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let section = self.sections[section]
+        return section.rows.count
     }
 
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 40
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let section = self.sections[section]
-        return section.rows.count
-    }
-
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellType = sections[indexPath.section].rows[indexPath.row]
 
         switch cellType {
-        case .font:
+        case .theme:
             let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewButtonCell", for: indexPath) as! TableViewButtonCell
-            cell.viewModel = TableViewButtonCellViewModel(title: "Fonts")
+            cell.viewModel = TableViewButtonCellViewModel(title: "Theme")
             return cell
         }
     }
@@ -94,9 +87,8 @@ class SettingsTableView: UITableViewController {
         let cellType = sections[indexPath.section].rows[indexPath.row]
 
         switch cellType {
-        case .font:
-            let view = FontSelectionTableView()
-            view.viewModel = FontSelectionTableViewViewModel(currentFontName: self.viewModel.currentFontName, currentFontDescription: self.viewModel.currentFontDescription)
+        case .theme:
+            let view = ThemeSelectionTableView()
             navigationController?.pushViewController(view, animated: true)
         }
     }
@@ -117,7 +109,7 @@ extension SettingsTableView {
     func setupTableView() {
         registerTableViewCells()
         self.tableView.separatorStyle = .none
-        self.tableView.backgroundColor = UITraitCollection.current.userInterfaceStyle == .dark ? .systemGray6 : .white
+        self.tableView.backgroundColor = themeProvider.currentTheme.backgroundColor
     }
 
     func registerTableViewCells() {
@@ -129,9 +121,15 @@ extension SettingsTableView {
         defer { tableView.reloadData() }
 
         var sections = [TableViewSection]()
-        sections.append(.init(rows: [.font]))
+        sections.append(.init(rows: [.theme]))
 
         self.sections = sections
+    }
+}
+
+extension SettingsTableView: Themed {
+    func applyTheme(_ theme: AppTheme) {
+        self.tableView.backgroundColor = theme.backgroundColor
     }
 }
 
