@@ -28,6 +28,7 @@ class ThemeSelectionTableViewCell: UITableViewCell {
     private let label: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = label.font.withSize(15)
         return label
     }()
 
@@ -72,13 +73,13 @@ private extension ThemeSelectionTableViewCell {
         NSLayoutConstraint.activate([
             label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 18),
-            label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -18)
+            label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
         ])
 
         NSLayoutConstraint.activate([
             checkMarkIcon.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             checkMarkIcon.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18),
-            checkMarkIcon.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -18)
+            checkMarkIcon.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
         ])
 
     }
@@ -96,5 +97,6 @@ extension ThemeSelectionTableViewCell: Themed {
     func applyTheme(_ theme: AppTheme) {
         contentView.backgroundColor = theme.backgroundColor
         label.textColor = theme.textColor
+        checkMarkIcon.tintColor = theme.tintColor
     }
 }

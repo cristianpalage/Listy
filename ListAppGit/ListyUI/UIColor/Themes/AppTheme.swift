@@ -17,8 +17,6 @@ struct AppTheme: Equatable {
     var textColor: UIColor
     var secondaryTextColor: UIColor
     var tintColor: UIColor
-
-    
 }
 
 extension AppTheme {
@@ -27,7 +25,7 @@ extension AppTheme {
         barBackgroundColor: .white,
         barForegroundColor: .black,
         backgroundColor: .white,
-        secondaryBackgroundColor: .systemGray6,
+        secondaryBackgroundColor: UIColor(displayP3Red: 240/255, green: 240/255, blue: 240/255, alpha: 1),
         textColor: .black,
         secondaryTextColor: .gray,
         tintColor: .black

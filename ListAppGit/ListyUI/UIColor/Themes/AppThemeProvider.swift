@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 final class AppThemeProvider: ThemeProvider {
     static let shared: AppThemeProvider = .init()
@@ -24,7 +25,7 @@ final class AppThemeProvider: ThemeProvider {
     }
 
     init() {
-        theme = SubscribableValue<AppTheme>(value: .light)
+        theme = SubscribableValue<AppTheme>(value: getSavedTheme())
     }
 
     private func setNewTheme(_ newTheme: AppTheme) {
@@ -38,6 +39,28 @@ final class AppThemeProvider: ThemeProvider {
             },
             completion: nil
         )
+        saveTheme(theme: newTheme)
+    }
+
+    private func saveTheme(theme: AppTheme) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Theme", in: managedContext)!
+        let theme = NSManagedObject(entity: entity, insertInto: managedContext)
+        var themeString = ""
+        if currentTheme == .dark {
+            themeString = "dark"
+        } else if currentTheme == .light {
+            themeString = "light"
+        }
+        theme.setValue(themeString, forKey: "currentTheme")
+
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
     }
 
     func subscribeToChanges(_ object: AnyObject, handler: @escaping (AppTheme) -> Void) {
@@ -57,6 +80,27 @@ extension Themed where Self: AnyObject {
     var themeProvider: AppThemeProvider {
         return AppThemeProvider.shared
     }
+}
+
+func getSavedTheme() -> AppTheme {
+    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return .light }
+    let managedContext = appDelegate.persistentContainer.viewContext
+    var themeNSObject: [NSManagedObject] = []
+    let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Theme")
+    do {
+        themeNSObject = try managedContext.fetch(fetchRequest)
+    } catch let error as NSError {
+        print("Could not fetch. \(error), \(error.userInfo)")
+    }
+
+    guard let themeObject = themeNSObject.last else { return .light}
+    let theme = themeObject.value(forKeyPath: "currentTheme") as? String ?? "light"
+    if theme == "light" {
+        return .light
+    } else if theme == "dark" {
+        return .dark
+    }
+    return .dark
 }
 
 /// Stores a value of type T, and allows objects to subscribe to

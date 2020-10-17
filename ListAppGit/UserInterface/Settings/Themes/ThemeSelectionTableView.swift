@@ -74,11 +74,11 @@ class ThemeSelectionTableView: UITableViewController {
         switch cellType {
         case .dark:
             let cell = tableView.dequeueReusableCell(withIdentifier: "ThemeSelectionTableViewCell", for: indexPath) as! ThemeSelectionTableViewCell
-            cell.viewModel = ThemeSelectionTableViewCellViewModel(theme: "Dark", isSelected: false)
+            cell.viewModel = ThemeSelectionTableViewCellViewModel(theme: "Dark", isSelected: themeProvider.currentTheme == .dark)
             return cell
         case .light:
             let cell = tableView.dequeueReusableCell(withIdentifier: "ThemeSelectionTableViewCell", for: indexPath) as! ThemeSelectionTableViewCell
-            cell.viewModel = ThemeSelectionTableViewCellViewModel(theme: "Light", isSelected: false)
+            cell.viewModel = ThemeSelectionTableViewCellViewModel(theme: "Light", isSelected: themeProvider.currentTheme == .light)
             return cell
         case .systemFont:
             let cell = tableView.dequeueReusableCell(withIdentifier: "ThemeSelectionTableViewCell", for: indexPath) as! ThemeSelectionTableViewCell
@@ -126,7 +126,6 @@ extension ThemeSelectionTableView {
     func setupTableView() {
         registerTableViewCells()
         tableView.tableFooterView = UIView(frame: .zero)
-        self.tableView.backgroundColor = themeProvider.currentTheme.secondaryBackgroundColor
     }
 
     func registerTableViewCells() {
@@ -151,6 +150,7 @@ extension ThemeSelectionTableView: Themed {
         self.navigationController?.navigationBar.barTintColor = theme.backgroundColor
         self.navigationController?.navigationBar.tintColor = theme.tintColor
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: theme.textColor]
+        tableView.reloadData()
     }
 
 }
