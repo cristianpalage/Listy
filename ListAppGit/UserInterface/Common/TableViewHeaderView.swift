@@ -23,9 +23,10 @@ class TableViewHeaderView: UITableViewHeaderFooterView {
         didSet { setupViewModel() }
     }
 
-    let header: UILabel = {
-        let label = UILabel()
+    let header: ListyLabel = {
+        let label = ListyLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = label.font.withSize(15)
         return label
     }()
 
@@ -43,6 +44,7 @@ extension TableViewHeaderView {
 
     func setup() {
         setUpTheming()
+        setUpFont()
         contentView.addSubview(header)
 
         NSLayoutConstraint.activate([
@@ -60,5 +62,11 @@ extension TableViewHeaderView: Themed {
     func applyTheme(_ theme: AppTheme) {
         contentView.backgroundColor = theme.secondaryBackgroundColor
         header.textColor = theme.textColor
+    }
+}
+
+extension TableViewHeaderView: FontProtocol {
+    func applyFont(_ font: AppFont) {
+        header.font = font.fontValue().withSize(header.font.pointSize)
     }
 }

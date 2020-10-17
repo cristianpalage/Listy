@@ -73,6 +73,7 @@ class ListDetailsDeadlineTableViewCell: UITableViewCell {
 private extension ListDetailsDeadlineTableViewCell {
     func setup() {
         setUpTheming()
+        setUpFont()
         setupDatePicker()
 
         contentView.addSubview(deadlinePromptLabel)
@@ -139,6 +140,12 @@ extension ListDetailsDeadlineTableViewCell: Themed {
         contentView.backgroundColor = theme.backgroundColor
         deadlinePromptLabel.textColor = theme.textColor
         datePicker.tintColor = theme.tintColor
+    }
+}
+
+extension ListDetailsDeadlineTableViewCell: FontProtocol {
+    func applyFont(_ font: AppFont) {
+        deadlinePromptLabel.font = font.fontValue().withSize(deadlinePromptLabel.font.pointSize)
     }
 }
 

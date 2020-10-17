@@ -64,6 +64,7 @@ class ListTableView: UITableViewController {
         self.setUpNavigationControllerBarButtonItem()
         self.setupTableView()
         setUpTheming()
+        setUpFont()
     }
 
     // MARK: tableView
@@ -392,5 +393,12 @@ extension ListTableView: Themed {
         self.tableView.backgroundView?.backgroundColor = theme.backgroundColor
         self.navigationItem.leftBarButtonItem?.tintColor = theme.tintColor
         self.navigationItem.rightBarButtonItem?.tintColor = theme.tintColor
+    }
+}
+
+extension ListTableView: FontProtocol {
+    func applyFont(_ font: AppFont) {
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: font.mediumFontValue().withSize(18),
+                                                                   NSAttributedString.Key.foregroundColor: themeProvider.currentTheme.textColor]
     }
 }

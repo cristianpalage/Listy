@@ -40,6 +40,7 @@ class ThemeSelectionTableView: UITableViewController {
 
     override func viewDidLoad() {
         setUpTheming()
+        setUpFont()
         super.viewDidLoad()
         self.setupTableView()
         self.configureCellTypes()
@@ -82,11 +83,11 @@ class ThemeSelectionTableView: UITableViewController {
             return cell
         case .systemFont:
             let cell = tableView.dequeueReusableCell(withIdentifier: "ThemeSelectionTableViewCell", for: indexPath) as! ThemeSelectionTableViewCell
-            cell.viewModel = ThemeSelectionTableViewCellViewModel(theme: "System", isSelected: false)
+            cell.viewModel = ThemeSelectionTableViewCellViewModel(theme: "System", isSelected: fontProvider.currentFont == .system)
             return cell
         case .newYorkFont:
             let cell = tableView.dequeueReusableCell(withIdentifier: "ThemeSelectionTableViewCell", for: indexPath) as! ThemeSelectionTableViewCell
-            cell.viewModel = ThemeSelectionTableViewCellViewModel(theme: "New York", isSelected: false)
+            cell.viewModel = ThemeSelectionTableViewCellViewModel(theme: "New York", isSelected: fontProvider.currentFont == .newYork)
             return cell
         }
     }
@@ -100,9 +101,9 @@ class ThemeSelectionTableView: UITableViewController {
         case .light:
             themeProvider.lightTheme()
         case .systemFont:
-            return
+            fontProvider.systemFont()
         case .newYorkFont:
-            return 
+            fontProvider.newYorkFont()
         }
     }
 }
@@ -126,6 +127,11 @@ extension ThemeSelectionTableView {
     func setupTableView() {
         registerTableViewCells()
         tableView.tableFooterView = UIView(frame: .zero)
+        if #available(iOS 14.0, *) {
+            self.navigationController?.navigationItem.backButtonDisplayMode = .minimal
+        } else {
+            // Fallback on earlier versions
+        }
     }
 
     func registerTableViewCells() {
@@ -139,6 +145,7 @@ extension ThemeSelectionTableView {
 
         var sections = [TableViewSection]()
         sections.append(.init(rows: [.dark, .light]))
+        sections.append(.init(rows: [.systemFont, .newYorkFont]))
     
         self.sections = sections
     }
@@ -152,7 +159,15 @@ extension ThemeSelectionTableView: Themed {
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: theme.textColor]
         tableView.reloadData()
     }
+}
 
+extension ThemeSelectionTableView: FontProtocol {
+    func applyFont(_ font: AppFont) {
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: font.mediumFontValue().withSize(18),
+                                                                   NSAttributedString.Key.foregroundColor: themeProvider.currentTheme.textColor]
+        navigationController?.navigationItem.backBarButtonItem?.setTitleTextAttributes([NSAttributedString.Key.font: font.mediumFontValue().withSize(18)], for: .normal)
+        tableView.reloadData()
+    }
 }
 
 

@@ -52,6 +52,7 @@ class ListDetailsListDepthTableViewCell: UITableViewCell {
 private extension ListDetailsListDepthTableViewCell {
     func setup() {
         setUpTheming()
+        setUpFont()
         contentView.addSubview(header)
 
         NSLayoutConstraint.activate([
@@ -74,5 +75,11 @@ extension ListDetailsListDepthTableViewCell: Themed {
     func applyTheme(_ theme: AppTheme) {
         contentView.backgroundColor = theme.backgroundColor
         header.textColor = theme.textColor
+    }
+}
+
+extension ListDetailsListDepthTableViewCell: FontProtocol {
+    func applyFont(_ font: AppFont) {
+        header.font = font.fontValue().withSize(header.font.pointSize)
     }
 }

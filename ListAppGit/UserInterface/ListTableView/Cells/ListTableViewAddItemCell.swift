@@ -46,6 +46,7 @@ class ListTableViewAddItemCell: UITableViewCell {
 private extension ListTableViewAddItemCell {
     func setup() {
         setUpTheming()
+        setUpFont()
         contentView.addSubview(textField)
 
         NSLayoutConstraint.activate([
@@ -63,6 +64,11 @@ extension ListTableViewAddItemCell: Themed {
         contentView.backgroundColor = theme.backgroundColor
         textField.textColor = theme.textColor
         textField.tintColor = theme.textColor
-        //textField.attributedPlaceholder = NSAttributedString(string:"Enter List Name", attributes: [NSAttributedString.Key.foregroundColor: themeProvider.currentTheme.secondaryTextColor])
+    }
+}
+
+extension ListTableViewAddItemCell: FontProtocol {
+    func applyFont(_ font: AppFont) {
+        textField.font = font.fontValue().withSize(textField.font?.pointSize ?? 15)
     }
 }

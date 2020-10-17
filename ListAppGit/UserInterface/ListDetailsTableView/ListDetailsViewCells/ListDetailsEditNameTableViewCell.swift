@@ -66,6 +66,7 @@ class ListDetailsEditNameTableViewCell: UITableViewCell {
 private extension ListDetailsEditNameTableViewCell {
     func setup() {
         setUpTheming()
+        setUpFont()
         contentView.addSubview(textField)
         contentView.addSubview(header)
 
@@ -93,5 +94,12 @@ extension ListDetailsEditNameTableViewCell: Themed {
     func applyTheme(_ theme: AppTheme) {
         contentView.backgroundColor = theme.backgroundColor
         textField.textColor = theme.textColor
+    }
+}
+
+extension ListDetailsEditNameTableViewCell: FontProtocol {
+    func applyFont(_ font: AppFont) {
+        textField.font = font.fontValue().withSize(textField.font?.pointSize ?? 15)
+        header.font = font.fontValue().withSize(header.font.pointSize)
     }
 }

@@ -53,6 +53,7 @@ class ListDetailsTableView: UITableViewController {
 
     override func viewDidLoad() {
         setUpTheming()
+        setUpFont()
         super.viewDidLoad()
         self.title = "List Details"
         self.configureCellTypes()
@@ -157,6 +158,13 @@ extension ListDetailsTableView {
 extension ListDetailsTableView: Themed {
     func applyTheme(_ theme: AppTheme) {
         tableView.backgroundColor = theme.backgroundColor
+    }
+}
+
+extension ListDetailsTableView: FontProtocol {
+    func applyFont(_ font: AppFont) {
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: font.mediumFontValue().withSize(18),
+                                                                   NSAttributedString.Key.foregroundColor: themeProvider.currentTheme.textColor]
     }
 }
 
