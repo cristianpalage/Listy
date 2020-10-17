@@ -16,6 +16,7 @@ class SettingsTableView: UITableViewController {
 
         enum CellType {
             case theme
+            case appIcon
         }
 
         let rows: [CellType]
@@ -77,6 +78,10 @@ class SettingsTableView: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewButtonCell", for: indexPath) as! TableViewButtonCell
             cell.viewModel = TableViewButtonCellViewModel(title: "Theme")
             return cell
+        case .appIcon:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewButtonCell", for: indexPath) as! TableViewButtonCell
+            cell.viewModel = TableViewButtonCellViewModel(title: "App Icon")
+            return cell
         }
     }
 
@@ -87,6 +92,8 @@ class SettingsTableView: UITableViewController {
         case .theme:
             let view = ThemeSelectionTableView()
             navigationController?.pushViewController(view, animated: true)
+        case .appIcon:
+            return
         }
     }
 }
@@ -120,7 +127,7 @@ extension SettingsTableView {
         defer { tableView.reloadData() }
 
         var sections = [TableViewSection]()
-        sections.append(.init(rows: [.theme]))
+        sections.append(.init(rows: [.appIcon, .theme]))
 
         self.sections = sections
     }

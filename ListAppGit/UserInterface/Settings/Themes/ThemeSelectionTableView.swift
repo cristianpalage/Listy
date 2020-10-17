@@ -55,9 +55,15 @@ class ThemeSelectionTableView: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-       let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "TableViewHeaderView") as! TableViewHeaderView
-       view.viewModel = TableViewHeaderViewViewModel(title: "Theme")
-       return view
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "TableViewHeaderView") as! TableViewHeaderView
+        var title = ""
+        if section == 0 {
+            title = "Theme"
+        } else if section == 1 {
+            title = "Font"
+        }
+        view.viewModel = TableViewHeaderViewViewModel(title: title)
+        return view
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -144,7 +150,7 @@ extension ThemeSelectionTableView {
         defer { tableView.reloadData() }
 
         var sections = [TableViewSection]()
-        sections.append(.init(rows: [.dark, .light]))
+        sections.append(.init(rows: [.light, .dark]))
         sections.append(.init(rows: [.systemFont, .newYorkFont]))
     
         self.sections = sections
