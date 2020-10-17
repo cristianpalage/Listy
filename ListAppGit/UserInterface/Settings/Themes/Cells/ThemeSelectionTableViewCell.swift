@@ -66,6 +66,7 @@ class ThemeSelectionTableViewCell: UITableViewCell {
 private extension ThemeSelectionTableViewCell {
     func setup() {
         setUpTheming()
+        setUpFont()
 
         contentView.addSubview(label)
         contentView.addSubview(checkMarkIcon)
@@ -98,5 +99,11 @@ extension ThemeSelectionTableViewCell: Themed {
         contentView.backgroundColor = theme.backgroundColor
         label.textColor = theme.textColor
         checkMarkIcon.tintColor = theme.tintColor
+    }
+}
+
+extension ThemeSelectionTableViewCell: FontProtocol {
+    func applyFont(_ font: AppFont) {
+        label.font = UIFont(name: font.fontDescription, size: label.font.pointSize)
     }
 }

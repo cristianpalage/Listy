@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="Font" representedClassName="Font" syncable="YES" codeGenerationType="class">
+        <attribute name="currentFont" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="List" representedClassName="List" syncable="YES" codeGenerationType="class">
         <attribute name="listString" optional="YES" attributeType="String"/>
     </entity>
@@ -23,5 +26,6 @@
         <element name="ListNode" positionX="-63" positionY="-9" width="128" height="148"/>
         <element name="Root" positionX="-253.04296875" positionY="132.52734375" width="128" height="58"/>
         <element name="Theme" positionX="-144" positionY="-27" width="128" height="58"/>
+        <element name="Font" positionX="-135" positionY="-18" width="128" height="58"/>
     </elements>
 </model>

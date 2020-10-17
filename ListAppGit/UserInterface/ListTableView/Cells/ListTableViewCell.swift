@@ -62,6 +62,7 @@ class ListTableViewCell: UITableViewCell {
 private extension ListTableViewCell {
     func setup() {
         setUpTheming()
+        setUpFont()
         contentView.addSubview(label)
         contentView.addSubview(deadlineLabel)
         
@@ -90,6 +91,10 @@ extension ListTableViewCell: Themed {
         contentView.backgroundColor = theme.backgroundColor
         label.textColor = theme.textColor
     }
+}
 
-
+extension ListTableViewCell: FontProtocol {
+    func applyFont(_ font: AppFont) {
+        label.font = font.fontValue().withSize(label.font.pointSize)
+    }
 }

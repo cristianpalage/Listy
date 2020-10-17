@@ -63,6 +63,7 @@ class TableViewButtonCell: UITableViewCell {
 private extension TableViewButtonCell {
     func setup() {
         setUpTheming()
+        setUpFont()
 
         contentView.addSubview(label)
         contentView.addSubview(arrowIcon)
@@ -90,6 +91,12 @@ extension TableViewButtonCell: Themed {
         contentView.backgroundColor = theme.backgroundColor
         label.textColor = theme.textColor
         arrowIcon.tintColor = theme.tintColor
+    }
+}
+
+extension TableViewButtonCell: FontProtocol {
+    func applyFont(_ font: AppFont) {
+        label.font = font.fontValue().withSize(label.font.pointSize)
     }
 }
 

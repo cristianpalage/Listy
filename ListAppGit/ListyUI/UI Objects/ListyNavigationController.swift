@@ -17,6 +17,8 @@ class ListyNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let item = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = item
         setUpTheming()
     }
 }

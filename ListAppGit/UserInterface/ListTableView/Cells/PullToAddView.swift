@@ -37,6 +37,7 @@ class PullToAddView: UIView {
 private extension PullToAddView {
     func setup() {
         setUpTheming()
+        setUpFont()
         addSubview(textField)
         self.translatesAutoresizingMaskIntoConstraints = false
 
@@ -51,6 +52,11 @@ private extension PullToAddView {
 extension PullToAddView: Themed {
     func applyTheme(_ theme: AppTheme) {
         textField.tintColor = theme.tintColor
-        //textField.attributedPlaceholder = NSAttributedString(string:"Enter List Name", attributes: [NSAttributedString.Key.foregroundColor: themeProvider.currentTheme.secondaryTextColor])
+    }
+}
+
+extension PullToAddView: FontProtocol {
+    func applyFont(_ font: AppFont) {
+        textField.font = font.fontValue().withSize(textField.font?.pointSize ?? 15)
     }
 }
