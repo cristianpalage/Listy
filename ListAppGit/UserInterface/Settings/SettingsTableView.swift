@@ -22,6 +22,7 @@ class SettingsTableView: UITableViewController {
             case rateInAppStore
             case privacyPolicy
             case about
+            case madeBy
         }
 
         let rows: [CellType]
@@ -115,6 +116,8 @@ class SettingsTableView: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewButtonCell", for: indexPath) as! TableViewButtonCell
             cell.viewModel = TableViewButtonCellViewModel(title: "About")
             return cell
+        case .madeBy:
+            return tableView.dequeueReusableCell(withIdentifier: "MadeByTableViewCell", for: indexPath) as! MadeByTableViewCell
         }
     }
 
@@ -138,6 +141,8 @@ class SettingsTableView: UITableViewController {
             navigationController?.pushViewController(vc, animated: true)
         case .about:
             return
+        case .madeBy:
+            return 
         }
     }
 }
@@ -163,6 +168,7 @@ extension SettingsTableView {
 
     func registerTableViewCells() {
         tableView.register(TableViewButtonCell.self, forCellReuseIdentifier: "TableViewButtonCell")
+        tableView.register(MadeByTableViewCell.self, forCellReuseIdentifier: "MadeByTableViewCell")
         tableView.register(TableViewHeaderView.self, forHeaderFooterViewReuseIdentifier: "TableViewHeaderView")
     }
 
@@ -173,7 +179,7 @@ extension SettingsTableView {
         var sections = [TableViewSection]()
         sections.append(.init(rows: [.appIcon, .theme]))
         sections.append(.init(rows: [.email, .twitter, .rateInAppStore]))
-        sections.append(.init(rows: [.privacyPolicy, .about]))
+        sections.append(.init(rows: [.privacyPolicy, .about, .madeBy]))
 
         self.sections = sections
     }
