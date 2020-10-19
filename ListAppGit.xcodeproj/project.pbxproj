@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B138DD9253BEC5700EE6685 /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B138DD8253BEC5700EE6685 /* PrivacyPolicyViewController.swift */; };
 		0B17813825003CC400B41D18 /* UIView Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B17813725003CC400B41D18 /* UIView Extensions.swift */; };
 		0B17813A250047C300B41D18 /* ListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B178139250047C300B41D18 /* ListService.swift */; };
 		0B20D59B24FF1E2F008F3BC6 /* PullDownToAddNewListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B20D59A24FF1E2F008F3BC6 /* PullDownToAddNewListCell.swift */; };
@@ -46,6 +47,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B138DD8253BEC5700EE6685 /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
 		0B17813725003CC400B41D18 /* UIView Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView Extensions.swift"; sourceTree = "<group>"; };
 		0B178139250047C300B41D18 /* ListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListService.swift; sourceTree = "<group>"; };
 		0B20D59A24FF1E2F008F3BC6 /* PullDownToAddNewListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullDownToAddNewListCell.swift; sourceTree = "<group>"; };
@@ -97,6 +99,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B138DD6253BEA1D00EE6685 /* Privacy */ = {
+			isa = PBXGroup;
+			children = (
+				0B138DD8253BEC5700EE6685 /* PrivacyPolicyViewController.swift */,
+			);
+			path = Privacy;
+			sourceTree = "<group>";
+		};
 		0B17813425003C5400B41D18 /* UI Objects */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,6 +300,7 @@
 			children = (
 				0BA4C2B32535466F00A906BB /* SettingsTableView.swift */,
 				0B8A1F4225390454007C3A9E /* Themes */,
+				0B138DD6253BEA1D00EE6685 /* Privacy */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -417,6 +428,7 @@
 				0B8A1F4025390112007C3A9E /* AppThemeProvider.swift in Sources */,
 				0B8A1F4F25393808007C3A9E /* TableViewHeaderView.swift in Sources */,
 				0B48435224F36E8100D9505E /* ListTableViewCell.swift in Sources */,
+				0B138DD9253BEC5700EE6685 /* PrivacyPolicyViewController.swift in Sources */,
 				0B8A1F4425390473007C3A9E /* ThemeSelectionTableView.swift in Sources */,
 				0BE79C27250E80E600A28403 /* ListDetailsListDepthTableViewCell.swift in Sources */,
 				0BA4C2B42535466F00A906BB /* SettingsTableView.swift in Sources */,
