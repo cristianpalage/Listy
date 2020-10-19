@@ -20,6 +20,7 @@
 		0B48435224F36E8100D9505E /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B48435124F36E8100D9505E /* ListTableViewCell.swift */; };
 		0B4AA4E6252A50CD005102F8 /* DateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4AA4E5252A50CD005102F8 /* DateService.swift */; };
 		0B5D694524F7135500AC3FA4 /* ListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5D694424F7135500AC3FA4 /* ListTableView.swift */; };
+		0B683241253E0FDA0003D27A /* MadeByTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B683240253E0FDA0003D27A /* MadeByTableViewCell.swift */; };
 		0B86E90E253388AB00949F06 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B86E90D253388AB00949F06 /* NotificationService.swift */; };
 		0B8A1F382538F774007C3A9E /* ThemeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8A1F372538F774007C3A9E /* ThemeProtocols.swift */; };
 		0B8A1F3D253900F8007C3A9E /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8A1F3C253900F8007C3A9E /* AppTheme.swift */; };
@@ -62,6 +63,7 @@
 		0B48435124F36E8100D9505E /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		0B4AA4E5252A50CD005102F8 /* DateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateService.swift; sourceTree = "<group>"; };
 		0B5D694424F7135500AC3FA4 /* ListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableView.swift; sourceTree = "<group>"; };
+		0B683240253E0FDA0003D27A /* MadeByTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MadeByTableViewCell.swift; sourceTree = "<group>"; };
 		0B86E90D253388AB00949F06 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		0B8A1F372538F774007C3A9E /* ThemeProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeProtocols.swift; sourceTree = "<group>"; };
 		0B8A1F3C253900F8007C3A9E /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 				0BA4C2B32535466F00A906BB /* SettingsTableView.swift */,
 				0B8A1F4225390454007C3A9E /* Themes */,
 				0B138DD6253BEA1D00EE6685 /* Privacy */,
+				0B683240253E0FDA0003D27A /* MadeByTableViewCell.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -443,6 +446,7 @@
 				0B4AA4E6252A50CD005102F8 /* DateService.swift in Sources */,
 				0BA4C2A625352C3000A906BB /* UILabel Extensions.swift in Sources */,
 				0B8A1F3D253900F8007C3A9E /* AppTheme.swift in Sources */,
+				0B683241253E0FDA0003D27A /* MadeByTableViewCell.swift in Sources */,
 				0B20D59B24FF1E2F008F3BC6 /* PullDownToAddNewListCell.swift in Sources */,
 				0B8A1F382538F774007C3A9E /* ThemeProtocols.swift in Sources */,
 				0B48431224F3652B00D9505E /* AppDelegate.swift in Sources */,
