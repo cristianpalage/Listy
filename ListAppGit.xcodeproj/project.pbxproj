@@ -215,6 +215,14 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		0B68324C253E47720003D27A /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				0B683240253E0FDA0003D27A /* MadeByTableViewCell.swift */,
+			);
+			path = cells;
+			sourceTree = "<group>";
+		};
 		0B8A1F312538F449007C3A9E /* ListyUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -303,7 +311,7 @@
 				0BA4C2B32535466F00A906BB /* SettingsTableView.swift */,
 				0B8A1F4225390454007C3A9E /* Themes */,
 				0B138DD6253BEA1D00EE6685 /* Privacy */,
-				0B683240253E0FDA0003D27A /* MadeByTableViewCell.swift */,
+				0B68324C253E47720003D27A /* cells */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
