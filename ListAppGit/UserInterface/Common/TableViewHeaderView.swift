@@ -48,6 +48,7 @@ extension TableViewHeaderView {
         contentView.addSubview(header)
 
         NSLayoutConstraint.activate([
+            header.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 25),
             header.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 18),
             header.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
         ])
