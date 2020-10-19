@@ -422,6 +422,19 @@ extension ListTableView: Themed {
         self.tableView.backgroundView?.backgroundColor = theme.backgroundColor
         self.navigationItem.leftBarButtonItem?.tintColor = theme.tintColor
         self.navigationItem.rightBarButtonItem?.tintColor = theme.tintColor
+
+        navigationItem.leftBarButtonItem?.setTitleTextAttributes([
+            NSAttributedString.Key.font: fontProvider.currentFont.fontValue().withSize(17),
+            NSAttributedString.Key.foregroundColor: theme.textColor
+        ],
+        for: .normal)
+        navigationItem.leftBarButtonItem?.tintColor = theme.textColor
+
+        navigationItem.backBarButtonItem?.setTitleTextAttributes([
+            NSAttributedString.Key.font: fontProvider.currentFont.fontValue().withSize(17),
+            NSAttributedString.Key.foregroundColor: theme.textColor
+        ],
+        for: .normal)
     }
 }
 

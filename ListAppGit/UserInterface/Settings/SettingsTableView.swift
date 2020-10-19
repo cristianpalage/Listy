@@ -215,6 +215,19 @@ extension SettingsTableView {
 extension SettingsTableView: Themed {
     func applyTheme(_ theme: AppTheme) {
         self.tableView.backgroundColor = theme.secondaryBackgroundColor
+
+        navigationItem.leftBarButtonItem?.setTitleTextAttributes([
+            NSAttributedString.Key.font: fontProvider.currentFont.fontValue().withSize(17),
+            NSAttributedString.Key.foregroundColor: theme.textColor
+        ],
+        for: .normal)
+        navigationItem.leftBarButtonItem?.tintColor = theme.textColor
+
+        navigationItem.backBarButtonItem?.setTitleTextAttributes([
+            NSAttributedString.Key.font: fontProvider.currentFont.fontValue().withSize(17),
+            NSAttributedString.Key.foregroundColor: theme.textColor
+        ],
+        for: .normal)
     }
 }
 
@@ -225,12 +238,14 @@ extension SettingsTableView: FontProtocol {
             NSAttributedString.Key.foregroundColor: self.themeProvider.currentTheme.textColor
         ],
         for: .normal)
+        navigationItem.leftBarButtonItem?.tintColor = self.themeProvider.currentTheme.textColor
 
         navigationItem.backBarButtonItem?.setTitleTextAttributes([
             NSAttributedString.Key.font: font.fontValue().withSize(17),
             NSAttributedString.Key.foregroundColor: self.themeProvider.currentTheme.textColor
         ],
         for: .normal)
+        navigationItem.backBarButtonItem?.tintColor = self.themeProvider.currentTheme.tintColor
     }
 }
 

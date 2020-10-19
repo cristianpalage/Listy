@@ -94,6 +94,7 @@ extension ListDetailsEditNameTableViewCell: Themed {
     func applyTheme(_ theme: AppTheme) {
         contentView.backgroundColor = theme.backgroundColor
         textField.textColor = theme.textColor
+        textField.tintColor = theme.tintColor
     }
 }
 
