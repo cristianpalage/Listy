@@ -44,11 +44,15 @@ class SettingsTableView: UITableViewController {
 
     override func viewDidLoad() {
         setUpTheming()
+        setUpFont()
         super.viewDidLoad()
         self.setupTableView()
         self.configureCellTypes()
         self.registerTableViewCells()
         self.title = "Settings"
+        setupNavigation()
+
+
     }
 
     // MARK: tableView
@@ -81,7 +85,7 @@ class SettingsTableView: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 40
+        return 100
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -145,6 +149,16 @@ class SettingsTableView: UITableViewController {
             return 
         }
     }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        updateFooterViewHeight(for: tableView.tableFooterView)
+    }
+
+    func updateFooterViewHeight(for footer: UIView?) {
+        guard let footer = footer else { return }
+        footer.frame.size.height = footer.systemLayoutSizeFitting(CGSize(width: view.bounds.width, height: 0)).height
+    }
 }
 
 extension SettingsTableView {
@@ -161,8 +175,7 @@ extension SettingsTableView {
 
     func setupTableView() {
         registerTableViewCells()
-        self.tableView.separatorStyle = .none
-        tableView.tableHeaderView = UIView(frame: .zero)
+        tableView.tableFooterView = MadeByTableViewCell()
         self.tableView.backgroundColor = themeProvider.currentTheme.secondaryBackgroundColor
     }
 
@@ -172,6 +185,20 @@ extension SettingsTableView {
         tableView.register(TableViewHeaderView.self, forHeaderFooterViewReuseIdentifier: "TableViewHeaderView")
     }
 
+    func setupNavigation() {
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: self.title, style: .plain, target: self, action: #selector(self.back))
+        self.navigationItem.backBarButtonItem?.setTitleTextAttributes([
+            NSAttributedString.Key.font: self.fontProvider.currentFont.fontValue().withSize(17),
+            NSAttributedString.Key.foregroundColor: self.themeProvider.currentTheme.textColor
+        ],
+        for: .normal)
+    }
+
+
+    @objc func back() {
+        self.navigationController?.popViewController(animated: true)
+    }
+
     func configureCellTypes() {
 
         defer { tableView.reloadData() }
@@ -179,7 +206,7 @@ extension SettingsTableView {
         var sections = [TableViewSection]()
         sections.append(.init(rows: [.appIcon, .theme]))
         sections.append(.init(rows: [.email, .twitter, .rateInAppStore]))
-        sections.append(.init(rows: [.privacyPolicy, .about, .madeBy]))
+        sections.append(.init(rows: [.privacyPolicy, .about]))
 
         self.sections = sections
     }
@@ -188,6 +215,22 @@ extension SettingsTableView {
 extension SettingsTableView: Themed {
     func applyTheme(_ theme: AppTheme) {
         self.tableView.backgroundColor = theme.secondaryBackgroundColor
+    }
+}
+
+extension SettingsTableView: FontProtocol {
+    func applyFont(_ font: AppFont) {
+        navigationItem.leftBarButtonItem?.setTitleTextAttributes([
+            NSAttributedString.Key.font: font.fontValue().withSize(17),
+            NSAttributedString.Key.foregroundColor: self.themeProvider.currentTheme.textColor
+        ],
+        for: .normal)
+
+        navigationItem.backBarButtonItem?.setTitleTextAttributes([
+            NSAttributedString.Key.font: font.fontValue().withSize(17),
+            NSAttributedString.Key.foregroundColor: self.themeProvider.currentTheme.textColor
+        ],
+        for: .normal)
     }
 }
 

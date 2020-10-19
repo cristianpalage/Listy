@@ -16,8 +16,8 @@ struct AppFont: Equatable {
 }
 
 extension AppFont {
-    static let system = AppFont(
-        fontName: "System",
+    static let sanFrancisco = AppFont(
+        fontName: "San Francisco",
         fontDescription: "SFPro-Regular"
     )
 

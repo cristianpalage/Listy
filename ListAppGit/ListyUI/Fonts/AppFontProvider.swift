@@ -13,7 +13,7 @@ final class AppFontProvider: FontProvider {
     static let shared: AppFontProvider = .init()
 
     private var font: SubscribableValue<AppFont>
-    private var availableFonts: [AppFont] = [.system, .newYork]
+    private var availableFonts: [AppFont] = [.sanFrancisco, .newYork]
 
     var currentFont: AppFont {
         get {
@@ -49,8 +49,8 @@ final class AppFontProvider: FontProvider {
         let entity = NSEntityDescription.entity(forEntityName: "Font", in: managedContext)!
         let font = NSManagedObject(entity: entity, insertInto: managedContext)
         var fontString = ""
-        if currentFont == .system {
-            fontString = "system"
+        if currentFont == .sanFrancisco {
+            fontString = "sanFrancisco"
         } else if currentFont == .newYork {
             fontString = "newYork"
         }
@@ -67,12 +67,8 @@ final class AppFontProvider: FontProvider {
         font.subscribe(object, using: handler)
     }
 
-    func systemFont() {
-        currentFont = .system
-    }
-
-    func newYorkFont() {
-        currentFont = .newYork
+    func setNewFont(font: AppFont) {
+        currentFont = font
     }
 }
 
@@ -83,7 +79,7 @@ extension FontProtocol where Self: AnyObject {
 }
 
 func getSavedFont() -> AppFont {
-    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return .system }
+    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return .sanFrancisco }
     let managedContext = appDelegate.persistentContainer.viewContext
     var fontNSObject: [NSManagedObject] = []
     let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Font")
@@ -93,12 +89,12 @@ func getSavedFont() -> AppFont {
         print("Could not fetch. \(error), \(error.userInfo)")
     }
 
-    guard let fontObject = fontNSObject.last else { return .system}
-    let font = fontObject.value(forKeyPath: "currentFont") as? String ?? "system"
-    if font == "system" {
-        return .system
+    guard let fontObject = fontNSObject.last else { return .sanFrancisco}
+    let font = fontObject.value(forKeyPath: "currentFont") as? String ?? "sanFrancisco"
+    if font == "sanFrancisco" {
+        return .sanFrancisco
     } else if font == "newYork" {
         return .newYork
     }
-    return .system
+    return .sanFrancisco
 }
