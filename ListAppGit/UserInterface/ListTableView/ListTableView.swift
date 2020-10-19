@@ -124,7 +124,7 @@ class ListTableView: UITableViewController {
         deleteAction.image = UIImage(systemName: "trash")?.withTintColor(themeProvider.currentTheme.tintColor, renderingMode: .alwaysOriginal)
         deleteAction.backgroundColor = themeProvider.currentTheme.backgroundColor
 
-        let listDetailsAction = UIContextualAction(style: .normal, title: "settings") { (_, _, completionHandler) in
+        let listDetailsAction = UIContextualAction(style: .normal, title: "details") { (_, _, completionHandler) in
             let vc = ListDetailsTableView(viewModel: ListDetailsTableViewModel(currentList: self.viewModel.currentList.children[indexPath.row], rootNode: self.viewModel.rootNode))
             let navController = ListyNavigationController(rootViewController: vc)
             navController.navigationBar.barTintColor = self.themeProvider.currentTheme.backgroundColor
@@ -133,6 +133,11 @@ class ListTableView: UITableViewController {
             navController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: self.themeProvider.currentTheme.textColor]
             self.navigationController?.title = self.viewModel.currentList.children[indexPath.row].value
             vc.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.dismissDetailsVC))
+            vc.navigationItem.leftBarButtonItem?.setTitleTextAttributes([
+                NSAttributedString.Key.font: self.fontProvider.currentFont.fontValue().withSize(17),
+                NSAttributedString.Key.foregroundColor: self.themeProvider.currentTheme.textColor
+            ],
+            for: .normal)
             self.navigationController!.present(navController, animated: true, completion: nil)
             completionHandler(true)
         }
@@ -335,7 +340,20 @@ extension ListTableView {
             return bbi
         }()
         navigationItem.rightBarButtonItem = rightBarButtonItem
+
+            self.navigationItem.backBarButtonItem = UIBarButtonItem(title: self.title, style: .plain, target: self, action: #selector(self.back))
+            self.navigationItem.backBarButtonItem?.setTitleTextAttributes([
+                NSAttributedString.Key.font: self.fontProvider.currentFont.fontValue().withSize(17),
+                NSAttributedString.Key.foregroundColor: self.themeProvider.currentTheme.textColor
+            ],
+            for: .normal)
     }
+
+
+    @objc func back() {
+        self.navigationController?.popViewController(animated: true)
+    }
+
 
     @objc func openSettings() {
         let view = SettingsTableView()
@@ -346,6 +364,16 @@ extension ListTableView {
         navController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: self.themeProvider.currentTheme.textColor]
         self.navigationController?.title = "Settings"
         view.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.dismissDetailsVC))
+        view.navigationItem.leftBarButtonItem?.setTitleTextAttributes([
+            NSAttributedString.Key.font: self.fontProvider.currentFont.fontValue().withSize(17),
+            NSAttributedString.Key.foregroundColor: self.themeProvider.currentTheme.textColor
+        ],
+        for: .normal)
+        view.navigationItem.backBarButtonItem?.setTitleTextAttributes([
+            NSAttributedString.Key.font: self.fontProvider.currentFont.fontValue().withSize(17),
+            NSAttributedString.Key.foregroundColor: self.themeProvider.currentTheme.textColor
+        ],
+        for: .normal)
         self.navigationController!.present(navController, animated: true, completion: nil)
     }
 
@@ -401,5 +429,11 @@ extension ListTableView: FontProtocol {
     func applyFont(_ font: AppFont) {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: font.mediumFontValue().withSize(18),
                                                                    NSAttributedString.Key.foregroundColor: themeProvider.currentTheme.textColor]
+
+        navigationItem.backBarButtonItem?.setTitleTextAttributes([
+            NSAttributedString.Key.font: font.fontValue().withSize(17),
+            NSAttributedString.Key.foregroundColor: self.themeProvider.currentTheme.textColor
+        ],
+        for: .normal)
     }
 }

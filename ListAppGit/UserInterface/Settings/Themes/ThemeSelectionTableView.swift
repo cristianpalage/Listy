@@ -16,7 +16,7 @@ class ThemeSelectionTableView: UITableViewController {
         enum CellType {
             case dark
             case light
-            case systemFont
+            case sanFranciscoFont
             case newYorkFont
         }
 
@@ -28,7 +28,6 @@ class ThemeSelectionTableView: UITableViewController {
     }
 
     fileprivate var sections = [TableViewSection]()
-    fileprivate var currentFontNSObject: [NSObject] = []
 
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -46,12 +45,18 @@ class ThemeSelectionTableView: UITableViewController {
         self.configureCellTypes()
         self.registerTableViewCells()
         self.title = "Theme"
+
+        self.navigationItem.backButtonTitle = "test"
     }
 
     // MARK: tableView
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return self.sections.count
+    }
+
+    @objc func back() {
+        self.navigationController?.popViewController(animated: true)
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -87,9 +92,9 @@ class ThemeSelectionTableView: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ThemeSelectionTableViewCell", for: indexPath) as! ThemeSelectionTableViewCell
             cell.viewModel = ThemeSelectionTableViewCellViewModel(theme: "Light", isSelected: themeProvider.currentTheme == .light)
             return cell
-        case .systemFont:
+        case .sanFranciscoFont:
             let cell = tableView.dequeueReusableCell(withIdentifier: "ThemeSelectionTableViewCell", for: indexPath) as! ThemeSelectionTableViewCell
-            cell.viewModel = ThemeSelectionTableViewCellViewModel(theme: "System", isSelected: fontProvider.currentFont == .system)
+            cell.viewModel = ThemeSelectionTableViewCellViewModel(theme: "San Francisco", isSelected: fontProvider.currentFont == .sanFrancisco)
             return cell
         case .newYorkFont:
             let cell = tableView.dequeueReusableCell(withIdentifier: "ThemeSelectionTableViewCell", for: indexPath) as! ThemeSelectionTableViewCell
@@ -106,10 +111,10 @@ class ThemeSelectionTableView: UITableViewController {
             themeProvider.darkTheme()
         case .light:
             themeProvider.lightTheme()
-        case .systemFont:
-            fontProvider.systemFont()
+        case .sanFranciscoFont:
+            fontProvider.setNewFont(font: .sanFrancisco)
         case .newYorkFont:
-            fontProvider.newYorkFont()
+            fontProvider.setNewFont(font: .newYork)
         }
     }
 }
@@ -133,11 +138,6 @@ extension ThemeSelectionTableView {
     func setupTableView() {
         registerTableViewCells()
         tableView.tableFooterView = UIView(frame: .zero)
-        if #available(iOS 14.0, *) {
-            self.navigationController?.navigationItem.backButtonDisplayMode = .minimal
-        } else {
-            // Fallback on earlier versions
-        }
     }
 
     func registerTableViewCells() {
@@ -151,7 +151,7 @@ extension ThemeSelectionTableView {
 
         var sections = [TableViewSection]()
         sections.append(.init(rows: [.light, .dark]))
-        sections.append(.init(rows: [.systemFont, .newYorkFont]))
+        sections.append(.init(rows: [.sanFranciscoFont, .newYorkFont]))
     
         self.sections = sections
     }
@@ -171,7 +171,12 @@ extension ThemeSelectionTableView: FontProtocol {
     func applyFont(_ font: AppFont) {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: font.mediumFontValue().withSize(18),
                                                                    NSAttributedString.Key.foregroundColor: themeProvider.currentTheme.textColor]
-        navigationController?.navigationItem.backBarButtonItem?.setTitleTextAttributes([NSAttributedString.Key.font: font.mediumFontValue().withSize(18)], for: .normal)
+
+        self.navigationItem.leftBarButtonItem?.setTitleTextAttributes([
+            NSAttributedString.Key.font: font.fontValue().withSize(17),
+            NSAttributedString.Key.foregroundColor: self.themeProvider.currentTheme.textColor
+        ],
+        for: .normal)
         tableView.reloadData()
     }
 }
