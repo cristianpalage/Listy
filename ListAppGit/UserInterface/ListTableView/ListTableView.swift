@@ -289,6 +289,7 @@ extension ListTableView {
 
 
     func AddNewListFromPullDown() {
+        self.inputCellAtBottom = false
         self.refreshControl?.endRefreshing()
         self.addTop = true
         self.configureAndSave()

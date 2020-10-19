@@ -82,7 +82,8 @@ extension MadeByTableViewCell: Themed {
 
 extension MadeByTableViewCell: FontProtocol {
     func applyFont(_ font: AppFont) {
-        topLabel.font = UIFont(name: font.fontDescription, size: topLabel.font.pointSize)
+        topLabel.font = font.fontValue().withSize(topLabel.font.pointSize)
+        bottomLabel.font = font.fontValue().withSize(bottomLabel.font.pointSize)
     }
 }
 

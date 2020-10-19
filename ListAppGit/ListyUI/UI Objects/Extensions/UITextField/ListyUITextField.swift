@@ -35,6 +35,6 @@ open class ListyTextField: UITextField {
 
 extension ListyTextField: Themed {
     func applyTheme(_ theme: AppTheme) {
-        self.attributedPlaceholder = NSAttributedString(string:"Enter List Name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
+        self.attributedPlaceholder = NSAttributedString(string:"Enter list name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
     }
 }
