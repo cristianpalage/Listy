@@ -70,7 +70,7 @@ private extension TableViewButtonCell {
 
         NSLayoutConstraint.activate([
             label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 18),
+            label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
         ])
 

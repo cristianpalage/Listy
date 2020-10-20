@@ -25,7 +25,8 @@ class MadeByTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = label.font.withSize(12)
         let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
-        label.text = "Version: \(version)"
+        let build = Bundle.main.infoDictionary?["CFBundleVersion"] as! String
+        label.text = "Version: \(version) (\(build))"
         return label
     }()
 

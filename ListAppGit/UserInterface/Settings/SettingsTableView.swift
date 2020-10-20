@@ -144,7 +144,8 @@ class SettingsTableView: UITableViewController {
             let vc = PrivacyPolicyViewController()
             navigationController?.pushViewController(vc, animated: true)
         case .about:
-            return
+            let vc = AboutViewController()
+            navigationController?.pushViewController(vc, animated: true)
         case .madeBy:
             return 
         }

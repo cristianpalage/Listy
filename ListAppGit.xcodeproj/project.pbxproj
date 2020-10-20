@@ -40,6 +40,7 @@
 		0BA4C2C52537914C00A906BB /* TableViewButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA4C2C42537914C00A906BB /* TableViewButtonCell.swift */; };
 		0BA4C2D82537B42600A906BB /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BA4C2D72537B42600A906BB /* SF-Pro.ttf */; };
 		0BBB0DA624FC6CB500A4D9FA /* PullToAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBB0DA524FC6CB500A4D9FA /* PullToAddView.swift */; };
+		0BE63469253E872E003CF670 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE63468253E872E003CF670 /* AboutViewController.swift */; };
 		0BE79C23250C71F600A28403 /* ListDetailsEditNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE79C22250C71F600A28403 /* ListDetailsEditNameTableViewCell.swift */; };
 		0BE79C27250E80E600A28403 /* ListDetailsListDepthTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE79C26250E80E600A28403 /* ListDetailsListDepthTableViewCell.swift */; };
 		0BE79C29250E86BF00A28403 /* ListDetailsDeadlineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE79C28250E86BF00A28403 /* ListDetailsDeadlineTableViewCell.swift */; };
@@ -83,6 +84,7 @@
 		0BA4C2C42537914C00A906BB /* TableViewButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewButtonCell.swift; sourceTree = "<group>"; };
 		0BA4C2D72537B42600A906BB /* SF-Pro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro.ttf"; sourceTree = "<group>"; };
 		0BBB0DA524FC6CB500A4D9FA /* PullToAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToAddView.swift; sourceTree = "<group>"; };
+		0BE63468253E872E003CF670 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		0BE79C22250C71F600A28403 /* ListDetailsEditNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailsEditNameTableViewCell.swift; sourceTree = "<group>"; };
 		0BE79C26250E80E600A28403 /* ListDetailsListDepthTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailsListDepthTableViewCell.swift; sourceTree = "<group>"; };
 		0BE79C28250E86BF00A28403 /* ListDetailsDeadlineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailsDeadlineTableViewCell.swift; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 				0B8A1F4225390454007C3A9E /* Themes */,
 				0B138DD6253BEA1D00EE6685 /* Privacy */,
 				0B68324C253E47720003D27A /* cells */,
+				0BE63467253E8702003CF670 /* about */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -323,6 +326,14 @@
 				0B8A1F4E25393808007C3A9E /* TableViewHeaderView.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		0BE63467253E8702003CF670 /* about */ = {
+			isa = PBXGroup;
+			children = (
+				0BE63468253E872E003CF670 /* AboutViewController.swift */,
+			);
+			path = about;
 			sourceTree = "<group>";
 		};
 		0BE79C20250C711A00A28403 /* ListDetailsViewCells */ = {
@@ -430,6 +441,7 @@
 				0B8A1F61253A8339007C3A9E /* AppFont.swift in Sources */,
 				0BE79C23250C71F600A28403 /* ListDetailsEditNameTableViewCell.swift in Sources */,
 				0BA4C2C52537914C00A906BB /* TableViewButtonCell.swift in Sources */,
+				0BE63469253E872E003CF670 /* AboutViewController.swift in Sources */,
 				0BBB0DA624FC6CB500A4D9FA /* PullToAddView.swift in Sources */,
 				0B8A1F4C253907C0007C3A9E /* ListyNavigationController.swift in Sources */,
 				0B17813A250047C300B41D18 /* ListService.swift in Sources */,
@@ -604,6 +616,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 2020.0;
 				PRODUCT_BUNDLE_IDENTIFIER = cristianPalage.ListAppGit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -623,6 +636,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 2020.0;
 				PRODUCT_BUNDLE_IDENTIFIER = cristianPalage.ListAppGit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
