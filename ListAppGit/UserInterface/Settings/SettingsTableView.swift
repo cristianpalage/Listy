@@ -135,9 +135,9 @@ class SettingsTableView: UITableViewController {
         case .appIcon:
             return
         case .email:
-            return
+            openMailLink()
         case .twitter:
-            return
+            openTwitterAccount()
         case .rateInAppStore:
             return
         case .privacyPolicy:
@@ -166,6 +166,31 @@ extension SettingsTableView {
     func configureAndSave() {
         self.configureCellTypes()
         self.tableView.reloadData()
+    }
+
+    func openMailLink() {
+        let email = "cristianpalage@gmail.com"
+        if let url = URL(string: "mailto:\(email)") {
+          if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url)
+          } else {
+            UIApplication.shared.openURL(url)
+          }
+        }
+    }
+
+    func openTwitterAccount() {
+        let screenName =  "cristian_palage"
+        let appURL = NSURL(string: "twitter://user?screen_name=\(screenName)")!
+        let webURL = NSURL(string: "https://twitter.com/\(screenName)")!
+
+        let application = UIApplication.shared
+
+        if application.canOpenURL(appURL as URL) {
+            application.open(appURL as URL)
+        } else {
+            application.open(webURL as URL)
+        }
     }
 }
 
