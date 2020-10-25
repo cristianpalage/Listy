@@ -87,7 +87,7 @@ extension AboutViewController: Themed {
 extension AboutViewController: FontProtocol {
     func applyFont(_ font: AppFont) {
         titleHeader.font = font.mediumFontValue().withSize(28)
-        textView.font = font.fontValue().withSize(15)
+        textView.font = font.fontValue().withSize(17)
     }
 }
 

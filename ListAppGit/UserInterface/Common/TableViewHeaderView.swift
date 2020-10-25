@@ -26,7 +26,7 @@ class TableViewHeaderView: UITableViewHeaderFooterView {
     let header: ListyLabel = {
         let label = ListyLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = label.font.withSize(15)
+        label.font = label.font.withSize(17)
         return label
     }()
 
@@ -62,7 +62,7 @@ extension TableViewHeaderView {
 extension TableViewHeaderView: Themed {
     func applyTheme(_ theme: AppTheme) {
         contentView.backgroundColor = theme.secondaryBackgroundColor
-        header.textColor = theme.textColor
+        header.textColor = theme.secondaryTextColor
     }
 }
 

@@ -28,7 +28,7 @@ class ThemeSelectionTableViewCell: UITableViewCell {
     private let label: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = label.font.withSize(15)
+        label.font = label.font.withSize(17)
         return label
     }()
 

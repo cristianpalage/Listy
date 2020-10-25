@@ -14,7 +14,7 @@ class PullToAddView: UIView {
         let tf = ListyTextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.placeholder = "Enter list name"
-        tf.font = tf.font?.withSize(15)
+        tf.font = tf.font?.withSize(17)
         tf.autocorrectionType = UITextAutocorrectionType.no
         tf.keyboardType = UIKeyboardType.default
         tf.returnKeyType = UIReturnKeyType.done
@@ -57,6 +57,6 @@ extension PullToAddView: Themed {
 
 extension PullToAddView: FontProtocol {
     func applyFont(_ font: AppFont) {
-        textField.font = font.fontValue().withSize(textField.font?.pointSize ?? 15)
+        textField.font = font.fontValue().withSize(textField.font?.pointSize ?? 17)
     }
 }

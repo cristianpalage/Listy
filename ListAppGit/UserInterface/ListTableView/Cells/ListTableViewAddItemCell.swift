@@ -15,7 +15,6 @@ class ListTableViewAddItemCell: UITableViewCell {
         let tf = ListyTextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.placeholder = "Enter list name"
-        tf.font = tf.font?.withSize(15)
         tf.autocorrectionType = UITextAutocorrectionType.no
         tf.keyboardType = UIKeyboardType.default
         tf.returnKeyType = UIReturnKeyType.done
@@ -50,11 +49,10 @@ private extension ListTableViewAddItemCell {
         contentView.addSubview(textField)
 
         NSLayoutConstraint.activate([
-            textField.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            textField.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
             textField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 18),
             textField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18),
-            textField.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
-            textField.heightAnchor.constraint(equalToConstant: 18)
+            textField.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
         ])
     }
 }
@@ -69,6 +67,6 @@ extension ListTableViewAddItemCell: Themed {
 
 extension ListTableViewAddItemCell: FontProtocol {
     func applyFont(_ font: AppFont) {
-        textField.font = font.fontValue().withSize(textField.font?.pointSize ?? 15)
+        textField.font = font.fontValue().withSize(17)
     }
 }
