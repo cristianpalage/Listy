@@ -33,7 +33,7 @@ extension AppTheme {
 
     static let dark = AppTheme(
         statusBarStyle: .lightContent,
-        barBackgroundColor: UIColor(white: 0, alpha: 1),
+        barBackgroundColor: .black, //UIColor(white: 0, alpha: 1),
         barForegroundColor: .white,
         backgroundColor: .black,
         secondaryBackgroundColor: UIColor(displayP3Red: 15/255, green: 15/255, blue: 15/255, alpha: 1),

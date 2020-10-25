@@ -259,6 +259,12 @@ extension SettingsTableView: Themed {
 
 extension SettingsTableView: FontProtocol {
     func applyFont(_ font: AppFont) {
+
+        navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.font: font.mediumFontValue().withSize(17),
+            NSAttributedString.Key.foregroundColor: themeProvider.currentTheme.textColor
+        ]
+
         navigationItem.leftBarButtonItem?.setTitleTextAttributes([
             NSAttributedString.Key.font: font.fontValue().withSize(17),
             NSAttributedString.Key.foregroundColor: self.themeProvider.currentTheme.textColor

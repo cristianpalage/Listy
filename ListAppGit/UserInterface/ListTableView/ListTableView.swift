@@ -170,6 +170,7 @@ class ListTableView: UITableViewController {
             self.tableView.isScrollEnabled = false
             if !refreshControl.isRefreshing {
                 refreshControl.beginRefreshing()
+                playHaptics(style: .heavy)
                 self.AddNewListFromPullDown()
             }
         }
@@ -440,8 +441,10 @@ extension ListTableView: Themed {
 
 extension ListTableView: FontProtocol {
     func applyFont(_ font: AppFont) {
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: font.mediumFontValue().withSize(18),
-                                                                   NSAttributedString.Key.foregroundColor: themeProvider.currentTheme.textColor]
+        navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.font: font.mediumFontValue().withSize(17),
+            NSAttributedString.Key.foregroundColor: themeProvider.currentTheme.textColor
+        ]
 
         navigationItem.backBarButtonItem?.setTitleTextAttributes([
             NSAttributedString.Key.font: font.fontValue().withSize(17),

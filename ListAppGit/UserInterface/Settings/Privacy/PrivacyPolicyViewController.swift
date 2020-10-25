@@ -70,7 +70,7 @@ extension PrivacyPolicyViewController: Themed {
 
 extension PrivacyPolicyViewController: FontProtocol {
     func applyFont(_ font: AppFont) {
-        textView.font = font.fontValue().withSize(16)
+        textView.font = font.fontValue().withSize(17)
     }
 }
 

@@ -37,7 +37,7 @@ class ListDetailsDeadlineTableViewCell: UITableViewCell {
 
     let deadlinePromptLabel: ListyLabel = {
         let label = ListyLabel()
-        label.font = label.font.withSize(15)
+        label.font = label.font.withSize(17)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Add a deadline"
         return label

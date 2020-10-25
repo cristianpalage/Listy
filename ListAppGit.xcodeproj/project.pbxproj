@@ -32,6 +32,7 @@
 		0B8A1F5E253A8322007C3A9E /* AppFontProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8A1F5D253A8322007C3A9E /* AppFontProvider.swift */; };
 		0B8A1F61253A8339007C3A9E /* AppFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8A1F60253A8339007C3A9E /* AppFont.swift */; };
 		0B8A1F66253A8345007C3A9E /* FontProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8A1F65253A8345007C3A9E /* FontProtocols.swift */; };
+		0B90F5CD2544F910002770D5 /* HapticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B90F5CC2544F910002770D5 /* HapticsService.swift */; };
 		0BA4C29E2535280B00A906BB /* NewYork.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BA4C29D2535280B00A906BB /* NewYork.ttf */; };
 		0BA4C2A22535299100A906BB /* ListyUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA4C2A12535299100A906BB /* ListyUILabel.swift */; };
 		0BA4C2A625352C3000A906BB /* UILabel Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA4C2A525352C3000A906BB /* UILabel Extensions.swift */; };
@@ -76,6 +77,7 @@
 		0B8A1F5D253A8322007C3A9E /* AppFontProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFontProvider.swift; sourceTree = "<group>"; };
 		0B8A1F60253A8339007C3A9E /* AppFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFont.swift; sourceTree = "<group>"; };
 		0B8A1F65253A8345007C3A9E /* FontProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontProtocols.swift; sourceTree = "<group>"; };
+		0B90F5CC2544F910002770D5 /* HapticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsService.swift; sourceTree = "<group>"; };
 		0BA4C29D2535280B00A906BB /* NewYork.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NewYork.ttf; sourceTree = "<group>"; };
 		0BA4C2A12535299100A906BB /* ListyUILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListyUILabel.swift; sourceTree = "<group>"; };
 		0BA4C2A525352C3000A906BB /* UILabel Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel Extensions.swift"; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				0B178139250047C300B41D18 /* ListService.swift */,
 				0B4AA4E5252A50CD005102F8 /* DateService.swift */,
 				0B86E90D253388AB00949F06 /* NotificationService.swift */,
+				0B90F5CC2544F910002770D5 /* HapticsService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 				0BE79C23250C71F600A28403 /* ListDetailsEditNameTableViewCell.swift in Sources */,
 				0BA4C2C52537914C00A906BB /* TableViewButtonCell.swift in Sources */,
 				0BE63469253E872E003CF670 /* AboutViewController.swift in Sources */,
+				0B90F5CD2544F910002770D5 /* HapticsService.swift in Sources */,
 				0BBB0DA624FC6CB500A4D9FA /* PullToAddView.swift in Sources */,
 				0B8A1F4C253907C0007C3A9E /* ListyNavigationController.swift in Sources */,
 				0B17813A250047C300B41D18 /* ListService.swift in Sources */,

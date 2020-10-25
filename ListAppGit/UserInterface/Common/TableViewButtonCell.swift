@@ -26,7 +26,7 @@ class TableViewButtonCell: UITableViewCell {
     private let label: ListyLabel = {
         let label = ListyLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = label.font.withSize(15)
+        label.font = label.font.withSize(17)
         return label
     }()
 
@@ -69,15 +69,14 @@ private extension TableViewButtonCell {
         contentView.addSubview(arrowIcon)
 
         NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
             label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
+            label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12)
         ])
 
         NSLayoutConstraint.activate([
-            arrowIcon.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            arrowIcon.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18),
-            arrowIcon.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
+            arrowIcon.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            arrowIcon.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18)
         ])
     }
 

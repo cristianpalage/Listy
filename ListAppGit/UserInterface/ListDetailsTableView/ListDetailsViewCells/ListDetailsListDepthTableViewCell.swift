@@ -25,7 +25,7 @@ class ListDetailsListDepthTableViewCell: UITableViewCell {
 
     let header: ListyLabel = {
         let label = ListyLabel()
-        label.font = label.font.withSize(15)
+        label.font = label.font.withSize(17)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

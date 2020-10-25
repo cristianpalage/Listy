@@ -160,7 +160,7 @@ extension ThemeSelectionTableView {
 extension ThemeSelectionTableView: Themed {
     func applyTheme(_ theme: AppTheme) {
         self.tableView.backgroundColor = theme.secondaryBackgroundColor
-        self.navigationController?.navigationBar.barTintColor = theme.backgroundColor
+        self.navigationController?.navigationBar.barTintColor = theme.barBackgroundColor
         self.navigationController?.navigationBar.tintColor = theme.tintColor
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: theme.textColor]
         tableView.reloadData()
@@ -169,8 +169,10 @@ extension ThemeSelectionTableView: Themed {
 
 extension ThemeSelectionTableView: FontProtocol {
     func applyFont(_ font: AppFont) {
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: font.mediumFontValue().withSize(18),
-                                                                   NSAttributedString.Key.foregroundColor: themeProvider.currentTheme.textColor]
+        navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.font: font.mediumFontValue().withSize(17),
+            NSAttributedString.Key.foregroundColor: themeProvider.currentTheme.textColor
+        ]
 
         self.navigationItem.leftBarButtonItem?.setTitleTextAttributes([
             NSAttributedString.Key.font: font.fontValue().withSize(17),

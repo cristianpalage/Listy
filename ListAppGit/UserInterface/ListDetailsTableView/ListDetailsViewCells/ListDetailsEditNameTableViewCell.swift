@@ -100,7 +100,7 @@ extension ListDetailsEditNameTableViewCell: Themed {
 
 extension ListDetailsEditNameTableViewCell: FontProtocol {
     func applyFont(_ font: AppFont) {
-        textField.font = font.fontValue().withSize(textField.font?.pointSize ?? 15)
+        textField.font = font.fontValue().withSize(textField.font?.pointSize ?? 17)
         header.font = font.fontValue().withSize(header.font.pointSize)
     }
 }

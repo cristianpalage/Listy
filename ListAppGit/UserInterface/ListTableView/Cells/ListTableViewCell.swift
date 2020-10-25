@@ -26,14 +26,12 @@ class ListTableViewCell: UITableViewCell {
     private let label: ListyLabel = {
         let label = ListyLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = label.font.withSize(15)
         return label
     }()
 
     private let deadlineLabel: ListyLabel = {
         let label = ListyLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = label.font.withSize(10)
         label.textColor = .red
         return label
     }()
@@ -65,11 +63,12 @@ private extension ListTableViewCell {
         setUpFont()
         contentView.addSubview(label)
         contentView.addSubview(deadlineLabel)
-        
+
         NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
             label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 18),
-            label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18)
+            label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18),
+            label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
         ])
 
         NSLayoutConstraint.activate([
@@ -95,6 +94,7 @@ extension ListTableViewCell: Themed {
 
 extension ListTableViewCell: FontProtocol {
     func applyFont(_ font: AppFont) {
-        label.font = font.fontValue().withSize(label.font.pointSize)
+        label.font = font.fontValue().withSize(17)
+        deadlineLabel.font = font.fontValue().withSize(11)
     }
 }
