@@ -72,15 +72,14 @@ private extension ThemeSelectionTableViewCell {
         contentView.addSubview(checkMarkIcon)
 
         NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
             label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
+            label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12)
         ])
 
         NSLayoutConstraint.activate([
-            checkMarkIcon.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             checkMarkIcon.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18),
-            checkMarkIcon.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
+            checkMarkIcon.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ])
 
     }
