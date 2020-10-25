@@ -75,10 +75,6 @@ class SettingsTableView: UITableViewController {
        return view
     }
 
-    /*override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
-    }*/
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let section = self.sections[section]
         return section.rows.count
@@ -133,7 +129,8 @@ class SettingsTableView: UITableViewController {
             let view = ThemeSelectionTableView()
             navigationController?.pushViewController(view, animated: true)
         case .appIcon:
-            return
+            let view = AppIconSelectionView()
+            navigationController?.pushViewController(view, animated: true)
         case .email:
             openMailLink()
         case .twitter:
