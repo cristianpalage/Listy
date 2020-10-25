@@ -68,14 +68,13 @@ private extension ListTableViewCell {
             label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
             label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 18),
             label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18),
-            label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
         ])
 
         NSLayoutConstraint.activate([
             deadlineLabel.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 4),
             deadlineLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 18),
             deadlineLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18),
-            deadlineLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -6),
+            deadlineLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
         ])
     }
 

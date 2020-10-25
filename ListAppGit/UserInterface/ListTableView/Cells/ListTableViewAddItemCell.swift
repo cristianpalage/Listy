@@ -15,7 +15,7 @@ class ListTableViewAddItemCell: UITableViewCell {
         let tf = ListyTextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.placeholder = "Enter list name"
-        tf.autocorrectionType = UITextAutocorrectionType.no
+        tf.autocorrectionType = UITextAutocorrectionType.yes
         tf.keyboardType = UIKeyboardType.default
         tf.returnKeyType = UIReturnKeyType.done
         tf.clearButtonMode = UITextField.ViewMode.whileEditing
