@@ -10,7 +10,7 @@ Additional Features currently in development:
 - iOS 14 widget
 - siri shortcuts to add lists
 - Additional themes as well as the ability for the user to create their own themes
-- More custom fonts as well as the ability for the user to import any font the ywish to use
+- More custom fonts as well as the ability for the user to import any font they wish to use
 - iCloud sync for lists to sync across all your devices
 - apple watch app
 - iPad and Mac app
