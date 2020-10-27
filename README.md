@@ -17,5 +17,5 @@ Additional Features currently in development:
 - iPad and Mac app
 - import and export features 
 - share list to send a list to a friend
-- Add onboarding UI
+- Add onboarding flow UI
 
