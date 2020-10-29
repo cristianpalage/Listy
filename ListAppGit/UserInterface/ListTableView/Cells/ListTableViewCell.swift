@@ -20,9 +20,20 @@ struct ListTableViewCellViewModel {
 class ListTableViewCell: UITableViewCell {
 
     var viewModel: ListTableViewCellViewModel? {
-        didSet { setupViewModel() }
+        didSet {
+            setupViewModel()
+            setup()
+        }
     }
-    
+
+    private let stack: UIStackView = {
+        let sv = UIStackView()
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        sv.axis = .vertical
+        sv.spacing = 4
+        return sv
+    }()
+
     private let label: ListyLabel = {
         let label = ListyLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -59,23 +70,28 @@ class ListTableViewCell: UITableViewCell {
 
 private extension ListTableViewCell {
     func setup() {
+        stack.removeAllSubviews()
         setUpTheming()
         setUpFont()
-        contentView.addSubview(label)
-        contentView.addSubview(deadlineLabel)
+        contentView.addSubview(stack)
 
         NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
-            label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 18),
-            label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18),
+            stack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
+            stack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 18),
+            stack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18),
+            stack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
         ])
 
+        stack.addArrangedSubview(label)
+
         NSLayoutConstraint.activate([
-            deadlineLabel.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 4),
-            deadlineLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 18),
-            deadlineLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18),
-            deadlineLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+            label.heightAnchor.constraint(equalToConstant: 24)
         ])
+
+        if viewModel?.list.deadline != nil {
+            stack.addArrangedSubview(deadlineLabel)
+        }
+
     }
 
     func setupViewModel() {
