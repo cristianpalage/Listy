@@ -166,7 +166,7 @@ class ListTableView: UITableViewController {
 
         guard let refreshControl = refreshControl, let baseOffset = baseOffset else { return }
 
-        if scrollView.contentOffset.y <= baseOffset - 34 {
+        if scrollView.contentOffset.y <= baseOffset - 44 {
             self.tableView.isScrollEnabled = false
             if !refreshControl.isRefreshing {
                 refreshControl.beginRefreshing()

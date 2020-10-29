@@ -42,6 +42,7 @@
 		0BA4C2C52537914C00A906BB /* TableViewButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA4C2C42537914C00A906BB /* TableViewButtonCell.swift */; };
 		0BA4C2D82537B42600A906BB /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BA4C2D72537B42600A906BB /* SF-Pro.ttf */; };
 		0BBB0DA624FC6CB500A4D9FA /* PullToAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBB0DA524FC6CB500A4D9FA /* PullToAddView.swift */; };
+		0BBE12A9254B779A00861E46 /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBE12A8254B779A00861E46 /* UIStackView.swift */; };
 		0BE63469253E872E003CF670 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE63468253E872E003CF670 /* AboutViewController.swift */; };
 		0BE79C23250C71F600A28403 /* ListDetailsEditNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE79C22250C71F600A28403 /* ListDetailsEditNameTableViewCell.swift */; };
 		0BE79C27250E80E600A28403 /* ListDetailsListDepthTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE79C26250E80E600A28403 /* ListDetailsListDepthTableViewCell.swift */; };
@@ -88,6 +89,7 @@
 		0BA4C2C42537914C00A906BB /* TableViewButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewButtonCell.swift; sourceTree = "<group>"; };
 		0BA4C2D72537B42600A906BB /* SF-Pro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro.ttf"; sourceTree = "<group>"; };
 		0BBB0DA524FC6CB500A4D9FA /* PullToAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToAddView.swift; sourceTree = "<group>"; };
+		0BBE12A8254B779A00861E46 /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
 		0BE63468253E872E003CF670 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		0BE79C22250C71F600A28403 /* ListDetailsEditNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailsEditNameTableViewCell.swift; sourceTree = "<group>"; };
 		0BE79C26250E80E600A28403 /* ListDetailsListDepthTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailsListDepthTableViewCell.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				0BA4C2A9253537C000A906BB /* UITextField */,
 				0BA4C2A02535295200A906BB /* UILabel */,
 				0B17813625003C9600B41D18 /* UIView */,
+				0BBE12A8254B779A00861E46 /* UIStackView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -485,6 +488,7 @@
 				0B86E90E253388AB00949F06 /* NotificationService.swift in Sources */,
 				0B17813825003CC400B41D18 /* UIView Extensions.swift in Sources */,
 				0B8A1F5E253A8322007C3A9E /* AppFontProvider.swift in Sources */,
+				0BBE12A9254B779A00861E46 /* UIStackView.swift in Sources */,
 				0BE79C29250E86BF00A28403 /* ListDetailsDeadlineTableViewCell.swift in Sources */,
 				0B8A1F66253A8345007C3A9E /* FontProtocols.swift in Sources */,
 				0B4AA4E6252A50CD005102F8 /* DateService.swift in Sources */,
