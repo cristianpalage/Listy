@@ -11,9 +11,6 @@ import CoreData
 import UIKit
 
 class Node: Equatable, Encodable {
-    static func == (lhs: Node, rhs: Node) -> Bool {
-        return lhs.id == rhs.id
-    }
     
     var value: String
     var id: UUID
@@ -51,6 +48,10 @@ class Node: Equatable, Encodable {
         }
         returnString.removeLast()
         childrenOrder = returnString
+    }
+
+    static func == (lhs: Node, rhs: Node) -> Bool {
+        return lhs.id == rhs.id
     }
 }
 
