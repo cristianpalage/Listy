@@ -20,6 +20,7 @@
 		0B48435224F36E8100D9505E /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B48435124F36E8100D9505E /* ListTableViewCell.swift */; };
 		0B4AA4E6252A50CD005102F8 /* DateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4AA4E5252A50CD005102F8 /* DateService.swift */; };
 		0B5D694524F7135500AC3FA4 /* ListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5D694424F7135500AC3FA4 /* ListTableView.swift */; };
+		0B60A4082574583100A346E3 /* FollowSystemThemeToggleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B60A4072574583100A346E3 /* FollowSystemThemeToggleTableViewCell.swift */; };
 		0B683241253E0FDA0003D27A /* MadeByTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B683240253E0FDA0003D27A /* MadeByTableViewCell.swift */; };
 		0B86E90E253388AB00949F06 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B86E90D253388AB00949F06 /* NotificationService.swift */; };
 		0B8A1F382538F774007C3A9E /* ThemeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8A1F372538F774007C3A9E /* ThemeProtocols.swift */; };
@@ -67,6 +68,7 @@
 		0B48435124F36E8100D9505E /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		0B4AA4E5252A50CD005102F8 /* DateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateService.swift; sourceTree = "<group>"; };
 		0B5D694424F7135500AC3FA4 /* ListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableView.swift; sourceTree = "<group>"; };
+		0B60A4072574583100A346E3 /* FollowSystemThemeToggleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowSystemThemeToggleTableViewCell.swift; sourceTree = "<group>"; };
 		0B683240253E0FDA0003D27A /* MadeByTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MadeByTableViewCell.swift; sourceTree = "<group>"; };
 		0B86E90D253388AB00949F06 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		0B8A1F372538F774007C3A9E /* ThemeProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeProtocols.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				0B8A1F4825390505007C3A9E /* ThemeSelectionTableViewCell.swift */,
+				0B60A4072574583100A346E3 /* FollowSystemThemeToggleTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -465,6 +468,7 @@
 			files = (
 				0B8A1F61253A8339007C3A9E /* AppFont.swift in Sources */,
 				0BE79C23250C71F600A28403 /* ListDetailsEditNameTableViewCell.swift in Sources */,
+				0B60A4082574583100A346E3 /* FollowSystemThemeToggleTableViewCell.swift in Sources */,
 				0BA4C2C52537914C00A906BB /* TableViewButtonCell.swift in Sources */,
 				0BE63469253E872E003CF670 /* AboutViewController.swift in Sources */,
 				0B90F5CD2544F910002770D5 /* HapticsService.swift in Sources */,

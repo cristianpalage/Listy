@@ -16,6 +16,7 @@ class ThemeSelectionTableView: UITableViewController {
         enum CellType {
             case dark
             case light
+            case systemTheme
             case sanFranciscoFont
             case newYorkFont
         }
@@ -64,7 +65,7 @@ class ThemeSelectionTableView: UITableViewController {
         var title = ""
         if section == 0 {
             title = "Theme"
-        } else if section == 1 {
+        } else if section == 2 {
             title = "Font"
         }
         view.viewModel = TableViewHeaderViewViewModel(title: title)
@@ -72,6 +73,9 @@ class ThemeSelectionTableView: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 1 {
+            return 20
+        }
         return 60
     }
 
@@ -92,6 +96,9 @@ class ThemeSelectionTableView: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ThemeSelectionTableViewCell", for: indexPath) as! ThemeSelectionTableViewCell
             cell.viewModel = ThemeSelectionTableViewCellViewModel(theme: "Light", isSelected: themeProvider.currentTheme == .light)
             return cell
+        case .systemTheme:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "FollowSystemThemeToggleTableViewCell", for: indexPath) as! FollowSystemThemeTableViewCell
+            return cell
         case .sanFranciscoFont:
             let cell = tableView.dequeueReusableCell(withIdentifier: "ThemeSelectionTableViewCell", for: indexPath) as! ThemeSelectionTableViewCell
             cell.viewModel = ThemeSelectionTableViewCellViewModel(theme: "San Francisco", isSelected: fontProvider.currentFont == .sanFrancisco)
@@ -111,11 +118,14 @@ class ThemeSelectionTableView: UITableViewController {
             themeProvider.darkTheme()
         case .light:
             themeProvider.lightTheme()
+        case .systemTheme:
+            return
         case .sanFranciscoFont:
             fontProvider.setNewFont(font: .sanFrancisco)
         case .newYorkFont:
             fontProvider.setNewFont(font: .newYork)
         }
+
     }
 }
 
@@ -142,6 +152,7 @@ extension ThemeSelectionTableView {
 
     func registerTableViewCells() {
         tableView.register(ThemeSelectionTableViewCell.self, forCellReuseIdentifier: "ThemeSelectionTableViewCell")
+        tableView.register(FollowSystemThemeTableViewCell.self, forCellReuseIdentifier: "FollowSystemThemeToggleTableViewCell")
         tableView.register(TableViewHeaderView.self, forHeaderFooterViewReuseIdentifier: "TableViewHeaderView")
     }
 
@@ -151,6 +162,7 @@ extension ThemeSelectionTableView {
 
         var sections = [TableViewSection]()
         sections.append(.init(rows: [.light, .dark]))
+        sections.append(.init(rows: [.systemTheme]))
         sections.append(.init(rows: [.sanFranciscoFont, .newYorkFont]))
     
         self.sections = sections

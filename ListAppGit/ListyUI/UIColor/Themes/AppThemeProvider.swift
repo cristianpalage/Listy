@@ -13,6 +13,7 @@ final class AppThemeProvider: ThemeProvider {
     static let shared: AppThemeProvider = .init()
 
     private var theme: SubscribableValue<AppTheme>
+    private var useSystemTheme: SubscribableValue<Bool>
     private var availableThemes: [AppTheme] = [.light, .dark]
 
     var currentTheme: AppTheme {
@@ -24,8 +25,26 @@ final class AppThemeProvider: ThemeProvider {
         }
     }
 
+    var useSystemThemeBool: Bool {
+        get {
+            return useSystemTheme.value
+        }
+        set {
+            setNewUseSystemTheme(newValue)
+        }
+    }
+
+
+
     init() {
-        theme = SubscribableValue<AppTheme>(value: getSavedTheme())
+        let use = getSavedUseSystemTheme()
+        if use {
+            theme = UITraitCollection.current.userInterfaceStyle == .dark ? SubscribableValue<AppTheme>(value: .dark) : SubscribableValue<AppTheme>(value: .light)
+            useSystemTheme = SubscribableValue<Bool>(value: true)
+        } else {
+            theme = SubscribableValue<AppTheme>(value: getSavedTheme())
+            useSystemTheme = SubscribableValue<Bool>(value: false)
+        }
     }
 
     private func setNewTheme(_ newTheme: AppTheme) {
@@ -42,6 +61,15 @@ final class AppThemeProvider: ThemeProvider {
         saveTheme(theme: newTheme)
     }
 
+    private func setNewUseSystemTheme(_ newUseSystemTheme: Bool) {
+        if newUseSystemTheme {
+            let theme = UITraitCollection.current.userInterfaceStyle == .dark ? AppTheme.dark : AppTheme.light
+            setNewTheme(theme)
+        }
+        self.useSystemTheme.value = newUseSystemTheme
+        saveTheme(theme: self.currentTheme)
+    }
+
     private func saveTheme(theme: AppTheme) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
 
@@ -55,6 +83,7 @@ final class AppThemeProvider: ThemeProvider {
             themeString = "light"
         }
         theme.setValue(themeString, forKey: "currentTheme")
+        theme.setValue(useSystemTheme.value, forKey: "systemTheme")
 
         do {
             try managedContext.save()
@@ -101,6 +130,22 @@ func getSavedTheme() -> AppTheme {
         return .dark
     }
     return .dark
+}
+
+func getSavedUseSystemTheme() -> Bool {
+    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return true }
+    let managedContext = appDelegate.persistentContainer.viewContext
+    var themeNSObject: [NSManagedObject] = []
+    let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Theme")
+    do {
+        themeNSObject = try managedContext.fetch(fetchRequest)
+    } catch let error as NSError {
+        print("Could not fetch. \(error), \(error.userInfo)")
+    }
+
+    guard let themeObject = themeNSObject.last else { return true}
+    let useSystemTheme = themeObject.value(forKeyPath: "systemTheme") as? Bool ?? true
+    return useSystemTheme
 }
 
 /// Stores a value of type T, and allows objects to subscribe to
