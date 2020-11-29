@@ -71,14 +71,14 @@ private extension ListDetailsEditNameTableViewCell {
         contentView.addSubview(header)
 
         NSLayoutConstraint.activate([
-            textField.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            textField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 18),
+            textField.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            textField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 26),
             textField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18),
         ])
 
         NSLayoutConstraint.activate([
             header.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 6),
-            header.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 18),
+            header.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 26),
             header.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18),
             header.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
             header.heightAnchor.constraint(equalToConstant: 18)

@@ -147,7 +147,9 @@ extension ListDetailsTableView {
 
         var sections = [TableViewSection]()
         sections.append(.init(rows: [.editNameCell]))
-        sections.append(.init(rows: [.listDepth]))
+
+        // Potentially useful information for the user but we will leave it out for now
+        //sections.append(.init(rows: [.listDepth]))
         sections.append(.init(rows: [.deadline]))
 
         self.sections = sections

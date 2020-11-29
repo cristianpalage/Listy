@@ -28,9 +28,6 @@ class ListDetailsDeadlineTableViewCell: UITableViewCell {
     let datePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.translatesAutoresizingMaskIntoConstraints = false
-        if #available(iOS 14, *) {
-            datePicker.preferredDatePickerStyle = .compact
-        }
         datePicker.datePickerMode = .dateAndTime
         return datePicker
     }()
@@ -45,7 +42,6 @@ class ListDetailsDeadlineTableViewCell: UITableViewCell {
 
     let deadlineToggle: UISwitch = {
         let toggle = UISwitch()
-        toggle.onTintColor = .orange
         toggle.translatesAutoresizingMaskIntoConstraints = false
         return toggle
     }()
@@ -83,13 +79,13 @@ private extension ListDetailsDeadlineTableViewCell {
 
         NSLayoutConstraint.activate([
             deadlinePromptLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            deadlinePromptLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 18),
+            deadlinePromptLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 26),
             deadlinePromptLabel.bottomAnchor.constraint(equalTo: datePicker.topAnchor, constant: -8),
         ])
 
         NSLayoutConstraint.activate([
             deadlineToggle.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            deadlineToggle.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18),
+            deadlineToggle.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -26),
             deadlineToggle.bottomAnchor.constraint(equalTo: datePicker.topAnchor, constant: -8),
         ])
 
@@ -130,7 +126,7 @@ private extension ListDetailsDeadlineTableViewCell {
 
     func setupDatePicker() {
         datePicker.isHidden = !self.hasDeadline
-        datePicker.addTarget(self, action: #selector(dateChanged), for: .editingDidEnd)
+        datePicker.addTarget(self, action: #selector(dateChanged), for: .allEvents)
         deadlineToggle.addTarget(self, action: #selector(toggleChanged), for: .valueChanged)
     }
 }
@@ -139,7 +135,22 @@ extension ListDetailsDeadlineTableViewCell: Themed {
     func applyTheme(_ theme: AppTheme) {
         contentView.backgroundColor = theme.backgroundColor
         deadlinePromptLabel.textColor = theme.textColor
-        datePicker.tintColor = theme.tintColor
+
+        /* This is a terrible solution but it works for now until a custom date picker is implemented
+                The inline datepicker is what I prefer stylistically but since the majority of
+                UIDatePickers themes and colors are determined by the system theme and cannot be altered,
+                if the user wants to use a theme in the app that is different from what they use on device
+                then the UIDatePicker is basically unreradable, thus the compact style works better in
+                that case. 
+         */
+        if #available(iOS 14, *) {
+            let userTheme = UITraitCollection.current.userInterfaceStyle
+            if (userTheme == .dark && theme == .light) || (userTheme == .light && theme == .dark) {
+                datePicker.preferredDatePickerStyle = .compact
+            } else {
+                datePicker.preferredDatePickerStyle = .inline
+            }
+        }
     }
 }
 
