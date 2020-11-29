@@ -36,7 +36,6 @@ class ThemeSelectionTableViewCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "checkmark")
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.tintColor = UITraitCollection.current.userInterfaceStyle == .dark ? .white : .black
         imageView.isHidden = true
         return imageView
     }()
