@@ -56,6 +56,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+
+        if themeProvider.useSystemThemeBool {
+            let systemTheme = UITraitCollection.current.userInterfaceStyle
+
+            if systemTheme == .dark && themeProvider.currentTheme == .light {
+                themeProvider.currentTheme = .dark
+            }
+            if systemTheme == .light && themeProvider.currentTheme == .dark {
+                themeProvider.currentTheme = .light
+            }
+        }
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
