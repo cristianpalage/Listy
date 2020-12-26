@@ -84,7 +84,7 @@ private extension FollowSystemThemeTableViewCell {
     }
 
     func setUpToggle() {
-        self.useSystemThemeToggle.isOn = themeProvider.useSystemThemeBool ?? false
+        self.useSystemThemeToggle.isOn = themeProvider.useSystemThemeBool 
         useSystemThemeToggle.addTarget(self, action: #selector(toggleChanged), for: .valueChanged)
     }
 
