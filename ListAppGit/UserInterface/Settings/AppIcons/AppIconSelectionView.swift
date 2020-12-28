@@ -100,5 +100,16 @@ extension AppIconSelectionView: Themed {
 
 extension AppIconSelectionView: FontProtocol {
     func applyFont(_ font: AppFont) {
+        navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.font: font.mediumFontValue().withSize(17),
+            NSAttributedString.Key.foregroundColor: themeProvider.currentTheme.textColor
+        ]
+
+        self.navigationItem.leftBarButtonItem?.setTitleTextAttributes([
+            NSAttributedString.Key.font: font.fontValue().withSize(17),
+            NSAttributedString.Key.foregroundColor: self.themeProvider.currentTheme.textColor
+        ],
+        for: .normal)
+        self.iconSelectionCollectionView.reloadData()
     }
 }
