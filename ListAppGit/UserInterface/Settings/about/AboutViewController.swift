@@ -35,7 +35,13 @@ class AboutViewController: UIViewController {
     let textView: UITextView = {
         let tv = UITextView()
         tv.translatesAutoresizingMaskIntoConstraints = false
-        tv.text = "👋 Hi, I'm Cristian Palage\n\nI'm a student studying Computer Science at the University of Waterloo in Waterloo, Ontario by day and musician and indie dev by night.\n\nI developed Listy originally for myself. I wanted a simple List app that takes advantage of all the wonderful integrations iOS has to to offer in an way that worked with my brain. After a seemingly endless and futile search I gave up and made my own.\n\nI'd love to hear what you think! You can reach out to me on Twitter or send me an Email.\n\nIf you like the app, please tell a friend, or leave a review on the app store!"
+        let style = NSMutableParagraphStyle()
+        style.lineSpacing = 8
+        let attributes = [NSAttributedString.Key.paragraphStyle : style]
+        tv.attributedText = NSAttributedString(
+            string: "👋 Hi, I'm Cristian Palage\n\nI'm a student studying Computer Science at the University of Waterloo in Waterloo, Ontario by day and musician and indie dev by night.\n\nI developed Listy originally for myself. I wanted a simple List app that takes advantage of all the wonderful integrations iOS has to offer in a way that worked with my brain. After a seemingly endless and futile search I gave up and made my own.\n\nI'd love to hear what you think! You can reach out to me on Twitter or send me an Email.\n\nIf you like the app, please tell a friend, or leave a review on the app store!",
+            attributes: attributes
+        )
         return tv
     }()
 

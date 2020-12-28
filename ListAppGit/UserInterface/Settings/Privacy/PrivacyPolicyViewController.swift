@@ -28,7 +28,13 @@ class PrivacyPolicyViewController: UIViewController {
     let textView: UITextView = {
         let tv = UITextView()
         tv.translatesAutoresizingMaskIntoConstraints = false
-        tv.text = "Listy takes your privacy very seriously. If you have opted to allow Apple to share information with developers we receive some anonymous analytics. Listy uses no other third party analytics tools or SDKs to track your activity in the app. In addition, every piece of infomation you input to the app, stays on your device at all times. \n\nListy does not have a server side component, everything is done on device."
+        let style = NSMutableParagraphStyle()
+        style.lineSpacing = 8
+        let attributes = [NSAttributedString.Key.paragraphStyle : style]
+        tv.attributedText = NSAttributedString(
+            string: "Listy takes your privacy very seriously. If you have opted to allow Apple to share information with developers we receive some anonymous analytics. Listy uses no other third party analytics tools or SDKs to track your activity in the app. In addition, every piece of infomation you input to the app, stays on your device at all times.",
+            attributes: attributes
+        )
         return tv
     }()
 
