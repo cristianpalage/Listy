@@ -322,9 +322,9 @@ extension ListTableView {
         sections.append(.init(rows: listSection))
 
         // Don't wan't this rn, reconsider
-        /*if viewModel.currentList.children.count == 0, !(self.addTop || self.inputCellAtBottom) {
+        if viewModel.currentList.children.count == 0, !(self.addTop || self.inputCellAtBottom) {
             sections.append(.init(rows: [.pullDownPrompt]))
-        }*/
+        }
 
         if self.inputCellAtBottom {
             sections.append(.init(rows: [.addNewListCell]))

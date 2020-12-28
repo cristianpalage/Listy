@@ -2,95 +2,95 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>CFBundleIcons</key>
-    <dict>
-        <key>CFBundleAlternateIcons</key>
-        <dict>
-            <key>blueIcon</key>
-            <dict>
-                <key>CFBundleIconFiles</key>
-                <array>
-                    <string>blueIcon</string>
-                </array>
-            </dict>
-            <key>blackIcon</key>
-            <dict>
-                <key>CFBundleIconFiles</key>
-                <array>
-                    <string>blackIcon</string>
-                </array>
-            </dict>
-            <key>greenIcon</key>
-            <dict>
-                <key>CFBundleIconFiles</key>
-                <array>
-                    <string>greenIcon</string>
-                </array>
-            </dict>
-            <key>greyIcon</key>
-            <dict>
-                <key>CFBundleIconFiles</key>
-                <array>
-                    <string>greyIcon</string>
-                </array>
-            </dict>
-            <key>lightBlueIcon</key>
-            <dict>
-                <key>CFBundleIconFiles</key>
-                <array>
-                    <string>lightBlueIcon</string>
-                </array>
-            </dict>
-            <key>orangeIcon</key>
-            <dict>
-                <key>CFBundleIconFiles</key>
-                <array>
-                    <string>orangeIcon</string>
-                </array>
-            </dict>
-            <key>pinkIcon</key>
-            <dict>
-                <key>CFBundleIconFiles</key>
-                <array>
-                    <string>pinkIcon</string>
-                </array>
-            </dict>
-            <key>purpleIcon</key>
-            <dict>
-                <key>CFBundleIconFiles</key>
-                <array>
-                    <string>purpleIcon</string>
-                </array>
-            </dict>
-            <key>turquoiseIcon</key>
-            <dict>
-                <key>CFBundleIconFiles</key>
-                <array>
-                    <string>turquoiseIcon</string>
-                </array>
-            </dict>
-            <key>yellowIcon</key>
-            <dict>
-                <key>CFBundleIconFiles</key>
-                <array>
-                    <string>yellowIcon</string>
-                </array>
-            </dict>
-        </dict>
-        <key>CFBundlePrimaryIcon</key>
-        <dict>
-            <key>CFBundleIconFiles</key>
-            <array/>
-            <key>UIPrerenderedIcon</key>
-            <false/>
-        </dict>
-    </dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
 	<string>Listy</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIcons</key>
+	<dict>
+		<key>CFBundleAlternateIcons</key>
+		<dict>
+			<key>blackIcon</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>blackIcon</string>
+				</array>
+			</dict>
+			<key>blueIcon</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>blueIcon</string>
+				</array>
+			</dict>
+			<key>greenIcon</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>greenIcon</string>
+				</array>
+			</dict>
+			<key>greyIcon</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>greyIcon</string>
+				</array>
+			</dict>
+			<key>lightBlueIcon</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>lightBlueIcon</string>
+				</array>
+			</dict>
+			<key>orangeIcon</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>orangeIcon</string>
+				</array>
+			</dict>
+			<key>pinkIcon</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>pinkIcon</string>
+				</array>
+			</dict>
+			<key>purpleIcon</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>purpleIcon</string>
+				</array>
+			</dict>
+			<key>turquoiseIcon</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>turquoiseIcon</string>
+				</array>
+			</dict>
+			<key>yellowIcon</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>yellowIcon</string>
+				</array>
+			</dict>
+		</dict>
+		<key>CFBundlePrimaryIcon</key>
+		<dict>
+			<key>CFBundleIconFiles</key>
+			<array/>
+			<key>UIPrerenderedIcon</key>
+			<false/>
+		</dict>
+	</dict>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -102,7 +102,11 @@
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIAppFonts</key>
