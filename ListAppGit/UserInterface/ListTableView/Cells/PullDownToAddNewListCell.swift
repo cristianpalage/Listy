@@ -23,6 +23,8 @@ class PullDownToAddNewListCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
+        setUpTheming()
+        setUpFont()
         self.selectionStyle = .none
     }
 
@@ -51,6 +53,18 @@ private extension PullDownToAddNewListCell {
             label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
             label.heightAnchor.constraint(equalToConstant: 24)
         ])
+    }
+}
+
+extension PullDownToAddNewListCell: Themed {
+    func applyTheme(_ theme: AppTheme) {
+        label.textColor = theme.secondaryTextColor
+    }
+}
+
+extension PullDownToAddNewListCell: FontProtocol {
+    func applyFont(_ font: AppFont) {
+        label.font = font.fontValue().withSize(label.font?.pointSize ?? 17)
     }
 }
 
