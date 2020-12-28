@@ -9,154 +9,96 @@
 import Foundation
 import UIKit
 
-class AppIconSelectionView: UITableViewController {
 
-    struct TableViewSection {
+class AppIconSelectionView: UIViewController {
 
-        enum CellType {
-            case red
-            case blue
-        }
-
-        let rows: [CellType]
-
-        init(rows: [CellType]) {
-            self.rows = rows
-        }
-    }
-
-    fileprivate var sections = [TableViewSection]()
-
-    init() {
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    var myCollectionView:UICollectionView?
 
     override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title = "App Icon"
+
+        setup()
         setUpTheming()
         setUpFont()
-        super.viewDidLoad()
-        self.setupTableView()
-        self.configureCellTypes()
-        self.registerTableViewCells()
-        self.title = "Theme"
-
-        self.navigationItem.backButtonTitle = "test"
     }
 
-    // MARK: tableView
+    private let iconSelectionCollectionView: UICollectionView = {
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        layout.itemSize = CGSize(width: 80, height: 120)
+        layout.minimumLineSpacing = 20
+        layout.minimumInteritemSpacing = 30
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return self.sections.count
-    }
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .clear
 
-    @objc func back() {
-        self.navigationController?.popViewController(animated: true)
-    }
 
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "TableViewHeaderView") as! TableViewHeaderView
-        view.viewModel = TableViewHeaderViewViewModel(title: "")
-        return view
-    }
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let section = self.sections[section]
-        return section.rows.count
-    }
+        return collectionView
+    }()
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellType = sections[indexPath.section].rows[indexPath.row]
 
-        switch cellType {
-        case .red:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ThemeSelectionTableViewCell", for: indexPath) as! ThemeSelectionTableViewCell
-            cell.viewModel = ThemeSelectionTableViewCellViewModel(theme: "Red", isSelected: false)
-            return cell
-        case .blue:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ThemeSelectionTableViewCell", for: indexPath) as! ThemeSelectionTableViewCell
-            cell.viewModel = ThemeSelectionTableViewCellViewModel(theme: "Blue", isSelected: false)
-            return cell
-        }
-    }
-
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cellType = sections[indexPath.section].rows[indexPath.row]
-
-        switch cellType {
-        case .red:
-            return
-        case .blue:
-            return
-        }
-    }
 }
 
 extension AppIconSelectionView {
+    func setup() {
 
-    func configureAndSave() {
-        self.configureCellTypes()
-        self.tableView.reloadData()
+
+        let view = UIView()
+        view.addSubview(iconSelectionCollectionView)
+        NSLayoutConstraint.activate([
+            iconSelectionCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            iconSelectionCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            iconSelectionCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            iconSelectionCollectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 70)
+        ])
+
+        iconSelectionCollectionView.register(changeIconCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        iconSelectionCollectionView.dataSource = self
+        iconSelectionCollectionView.delegate = self
+        self.view = view
     }
 }
 
-// MARK: set up methods
-
-extension AppIconSelectionView {
-
-    func setupViewModel() {
-        // do something
+extension AppIconSelectionView: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return AlternateIcons.alternateIcons.count
     }
 
-    func setupTableView() {
-        registerTableViewCells()
-        tableView.tableFooterView = UIView(frame: .zero)
-    }
-
-    func registerTableViewCells() {
-        tableView.register(ThemeSelectionTableViewCell.self, forCellReuseIdentifier: "ThemeSelectionTableViewCell")
-        tableView.register(TableViewHeaderView.self, forHeaderFooterViewReuseIdentifier: "TableViewHeaderView")
-    }
-
-    func configureCellTypes() {
-
-        defer { tableView.reloadData() }
-
-        var sections = [TableViewSection]()
-        sections.append(.init(rows: [.red, .blue]))
-
-        self.sections = sections
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! changeIconCollectionViewCell
+        myCell.viewModel = changeIconCollectionViewCellViewModel(colourName: AlternateIcons.alternateIcons[indexPath.row])
+        return myCell
     }
 }
+extension AppIconSelectionView: UICollectionViewDelegate {
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if UIApplication.shared.supportsAlternateIcons {
+            let iconName = indexPath.row == 0 ? nil : AlternateIcons.alternateIcons[indexPath.row] + "Icon"
+            UIApplication.shared.setAlternateIconName(iconName) { error in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    print("App Icon changed!")
+                }
+            }
+        }
+    }
+}
+
 
 extension AppIconSelectionView: Themed {
     func applyTheme(_ theme: AppTheme) {
-        self.tableView.backgroundColor = theme.secondaryBackgroundColor
-        self.navigationController?.navigationBar.barTintColor = theme.barBackgroundColor
-        self.navigationController?.navigationBar.tintColor = theme.tintColor
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: theme.textColor]
-        tableView.reloadData()
+        self.view.backgroundColor = theme.secondaryBackgroundColor
     }
 }
 
 extension AppIconSelectionView: FontProtocol {
     func applyFont(_ font: AppFont) {
-        navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.font: font.mediumFontValue().withSize(17),
-            NSAttributedString.Key.foregroundColor: themeProvider.currentTheme.textColor
-        ]
-
-        self.navigationItem.leftBarButtonItem?.setTitleTextAttributes([
-            NSAttributedString.Key.font: font.fontValue().withSize(17),
-            NSAttributedString.Key.foregroundColor: self.themeProvider.currentTheme.textColor
-        ],
-        for: .normal)
-        tableView.reloadData()
     }
 }
-
-
-
