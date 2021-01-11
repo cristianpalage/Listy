@@ -10,12 +10,21 @@ import Foundation
 import CoreData
 import UIKit
 
+enum RepeatOption: String, Codable {
+    case minutely
+    case hourly
+    case daily
+    case weekly
+    case monthly
+    case yearly
+}
+
 class Node: Equatable, Encodable {
     
     var value: String
     var id: UUID
     var deadline: Date?
-
+    var repeatOption: RepeatOption?
     var children: [Node] = []
     var parent: Node?
     var childrenOrder: String?
@@ -63,6 +72,7 @@ extension Node {
         listNode.setValue(id, forKeyPath: "id")
         listNode.setValue(childrenOrder, forKey: "childrenOrder")
         listNode.setValue(deadline, forKey: "deadline")
+        listNode.setValue(repeatOption?.rawValue, forKey: "repeatOption")
 
         for child in children {
             let children = listNode.mutableSetValue(forKey: "children")

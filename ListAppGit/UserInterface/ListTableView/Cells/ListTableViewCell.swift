@@ -96,7 +96,8 @@ private extension ListTableViewCell {
 
     func setupViewModel() {
         label.text = viewModel?.list.value
-        deadlineLabel.text = dateFormatter(date: viewModel?.list.deadline)
+        deadlineLabel.text = dateFormatter(date: viewModel?.list.deadline)?
+            .appending(repeatDateFormatter(repeatOption: self.viewModel?.list.repeatOption))
     }
 }
 

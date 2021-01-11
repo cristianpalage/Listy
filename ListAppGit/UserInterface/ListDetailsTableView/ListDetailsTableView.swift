@@ -26,6 +26,7 @@ class ListDetailsTableView: UITableViewController {
             case editNameCell
             case listDepth
             case deadline
+            case repetition
         }
 
         let rows: [CellType]
@@ -41,9 +42,12 @@ class ListDetailsTableView: UITableViewController {
     fileprivate var coreList: [NSManagedObject] = []
     fileprivate var rootNodeNSObject: [NSObject] = []
 
+    fileprivate var showRepeat: Bool
+
 
     init(viewModel: ListDetailsTableViewModel) {
         self.viewModel = viewModel
+        self.showRepeat = viewModel.currentList.deadline != nil
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -58,6 +62,8 @@ class ListDetailsTableView: UITableViewController {
         self.title = "List Details"
         self.configureCellTypes()
         self.setupTableView()
+        self.setupNavigation()
+
     }
 
     // MARK: tableView
@@ -95,29 +101,37 @@ class ListDetailsTableView: UITableViewController {
         case .deadline:
             let cell = tableView.dequeueReusableCell(withIdentifier: "ListDetailsDeadlineTableViewCell", for: indexPath) as! ListDetailsDeadlineTableViewCell
             cell.viewModel = ListDetailsDeadlineTableViewCellViewModel(list: viewModel.currentList)
+            cell.delegate = self
+            return cell
+        case .repetition:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewButtonCell", for: indexPath) as! TableViewButtonCell
+            let secondaryTitle = self.viewModel.currentList.repeatOption != nil ? self.viewModel.currentList.repeatOption?.rawValue : "Never"
+            cell.viewModel = TableViewButtonCellViewModel(title: "Repeat", secondaryTitle: secondaryTitle)
             return cell
         }
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cellType = sections[indexPath.section].rows[indexPath.row]
+
+        switch cellType {
+        case .editNameCell:
+            return
+        case .listDepth:
+            return
+        case .deadline:
+            return
+        case .repetition:
+            let viewModel = ListDetailsRepeatTableViewViewModel(currentList: self.viewModel.currentList)
+            let view = ListDetailsRepeatTableView(viewModel: viewModel)
+            view.delegate = self
+            navigationController?.pushViewController(view, animated: true)
+        }
+
     }
 }
 
 extension ListDetailsTableView {
-
-
-    func saveCoreData(with name: String) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "List", in: managedContext)!
-        let List = NSManagedObject(entity: entity, insertInto: managedContext)
-        List.setValue(name, forKeyPath: "listString")
-
-        do {
-            try managedContext.save()
-            coreList.append(List)
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-        }
-    }
 
     func configureAndSave() {
         self.configureCellTypes()
@@ -135,10 +149,30 @@ extension ListDetailsTableView {
         self.tableView.backgroundColor = themeProvider.currentTheme.backgroundColor
     }
 
+    func setupNavigation() {
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: self.title, style: .plain, target: self, action: #selector(self.back))
+        self.navigationItem.backBarButtonItem?.setTitleTextAttributes([
+            NSAttributedString.Key.font: self.fontProvider.currentFont.fontValue().withSize(17),
+            NSAttributedString.Key.foregroundColor: self.themeProvider.currentTheme.textColor
+        ],
+        for: .normal)
+
+        self.navigationItem.leftBarButtonItem?.setTitleTextAttributes([
+            NSAttributedString.Key.font: self.fontProvider.currentFont.fontValue().withSize(17),
+            NSAttributedString.Key.foregroundColor: self.themeProvider.currentTheme.textColor
+        ],
+        for: .normal)
+    }
+
+    @objc func back() {
+        self.navigationController?.popViewController(animated: true)
+    }
+
     func registerTableViewCells() {
         tableView.register(ListDetailsEditNameTableViewCell.self, forCellReuseIdentifier: "ListDetailsEditNameTableViewCell")
         tableView.register(ListDetailsListDepthTableViewCell.self, forCellReuseIdentifier: "ListDetailsListDepthTableViewCell")
         tableView.register(ListDetailsDeadlineTableViewCell.self, forCellReuseIdentifier: "ListDetailsDeadlineTableViewCell")
+        tableView.register(TableViewButtonCell.self, forCellReuseIdentifier: "TableViewButtonCell")
     }
 
     func configureCellTypes() {
@@ -152,10 +186,32 @@ extension ListDetailsTableView {
         //sections.append(.init(rows: [.listDepth]))
         sections.append(.init(rows: [.deadline]))
 
+        if self.showRepeat {
+            sections.append(.init(rows: [.repetition]))
+        }
+        
         self.sections = sections
     }
-
 }
+
+extension ListDetailsTableView: NameListDetailsDeadlineTableViewCellDelegate {
+
+    func reloadTableView() {
+        configureAndSave()
+    }
+
+    func deadlineToggleIsTrue(value: Bool) {
+        self.showRepeat = value
+    }
+}
+
+extension ListDetailsTableView: ListDetailsRepeatTableViewDelegate {
+    func valueChanged(newVal: RepeatOption?) {
+        self.viewModel.currentList.repeatOption = newVal
+        configureAndSave()
+    }
+}
+
 
 extension ListDetailsTableView: Themed {
     func applyTheme(_ theme: AppTheme) {
@@ -167,6 +223,17 @@ extension ListDetailsTableView: FontProtocol {
     func applyFont(_ font: AppFont) {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: font.mediumFontValue().withSize(18),
                                                                    NSAttributedString.Key.foregroundColor: themeProvider.currentTheme.textColor]
+        navigationItem.leftBarButtonItem?.setTitleTextAttributes([
+            NSAttributedString.Key.font: font.fontValue().withSize(17),
+            NSAttributedString.Key.foregroundColor: self.themeProvider.currentTheme.textColor
+        ],
+        for: .normal)
+
+        navigationItem.backBarButtonItem?.setTitleTextAttributes([
+            NSAttributedString.Key.font: font.fontValue().withSize(17),
+            NSAttributedString.Key.foregroundColor: self.themeProvider.currentTheme.textColor
+        ],
+        for: .normal)
     }
 }
 

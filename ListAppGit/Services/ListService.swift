@@ -16,6 +16,24 @@ func NSobjectNodeToNode(NSObjectNode: NSObject? = nil) -> Node {
     node.value = NSObjectNode?.value(forKeyPath: "value") as? String ?? ""
     node.deadline = NSObjectNode?.value(forKeyPath: "deadline") as? Date ?? nil
 
+    let repeatOtionString = NSObjectNode?.value(forKey: "repeatOption") as? String ?? ""
+
+    if repeatOtionString == "minutely" {
+        node.repeatOption = .minutely
+    } else if repeatOtionString == "hourly" {
+        node.repeatOption = .hourly
+    } else if repeatOtionString == "daily" {
+        node.repeatOption = .daily
+    } else if repeatOtionString == "weekly" {
+        node.repeatOption = .weekly
+    } else if repeatOtionString == "monthly" {
+        node.repeatOption = .monthly
+    } else if repeatOtionString == "yearly" {
+        node.repeatOption = .yearly
+    } else {
+        node.repeatOption = nil
+    }
+
     // need to do this way as childrenOrder is changed again when children are added
     let order = NSObjectNode?.value(forKeyPath: "childrenOrder") as? String ?? ""
     node.childrenOrder = NSObjectNode?.value(forKeyPath: "childrenOrder") as? String ?? ""

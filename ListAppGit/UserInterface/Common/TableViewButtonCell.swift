@@ -11,9 +11,11 @@ import UIKit
 
 struct TableViewButtonCellViewModel {
     var title: String
+    var secondaryTitle: String?
 
-    init(title: String) {
+    init(title: String, secondaryTitle: String? = nil) {
         self.title = title
+        self.secondaryTitle = secondaryTitle
     }
 }
 
@@ -24,6 +26,13 @@ class TableViewButtonCell: UITableViewCell {
     }
 
     private let label: ListyLabel = {
+        let label = ListyLabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = label.font.withSize(17)
+        return label
+    }()
+
+    private let secondaryLabel: ListyLabel = {
         let label = ListyLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = label.font.withSize(17)
@@ -66,12 +75,18 @@ private extension TableViewButtonCell {
         setUpFont()
 
         contentView.addSubview(label)
+        contentView.addSubview(secondaryLabel)
         contentView.addSubview(arrowIcon)
 
         NSLayoutConstraint.activate([
             label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
             label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12)
+        ])
+
+        NSLayoutConstraint.activate([
+            secondaryLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            secondaryLabel.trailingAnchor.constraint(equalTo: arrowIcon.leadingAnchor, constant: -8)
         ])
 
         NSLayoutConstraint.activate([
@@ -82,6 +97,7 @@ private extension TableViewButtonCell {
 
     func setupViewModel() {
         label.text = viewModel?.title
+        secondaryLabel.text = viewModel?.secondaryTitle
     }
 }
 
@@ -89,6 +105,7 @@ extension TableViewButtonCell: Themed {
     func applyTheme(_ theme: AppTheme) {
         contentView.backgroundColor = theme.backgroundColor
         label.textColor = theme.textColor
+        secondaryLabel.textColor = theme.secondaryTextColor
         arrowIcon.tintColor = theme.tintColor
     }
 }
@@ -96,6 +113,7 @@ extension TableViewButtonCell: Themed {
 extension TableViewButtonCell: FontProtocol {
     func applyFont(_ font: AppFont) {
         label.font = font.fontValue().withSize(label.font.pointSize)
+        secondaryLabel.font = font.fontValue().withSize(label.font.pointSize)
     }
 }
 
