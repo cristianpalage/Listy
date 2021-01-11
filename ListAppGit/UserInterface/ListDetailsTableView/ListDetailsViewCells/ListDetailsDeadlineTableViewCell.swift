@@ -17,9 +17,16 @@ struct ListDetailsDeadlineTableViewCellViewModel {
     }
 }
 
+protocol NameListDetailsDeadlineTableViewCellDelegate: AnyObject {
+    func deadlineToggleIsTrue(value: Bool)
+    func reloadTableView()
+}
+
 class ListDetailsDeadlineTableViewCell: UITableViewCell {
 
     var hasDeadline: Bool = false
+
+    weak var delegate: NameListDetailsDeadlineTableViewCellDelegate?
 
     var viewModel: ListDetailsDeadlineTableViewCellViewModel? {
         didSet { setupViewModel() }
@@ -80,20 +87,20 @@ private extension ListDetailsDeadlineTableViewCell {
         NSLayoutConstraint.activate([
             deadlinePromptLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             deadlinePromptLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 26),
-            deadlinePromptLabel.bottomAnchor.constraint(equalTo: datePicker.topAnchor, constant: -8),
+            deadlinePromptLabel.bottomAnchor.constraint(equalTo: datePicker.topAnchor, constant: -8)
         ])
 
         NSLayoutConstraint.activate([
             deadlineToggle.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             deadlineToggle.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -26),
-            deadlineToggle.bottomAnchor.constraint(equalTo: datePicker.topAnchor, constant: -8),
+            deadlineToggle.bottomAnchor.constraint(equalTo: datePicker.topAnchor, constant: -8)
         ])
 
         NSLayoutConstraint.activate([
             datePicker.topAnchor.constraint(equalTo: deadlinePromptLabel.bottomAnchor, constant: 8),
             datePicker.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 18),
             datePicker.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18),
-            datePicker.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+            datePicker.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
         ])
     }
 
@@ -101,10 +108,9 @@ private extension ListDetailsDeadlineTableViewCell {
         if let deadline = viewModel?.list.deadline {
             datePicker.date = deadline
             deadlineToggle.isOn = true
-            datePicker.isHidden = false
             self.hasDeadline = true
+            self.datePicker.isHidden = false
         } else {
-            datePicker.isHidden = true
             self.hasDeadline = false
         }
     }
@@ -113,15 +119,21 @@ private extension ListDetailsDeadlineTableViewCell {
         self.viewModel?.list.deadline = sender.date
         clearNotificationForList(list: self.viewModel?.list)
         scheduleNotification(list: self.viewModel?.list)
+        delegate?.reloadTableView()
     }
 
     @objc func toggleChanged(_ sender: UISwitch) {
+        delegate?.deadlineToggleIsTrue(value: sender.isOn)
+
         datePicker.isHidden = !sender.isOn
 
         if !sender.isOn {
             self.viewModel?.list.deadline = nil
+            self.viewModel?.list.repeatOption = nil
             clearNotificationForList(list: self.viewModel?.list)
         }
+        delegate?.reloadTableView()
+
     }
 
     func setupDatePicker() {

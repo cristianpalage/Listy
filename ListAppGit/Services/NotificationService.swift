@@ -16,15 +16,37 @@ func scheduleNotification(list: Node?) {
     let content = UNMutableNotificationContent()
     content.title = list.value
     content.categoryIdentifier = "reminder"
-    content.userInfo = ["customData": "fizzbuzz"]
     content.sound = UNNotificationSound.default
 
-    var dateComponents = DateComponents()
-    dateComponents.hour = 10
-    dateComponents.minute = 30
-    if let timeUntilNotification = list.deadline?.timeIntervalSinceNow, timeUntilNotification > 0 {
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeUntilNotification, repeats: false)
-        let request = UNNotificationRequest(identifier: list.id.uuidString, content: content, trigger: trigger)
+    if let deadline = list.deadline, deadline.timeIntervalSinceNow > 0 {
+
+        var components: DateComponents
+        var trigger: UNCalendarNotificationTrigger
+        var request: UNNotificationRequest
+
+        if let repeatComponent = list.repeatOption {
+            var comps = Set<Calendar.Component>()
+            if repeatComponent == .minutely {
+                comps = [.second]
+            } else if repeatComponent == .hourly {
+                comps = [.minute, .second]
+            } else if repeatComponent == .daily {
+                comps = [.hour, .minute, .second]
+            } else if repeatComponent == .weekly {
+                comps = [.weekday, .hour, .minute, .second]
+            } else if repeatComponent == .monthly {
+                comps = [.day, .hour, .minute, .second]
+            } else if repeatComponent == .yearly {
+                comps = [.month, .day, .hour, .minute, .second]
+            }
+            components = Calendar.current.dateComponents(comps, from: deadline)
+            trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: true)
+        } else {
+            components = Calendar.current.dateComponents([.era, .year, .month, .day, .hour, .minute, .second], from: deadline)
+            trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+        }
+
+        request = UNNotificationRequest(identifier: list.id.uuidString, content: content, trigger: trigger)
         center.add(request)
     }
 }

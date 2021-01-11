@@ -10,6 +10,7 @@
         <attribute name="childrenOrder" optional="YES" attributeType="String" customClassName="[UUID]"/>
         <attribute name="deadline" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="repeatOption" optional="YES" attributeType="String"/>
         <attribute name="value" attributeType="String" defaultValueString="Empty"/>
         <relationship name="children" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ListNode" inverseName="parent" inverseEntity="ListNode"/>
         <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ListNode" inverseName="children" inverseEntity="ListNode"/>
@@ -25,7 +26,7 @@
     <elements>
         <element name="Font" positionX="-135" positionY="-18" width="128" height="58"/>
         <element name="List" positionX="-230.56640625" positionY="-178.76953125" width="128" height="58"/>
-        <element name="ListNode" positionX="-63" positionY="-9" width="128" height="148"/>
+        <element name="ListNode" positionX="-63" positionY="-9" width="128" height="163"/>
         <element name="Root" positionX="-253.04296875" positionY="132.52734375" width="128" height="58"/>
         <element name="Theme" positionX="-144" positionY="-27" width="128" height="73"/>
     </elements>
