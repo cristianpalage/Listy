@@ -28,6 +28,7 @@ class PrivacyPolicyViewController: UIViewController {
     let textView: UITextView = {
         let tv = UITextView()
         tv.translatesAutoresizingMaskIntoConstraints = false
+        tv.isEditable = false
         let style = NSMutableParagraphStyle()
         style.lineSpacing = 8
         let attributes = [NSAttributedString.Key.paragraphStyle : style]

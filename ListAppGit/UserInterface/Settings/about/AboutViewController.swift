@@ -34,6 +34,7 @@ class AboutViewController: UIViewController {
 
     let textView: UITextView = {
         let tv = UITextView()
+        tv.isEditable = false
         tv.translatesAutoresizingMaskIntoConstraints = false
         let style = NSMutableParagraphStyle()
         style.lineSpacing = 8
