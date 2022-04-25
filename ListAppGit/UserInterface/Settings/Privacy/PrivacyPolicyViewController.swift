@@ -69,6 +69,7 @@ class PrivacyPolicyViewController: UIViewController {
 
 extension PrivacyPolicyViewController: Themed {
     func applyTheme(_ theme: AppTheme) {
+        self.navigationController?.navigationBar.backgroundColor = theme.secondaryBackgroundColor
         headerView.backgroundColor = theme.backgroundColor
         textView.textColor = theme.textColor
         textView.backgroundColor = .clear

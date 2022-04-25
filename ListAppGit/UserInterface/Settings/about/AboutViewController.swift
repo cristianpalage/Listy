@@ -40,7 +40,7 @@ class AboutViewController: UIViewController {
         style.lineSpacing = 8
         let attributes = [NSAttributedString.Key.paragraphStyle : style]
         tv.attributedText = NSAttributedString(
-            string: "👋 Hi, I'm Cristian Palage\n\nI'm a student studying Computer Science at the University of Waterloo in Waterloo, Ontario by day and musician and indie dev by night.\n\nI developed Listy originally for myself. I wanted a simple List app that takes advantage of all the wonderful integrations iOS has to offer in a way that worked with my brain. After a seemingly endless and futile search I gave up and made my own.\n\nI'd love to hear what you think! You can reach out to me on Twitter or send me an Email.\n\nIf you like the app, please tell a friend, or leave a review on the app store!",
+            string: "👋 Hi, I'm Cristian Palage\n\nI'm a student studying Computer Science by day and musician and indie dev by night.\n\nI developed Listy originally for myself. I wanted a simple List app that takes advantage of all the wonderful integrations iOS has to offer in a way that worked with my brain. After a seemingly endless and futile search I gave up and made my own.\n\nI'd love to hear what you think! You can reach out to me on Twitter or send me an Email.\n\nIf you like the app, please tell a friend, or leave a review on the app store!",
             attributes: attributes
         )
         return tv
@@ -64,7 +64,7 @@ class AboutViewController: UIViewController {
         ])
 
         NSLayoutConstraint.activate([
-            titleHeader.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 8),
+            titleHeader.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 16),
             titleHeader.centerXAnchor.constraint(equalTo: containerView.centerXAnchor)
         ])
 
@@ -83,6 +83,7 @@ class AboutViewController: UIViewController {
 
 extension AboutViewController: Themed {
     func applyTheme(_ theme: AppTheme) {
+        self.navigationController?.navigationBar.backgroundColor = theme.secondaryBackgroundColor
         containerView.backgroundColor = theme.backgroundColor
         textView.textColor = theme.textColor
         textView.backgroundColor = .clear
