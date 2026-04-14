@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		0B9E776F2F6F6787004A89AA /* ListTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ListTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0B9E776F2F6F6787004A89AA /* Listy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Listy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		0B9E77712F6F6787004A89AA /* ListTest */ = {
+		0B9E77712F6F6787004A89AA /* Listy */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = ListTest;
+			path = Listy;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -32,7 +32,7 @@
 		0B9E77662F6F6787004A89AA = {
 			isa = PBXGroup;
 			children = (
-				0B9E77712F6F6787004A89AA /* ListTest */,
+				0B9E77712F6F6787004A89AA /* Listy */,
 				0B9E77702F6F6787004A89AA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -40,7 +40,7 @@
 		0B9E77702F6F6787004A89AA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0B9E776F2F6F6787004A89AA /* ListTest.app */,
+				0B9E776F2F6F6787004A89AA /* Listy.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,9 +48,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0B9E776E2F6F6787004A89AA /* ListTest */ = {
+		0B9E776E2F6F6787004A89AA /* Listy */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0B9E777C2F6F6788004A89AA /* Build configuration list for PBXNativeTarget "ListTest" */;
+			buildConfigurationList = 0B9E777C2F6F6788004A89AA /* Build configuration list for PBXNativeTarget "Listy" */;
 			buildPhases = (
 				0B9E776B2F6F6787004A89AA /* Sources */,
 				0B9E776C2F6F6787004A89AA /* Frameworks */,
@@ -61,13 +61,13 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				0B9E77712F6F6787004A89AA /* ListTest */,
+				0B9E77712F6F6787004A89AA /* Listy */,
 			);
-			name = ListTest;
+			name = Listy;
 			packageProductDependencies = (
 			);
 			productName = ListTest;
-			productReference = 0B9E776F2F6F6787004A89AA /* ListTest.app */;
+			productReference = 0B9E776F2F6F6787004A89AA /* Listy.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -85,7 +85,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 0B9E776A2F6F6787004A89AA /* Build configuration list for PBXProject "ListTest" */;
+			buildConfigurationList = 0B9E776A2F6F6787004A89AA /* Build configuration list for PBXProject "Listy" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -99,7 +99,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0B9E776E2F6F6787004A89AA /* ListTest */,
+				0B9E776E2F6F6787004A89AA /* Listy */,
 			);
 		};
 /* End PBXProject section */
@@ -317,7 +317,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0B9E776A2F6F6787004A89AA /* Build configuration list for PBXProject "ListTest" */ = {
+		0B9E776A2F6F6787004A89AA /* Build configuration list for PBXProject "Listy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0B9E777A2F6F6788004A89AA /* Debug */,
@@ -326,7 +326,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0B9E777C2F6F6788004A89AA /* Build configuration list for PBXNativeTarget "ListTest" */ = {
+		0B9E777C2F6F6788004A89AA /* Build configuration list for PBXNativeTarget "Listy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0B9E777D2F6F6788004A89AA /* Debug */,

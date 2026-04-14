@@ -16,9 +16,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0B9E776E2F6F6787004A89AA"
-               BuildableName = "ListTest.app"
-               BlueprintName = "ListTest"
-               ReferencedContainer = "container:ListTest.xcodeproj">
+               BuildableName = "Listy.app"
+               BlueprintName = "Listy"
+               ReferencedContainer = "container:Listy.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0B9E776E2F6F6787004A89AA"
-            BuildableName = "ListTest.app"
-            BlueprintName = "ListTest"
-            ReferencedContainer = "container:ListTest.xcodeproj">
+            BuildableName = "Listy.app"
+            BlueprintName = "Listy"
+            ReferencedContainer = "container:Listy.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -64,9 +64,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0B9E776E2F6F6787004A89AA"
-            BuildableName = "ListTest.app"
-            BlueprintName = "ListTest"
-            ReferencedContainer = "container:ListTest.xcodeproj">
+            BuildableName = "Listy.app"
+            BlueprintName = "Listy"
+            ReferencedContainer = "container:Listy.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
